@@ -1,0 +1,53 @@
+[
+  {
+    "id": "transport-01",
+    "name": "Puri-Konark Marine Drive Bike & Scooty Rentals",
+    "district": "Puri",
+    "location": "Puri Railway Station & Sea Beach Road Hub",
+    "lat": 19.8142,
+    "lng": 85.8391,
+    "vehicleType": "Self-Drive Scooty (Honda Activa) / Cruiser Bikes",
+    "rateCard": {
+      "hourly": "₹60 / hour (Min 3 hrs)",
+      "fullDay": "₹350 - ₹450 / day (Unlimited km within Odisha)"
+    },
+    "rating": 4.88,
+    "available": "24 Vehicles Ready",
+    "contact": "+91 94373 55112",
+    "highlights": "Best way to explore the 35km scenic coastal highway."
+  },
+  {
+    "id": "transport-02",
+    "name": "Raghurajpur Eco E-Rickshaw Cooperative",
+    "district": "Puri",
+    "location": "Chandanpur Junction (NH-316) to Raghurajpur Hamlet",
+    "lat": 19.8654,
+    "lng": 85.8198,
+    "vehicleType": "Green Battery-Operated E-Rickshaw / Toto",
+    "rateCard": {
+      "perRide": "₹20 - ₹30 per seat",
+      "fullTourCharter": "₹250 for 3-Hour Village Artisan Studio Hop"
+    },
+    "rating": 4.95,
+    "available": "18 Totos Ready",
+    "contact": "+91 98614 77209",
+    "highlights": "Zero-emission silent eco-rickshaws with trained local guides."
+  },
+  {
+    "id": "transport-03",
+    "name": "Ekamra Mo Auto & Self-Drive Car Rentals",
+    "district": "Khordha",
+    "location": "Biju Patnaik Airport & Master Canteen, Bhubaneswar",
+    "lat": 20.2528,
+    "lng": 85.8178,
+    "vehicleType": "Metered CNG Auto-Rickshaws & Hatchback Cars",
+    "rateCard": {
+      "autoHourly": "₹120 / hr (Metered)",
+      "hatchbackSelfDrive": "₹1,100 / day"
+    },
+    "rating": 4.79,
+    "available": "35 Vehicles Ready",
+    "contact": "+91 674 291 4455",
+    "highlights": "Verified GPS-tracked cabs and autos with fixed government rates."
+  }
+]

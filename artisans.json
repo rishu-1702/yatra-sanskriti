@@ -1,0 +1,28 @@
+[
+  {
+    "id": "artisan-01",
+    "name": "Guru Rabindra Maharana",
+    "craftTitle": "Master of Palm Leaf Engraving (Tala Pattachitra) & Natural Dyes",
+    "district": "Puri",
+    "village": "Raghurajpur Heritage Crafts Village, Studio #14",
+    "lat": 19.8735,
+    "lng": 85.8238,
+    "giTagId": "#OD-PATTA-RAGHU-204",
+    "rating": 5.0,
+    "masterclassFee": 500,
+    "phone": "+91 94371 90234"
+  },
+  {
+    "id": "artisan-02",
+    "name": "Smt. Manorama Meher",
+    "craftTitle": "Bandhakala (Double Ikat) Silk & Natural Madder Root Dyeing",
+    "district": "Bargarh",
+    "village": "Barpali Handloom Cluster, Bargarh",
+    "lat": 21.1823,
+    "lng": 83.5934,
+    "giTagId": "#OD-IKAT-BARP-901",
+    "rating": 4.98,
+    "masterclassFee": 650,
+    "phone": "+91 98613 22091"
+  }
+]

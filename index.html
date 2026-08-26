@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YATRAसंस्कृति — AI Smart Tourism & Living Heritage Platform</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans, Cinzel Decorative, Rozha One & Yatra One -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Toast Notification Alert Banner -->
+  <div id="app-toast" class="app-toast">
+    <div class="toast-content">
+      <i id="toast-icon" class="fa-solid fa-circle-check"></i>
+      <span id="toast-msg">Welcome to YATRAसंस्कृति!</span>
+    </div>
+  </div>
+
+  <!-- Cinematic Ancient Temple Ruins Animated Overlays (Sunbeams, Mist, Sanskrit Slokas) -->
+  <div class="temple-ruins-overlay">
+    <div class="sunbeam sunbeam-1"></div>
+    <div class="sunbeam sunbeam-2"></div>
+    <div class="sunbeam sunbeam-3"></div>
+    <div class="temple-mist-layer"></div>
+    <div class="floating-sanskrit-particles">
+      <span class="ruin-sloka sloka-pos-1">ॐ असतो मा सद्गमय । तमसो मा ज्योतिर्गमय ।</span>
+      <span class="ruin-sloka sloka-pos-2">वसुधैव कुटुम्बकम् • अतिथी देवो भवः</span>
+      <span class="ruin-sloka sloka-pos-3">उत्कल भारत भूमि विशाला • कालिङ्ग शिल्पकला</span>
+      <span class="ruin-sloka sloka-pos-4">सत्यमेव जयते नानृतम् • अतीव रमणीयम्</span>
+    </div>
+    <div class="golden-spore-particles"></div>
+  </div>
+
+  <!-- =========================================================================
+       GATEWAY 1: MANDATORY INITIAL LOGIN & AUTHENTICATION SCREEN
+       (Shown first when user is not logged in)
+       ========================================================================= -->
+  <main id="login-gate-screen" class="gate-screen-container">
+    <div class="login-gate-card">
+      
+      <!-- Left Column: Sacred Ancient Art & Overview -->
+      <div class="gate-visual-col">
+        <div class="gate-visual-content">
+          <div class="gate-brand-emblem">
+            <i class="fa-solid fa-dharmachakra"></i>
+            <span class="ai-spark-dot"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+          </div>
+          <div class="gate-brand-title">
+            <span class="brand-en">YATRA</span><span class="brand-hi">संस्कृति</span>
+            <span class="ai-pill-tag">AI</span>
+          </div>
+          <p class="gate-tagline">Living Heritage • De-Congested Trails • Rural Artisan Guilds</p>
+
+          <div class="gate-perks-box">
+            <div class="perk-item"><i class="fa-solid fa-route"></i> <span>AI Geospatial Route De-Congestion</span></div>
+            <div class="perk-item"><i class="fa-solid fa-certificate"></i> <span>GI Certified Direct Artisan Support</span></div>
+            <div class="perk-item"><i class="fa-solid fa-headphones-simple"></i> <span>Location-Triggered Multilingual Audio Lore</span></div>
+            <div class="perk-item"><i class="fa-solid fa-shield-halved"></i> <span>24x7 Tourist Safety & Digital Verification</span></div>
+          </div>
+
+          <div class="gate-footer-note">
+            <i class="fa-solid fa-location-dot"></i> Prototype Region: <strong>Odisha (Utkala Kshetra)</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Login & Role Selection -->
+      <div class="gate-form-col">
+        <div class="gate-form-header">
+          <h2>Welcome to Sacred India</h2>
+          <p>Please authenticate to access the personalized smart travel portal & artisan directory.</p>
+        </div>
+
+        <!-- Role Selector Tabs -->
+        <div class="gate-role-tabs">
+          <button class="role-tab active" id="tab-gate-tourist" onclick="switchGateRole('tourist')">
+            <i class="fa-solid fa-compass"></i> Cultural Explorer
+          </button>
+          <button class="role-tab" id="tab-gate-artisan" onclick="switchGateRole('artisan')">
+            <i class="fa-solid fa-palette"></i> Master Craftsman
+          </button>
+        </div>
+
+        <!-- Mode Toggle: Email Login / OTP / Register -->
+        <div class="gate-mode-toggle" id="gateModeToggle">
+          <button class="mode-btn active" id="btn-gate-signin" onclick="switchGateMode('signin')">Sign In</button>
+          <button class="mode-btn" id="btn-gate-otp" onclick="switchGateMode('otp')">Mobile OTP</button>
+          <button class="mode-btn" id="btn-gate-signup" onclick="switchGateMode('signup')">Create Account</button>
+        </div>
+
+        <!-- 1. EXPLORER SIGN IN FORM -->
+        <form class="gate-auth-form active" id="form-gate-signin" onsubmit="handleGateLogin(event, 'tourist-password')">
+          <div class="form-group">
+            <label><i class="fa-solid fa-envelope"></i> Email or Mobile ID</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-at"></i>
+              <input type="text" id="gate-signin-id" placeholder="explorer@heritage.in or +91 9876543210" value="ananya.mishra@yatra.in" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="label-split">
+              <label><i class="fa-solid fa-lock"></i> Security Password</label>
+              <a href="#" class="link-helper" onclick="alert('Password reset link sent to registered ID!')">Forgot?</a>
+            </div>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-key"></i>
+              <input type="password" id="gate-signin-pass" placeholder="••••••••" value="Yatra2026@" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-gate-primary">
+            <i class="fa-solid fa-right-to-bracket"></i> Sign In & Enter Menu
+          </button>
+
+          <div class="gate-divider"><span>Or Fast Connect</span></div>
+
+          <div class="social-fast-grid">
+            <button type="button" class="btn-social" onclick="handleSocialGateLogin('Google')"><i class="fa-brands fa-google"></i> Google</button>
+            <button type="button" class="btn-social" onclick="handleSocialGateLogin('DigiLocker')"><i class="fa-solid fa-id-card-clip"></i> MeriPehchaan</button>
+          </div>
+        </form>
+
+        <!-- 2. EXPLORER OTP LOGIN FORM -->
+        <form class="gate-auth-form" id="form-gate-otp" onsubmit="handleGateLogin(event, 'tourist-otp')">
+          <div class="form-group">
+            <label><i class="fa-solid fa-mobile-screen"></i> Indian Mobile Number (+91)</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-phone"></i>
+              <input type="tel" id="gate-otp-phone" placeholder="98765 43210" value="9876543210" required>
+              <button type="button" class="btn-otp-action" onclick="showToast('OTP Code [202694] sent to your mobile!')">Send OTP</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label><i class="fa-solid fa-shield-check"></i> 6-Digit OTP Verification</label>
+            <div class="otp-digit-inputs">
+              <input type="text" maxlength="1" value="2" class="otp-digit" onkeyup="moveGateOtpFocus(this)">
+              <input type="text" maxlength="1" value="0" class="otp-digit" onkeyup="moveGateOtpFocus(this)">
+              <input type="text" maxlength="1" value="2" class="otp-digit" onkeyup="moveGateOtpFocus(this)">
+              <input type="text" maxlength="1" value="6" class="otp-digit" onkeyup="moveGateOtpFocus(this)">
+              <input type="text" maxlength="1" value="9" class="otp-digit" onkeyup="moveGateOtpFocus(this)">
+              <input type="text" maxlength="1" value="4" class="otp-digit" onkeyup="moveGateOtpFocus(this)">
+            </div>
+          </div>
+
+          <button type="submit" class="btn-gate-primary">
+            <i class="fa-solid fa-shield-halved"></i> Verify & Enter Portal
+          </button>
+        </form>
+
+        <!-- 3. EXPLORER SIGN UP FORM -->
+        <form class="gate-auth-form" id="form-gate-signup" onsubmit="handleGateLogin(event, 'tourist-signup')">
+          <div class="form-group">
+            <label><i class="fa-solid fa-user"></i> Full Name</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-user-pen"></i>
+              <input type="text" id="gate-signup-name" placeholder="Ananya Mishra" value="Ananya Mishra" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label><i class="fa-solid fa-envelope"></i> Email Address</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-envelope-open"></i>
+              <input type="email" id="gate-signup-email" placeholder="explorer@example.com" value="ananya@culture.in" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label><i class="fa-solid fa-lock"></i> Set Password</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-lock-open"></i>
+              <input type="password" id="gate-signup-pass" placeholder="Min 8 characters" value="Explorer2026!" required>
+            </div>
+          </div>
+          <button type="submit" class="btn-gate-primary">
+            <i class="fa-solid fa-sparkles"></i> Create Account & Enter
+          </button>
+        </form>
+
+        <!-- 4. MASTER ARTISAN GUILD LOGIN FORM -->
+        <form class="gate-auth-form" id="form-gate-artisan" onsubmit="handleGateLogin(event, 'artisan-portal')">
+          <div class="artisan-info-banner">
+            <i class="fa-solid fa-award"></i>
+            <div>
+              <strong>Odisha Master Craftsmen & SHG Guild Gateway</strong>
+              <p>Direct fair-trade studio tours, GI tag provenance verification, and 100% micro-tip payouts.</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label><i class="fa-solid fa-fingerprint"></i> Registered Artisan GI ID</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-id-badge"></i>
+              <input type="text" id="gate-artisan-id" placeholder="#OD-PATTA-RAGHU-204" value="#OD-PATTA-RAGHU-204" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label><i class="fa-solid fa-key"></i> Artisan Security PIN</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="gate-artisan-pin" placeholder="4-digit Master PIN" value="1234" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-gate-primary btn-artisan-gate">
+            <i class="fa-solid fa-hands-holding-circle"></i> Log In to Artisan Studio Hub
+          </button>
+
+          <div class="artisan-help-row">
+            <span>Need GI Tag Guild Enrollment?</span>
+            <a href="tel:18002081414" class="link-gi-help"><i class="fa-solid fa-headset"></i> Call Directorate 1800-208-1414</a>
+          </div>
+        </form>
+
+        <!-- Guest Exploration Quick Link -->
+        <div class="guest-skip-wrap">
+          <button type="button" class="btn-guest-enter" onclick="handleGuestLogin()">
+            <i class="fa-regular fa-eye"></i> Preview as Guest Explorer
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- =========================================================================
+       MAIN PLATFORM & USER-FRIENDLY INTERACTIVE MENU APP
+       (Shown automatically once user logs in)
+       ========================================================================= -->
+  <div id="main-platform-app" class="main-app-container" style="display: none;">
+    
+    <!-- Top 24x7 Safety & Live Network Ribbon -->
+    <div class="top-sos-ribbon">
+      <div class="container sos-ribbon-content">
+        <div class="sos-left-group">
+          <span class="beacon-pill"><i class="fa-solid fa-satellite-dish"></i> Live Heritage Network Active</span>
+          <span class="sos-helpline-text">
+            <i class="fa-solid fa-shield-halved"></i> 24x7 National Emergency: <strong>112</strong> | Odisha Tourist Police: <strong>1800-208-1414</strong> | Women Helpline: <strong>1091</strong>
+          </span>
+        </div>
+        <div class="sos-right-group">
+          <a href="#emergency-section" class="btn-quick-sos-top"><i class="fa-solid fa-triangle-exclamation"></i> Emergency SOS & Report</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Primary Navigation Bar with Authenticated User State -->
+    <header class="navbar">
+      <div class="container nav-flex">
+        
+        <!-- Brand Logo -->
+        <a href="#" class="brand-logo" onclick="switchMenuTab('overview')">
+          <div class="logo-ancient-emblem">
+            <i class="fa-solid fa-dharmachakra"></i>
+            <span class="ai-spark-dot"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+          </div>
+          <div class="brand-title-wrap">
+            <div class="brand-name-combo">
+              <span class="brand-en">YATRA</span><span class="brand-hi">संस्कृति</span>
+              <span class="ai-pill-tag">AI</span>
+            </div>
+            <span class="brand-subtext">Living Heritage • De-Congested Trails • Rural Artisan Guilds</span>
+          </div>
+        </a>
+
+        <!-- Main Navigation Links -->
+        <nav class="nav-menu">
+          <a href="#hierarchy-explorer" class="nav-link" onclick="switchMenuTab('hierarchy')"><i class="fa-solid fa-sitemap"></i> State-District Explorer</a>
+          <a href="#destinations" class="nav-link" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-compass"></i> Odisha Trails</a>
+          <a href="#artisan-network" class="nav-link" onclick="switchMenuTab('artisans')"><i class="fa-solid fa-hands-holding-circle"></i> Artisan Hub</a>
+          <a href="#audio-stories" class="nav-link" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones-simple"></i> Audio Lore</a>
+          <a href="#india-directory" class="nav-link" onclick="switchMenuTab('india')"><i class="fa-solid fa-map-location-dot"></i> Pan-India</a>
+        </nav>
+
+        <!-- User Profile & Action Bar -->
+        <div class="nav-action-btns">
+          <div class="lang-dropdown-pill">
+            <i class="fa-solid fa-language"></i>
+            <select id="app-language" aria-label="Select Language">
+              <option value="or" selected>ଓଡ଼ିଆ (Odia)</option>
+              <option value="hi">हिन्दी (Hindi)</option>
+              <option value="en">English</option>
+              <option value="bn">বাংলা (Bengali)</option>
+              <option value="te">తెలుగు (Telugu)</option>
+              <option value="sa">संस्कृतम् (Sanskrit)</option>
+              <option value="fr">Français</option>
+            </select>
+          </div>
+
+          <!-- User Profile Dropdown Button -->
+          <div class="auth-user-widget">
+            <button class="btn-profile-badge" onclick="toggleProfileDropdown()">
+              <img id="navAvatarImg" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80" alt="Avatar" class="avatar-thumb">
+              <span id="navUserName">Namaste, Ananya</span>
+              <i class="fa-solid fa-chevron-down caret-icon"></i>
+            </button>
+
+            <div class="profile-dropdown-card" id="profileDropdownCard">
+              <div class="dropdown-header">
+                <strong id="dropdownUserName">Ananya Mishra</strong>
+                <span class="user-badge" id="dropdownUserRole"><i class="fa-solid fa-certificate"></i> Verified Explorer</span>
+              </div>
+              <ul class="dropdown-links">
+                <li><a href="#destinations" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-bookmark"></i> Saved Offbeat Trails (3)</a></li>
+                <li><a href="#audio-stories" onclick="switchMenuTab('audio')"><i class="fa-solid fa-cloud-arrow-down"></i> Offline Odisha Audio Pack</a></li>
+                <li><a href="#artisan-network" onclick="switchMenuTab('artisans')"><i class="fa-solid fa-receipt"></i> Artisan Micro-Tip Receipts</a></li>
+                <li><a href="#emergency-section"><i class="fa-solid fa-id-badge"></i> Tourist Verified Digital ID</a></li>
+                <li class="divider-item"></li>
+                <li><button class="btn-logout" onclick="performLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out / Switch User</button></li>
+              </ul>
+            </div>
+          </div>
+
+          <button class="btn-nav-decongest" onclick="switchMenuTab('reroute')">
+            <i class="fa-solid fa-route"></i>
+            <span>De-Congest Route</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- =========================================================================
+         INTERACTIVE PLATFORM MENU BAR (User-Friendly Categorized Dashboard)
+         ========================================================================= -->
+    <div class="platform-menu-strip">
+      <div class="container menu-strip-flex">
+        <span class="menu-strip-label"><i class="fa-solid fa-bars-staggered"></i> Explore Platform Menu:</span>
+        <div class="menu-pills-row">
+          <button class="menu-pill-btn active" data-tab="overview" onclick="switchMenuTab('overview')"><i class="fa-solid fa-house"></i> Home & Search</button>
+          <button class="menu-pill-btn" data-tab="hierarchy" onclick="switchMenuTab('hierarchy')"><i class="fa-solid fa-sitemap"></i> State-District Explorer</button>
+          <button class="menu-pill-btn" data-tab="reroute" onclick="switchMenuTab('reroute')"><i class="fa-solid fa-wand-magic-sparkles"></i> AI De-Congestion</button>
+          <button class="menu-pill-btn" data-tab="destinations" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-gopuram"></i> Living Monuments & Gems</button>
+          <button class="menu-pill-btn" data-tab="artisans" onclick="switchMenuTab('artisans')"><i class="fa-solid fa-hands-holding-circle"></i> Rural Artisan Hub</button>
+          <button class="menu-pill-btn" data-tab="audio" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones"></i> Audio Lore Player</button>
+          <button class="menu-pill-btn" data-tab="india" onclick="switchMenuTab('india')"><i class="fa-solid fa-map-location-dot"></i> Pan-India Network</button>
+          <button class="menu-pill-btn" data-tab="emergency" onclick="switchMenuTab('emergency')"><i class="fa-solid fa-shield-heart"></i> 24x7 Safety & SOS</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: HERO & UNIVERSAL SEARCH -->
+    <section id="overview-section" class="hero-section">
+      <div class="container hero-container">
+        
+        <div class="heritage-kicker">
+          <span class="kicker-icon">🛕</span>
+          <span>Logged in as Verified Explorer • Active Prototype: Odisha (Utkala)</span>
+        </div>
+
+        <h1 class="hero-title">
+          Step Beyond Crowded Monuments. <br>
+          <span class="gold-gradient">YATRAसंस्कृति</span> Unlocks Ancient Living Lore.
+        </h1>
+
+        <p class="hero-description">
+          An AI-powered smart tourism platform that dynamically reroutes travelers from overcrowded sites to nearby hidden ruins, geo-triggered oral folklores, and direct fair-trade rural master craftsman studios.
+        </p>
+
+        <!-- Universal Search Card -->
+        <div class="universal-search-card">
+          <div class="search-inputs-grid">
+            <div class="input-box text-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="site-search" placeholder="Search ancient ruins, heritage temples, or craft clusters (e.g. 'Raghurajpur Pattachitra', 'Konark', 'Sambalpuri Ikat')...">
+            </div>
+
+            <div class="input-box select-box">
+              <i class="fa-solid fa-landmark"></i>
+              <select id="state-select">
+                <option value="odisha" selected>Odisha (Active Prototype)</option>
+                <option value="rajasthan">Rajasthan (Coming Soon)</option>
+                <option value="kerala">Kerala (Coming Soon)</option>
+                <option value="tamilnadu">Tamil Nadu (Coming Soon)</option>
+                <option value="madhyapradesh">Madhya Pradesh (Coming Soon)</option>
+                <option value="assam">Assam (Coming Soon)</option>
+              </select>
+            </div>
+
+            <div class="input-box select-box">
+              <i class="fa-solid fa-city"></i>
+              <select id="district-select">
+                <option value="all">All Odisha Districts</option>
+                <option value="puri">Puri (Konark, Raghurajpur, Pipili)</option>
+                <option value="khordha">Khordha (Bhubaneswar, Dhauli)</option>
+                <option value="cuttack">Cuttack (Tarakasi Filigree)</option>
+                <option value="bargarh">Bargarh (Ikat Silk Weaving)</option>
+                <option value="jajpur">Jajpur (Buddhist Diamond Triangle)</option>
+                <option value="koraput">Koraput (Dokra Brass Casting)</option>
+              </select>
+            </div>
+
+            <button class="btn-search-fire" onclick="showToast('Filtered results updated based on your search query!')">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Explore Trail
+            </button>
+          </div>
+
+          <!-- Filter Chips -->
+          <div class="filter-chips-wrap">
+            <span class="filter-heading"><i class="fa-solid fa-sliders"></i> Quick Filters:</span>
+            <button class="chip-btn active" onclick="switchFilter(this, 'all')"><i class="fa-solid fa-layer-group"></i> All Sites</button>
+            <button class="chip-btn chip-known" onclick="switchFilter(this, 'known')"><i class="fa-solid fa-monument"></i> Major Landmarks</button>
+            <button class="chip-btn chip-gem" onclick="switchFilter(this, 'gem')"><i class="fa-solid fa-gem"></i> Hidden Gems & Hamlets</button>
+            <button class="chip-btn" onclick="switchFilter(this, 'artisan')"><i class="fa-solid fa-palette"></i> Artisan Workshops</button>
+            <button class="chip-btn" onclick="switchFilter(this, 'audio')"><i class="fa-solid fa-headphones"></i> Audio Guides</button>
+          </div>
+        </div>
+
+        <!-- Live Impact Ribbon -->
+        <div class="hero-metrics-strip">
+          <div class="metric-item">
+            <strong class="metric-value">30+</strong>
+            <span class="metric-title"><i class="fa-solid fa-gopuram"></i> Documented Heritage Sites</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <strong class="metric-value">1,850+</strong>
+            <span class="metric-title"><i class="fa-solid fa-users-gear"></i> Direct Rural Artisans</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <strong class="metric-value">7 Languages</strong>
+            <span class="metric-title"><i class="fa-solid fa-microphone-lines"></i> Spatial Audio Guides</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <strong class="metric-value">-38% Footfall</strong>
+            <span class="metric-title"><i class="fa-solid fa-arrow-trend-down"></i> AI De-Congestion Rate</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 1: HIERARCHY EXPLORER -->
+    <section id="hierarchy-explorer" class="section-block bg-translucent-ruins">
+      <div class="container">
+        
+        <div class="section-header-box">
+          <span class="section-mini-tag"><i class="fa-solid fa-sitemap"></i> Menu Item 01</span>
+          <h2 class="section-main-heading">State → District → City → Heritage Location</h2>
+          <p class="section-sub-heading">Explore ancient India's cultural map. Drill down into Odisha's diverse heritage districts or scale across pan-India states.</p>
+        </div>
+
+        <div class="state-scroll-container">
+          <button class="state-tab-card active">
+            <span class="state-emoji">🏛️</span>
+            <div class="state-tab-text">
+              <strong>Odisha (Active Prototype)</strong>
+              <span>30 Sites • 14 Craft Guilds</span>
+            </div>
+          </button>
+          <button class="state-tab-card">
+            <span class="state-emoji">🏰</span>
+            <div class="state-tab-text">
+              <strong>Rajasthan</strong>
+              <span class="state-badge-status">Prototype Ready</span>
+            </div>
+          </button>
+          <button class="state-tab-card">
+            <span class="state-emoji">🌴</span>
+            <div class="state-tab-text">
+              <strong>Kerala</strong>
+              <span class="state-badge-status">Network Mapped</span>
+            </div>
+          </button>
+          <button class="state-tab-card">
+            <span class="state-emoji">🛕</span>
+            <div class="state-tab-text">
+              <strong>Tamil Nadu</strong>
+              <span class="state-badge-status">Network Mapped</span>
+            </div>
+          </button>
+          <button class="state-tab-card">
+            <span class="state-emoji">🐅</span>
+            <div class="state-tab-text">
+              <strong>Madhya Pradesh</strong>
+              <span class="state-badge-status">Network Mapped</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="district-matrix-card">
+          <div class="district-matrix-head">
+            <h3><i class="fa-solid fa-map-location"></i> Explore Odisha by Cultural Districts:</h3>
+            <p>Click any district below to filter heritage monuments and master artisan workshops.</p>
+          </div>
+
+          <div class="districts-grid">
+            <div class="district-box active">
+              <div class="dist-badge">District 01</div>
+              <h4>Puri District</h4>
+              <span class="dist-subtitle">Puri Coast • Konark • Raghurajpur • Pipili</span>
+              <div class="dist-points">
+                <span><i class="fa-solid fa-gem"></i> Pattachitra Heritage Village</span>
+                <span><i class="fa-solid fa-sun"></i> Konark Sun Chariot</span>
+                <span><i class="fa-solid fa-scissors"></i> Pipili Applique Guild</span>
+              </div>
+              <div class="dist-footer-row">
+                <span><strong>8</strong> Sites</span>
+                <span><strong>4</strong> Audio Guides</span>
+                <span class="crowd-pill normal">Moderate Footfall</span>
+              </div>
+            </div>
+
+            <div class="district-box">
+              <div class="dist-badge">District 02</div>
+              <h4>Khordha District</h4>
+              <span class="dist-subtitle">Bhubaneswar (Ekamra Kshetra) • Dhauli • Sisupalgarh</span>
+              <div class="dist-points">
+                <span><i class="fa-solid fa-gopuram"></i> Lingaraj & Mukteshvara</span>
+                <span><i class="fa-solid fa-peace"></i> Dhauli Peace Pagoda (261 BCE)</span>
+                <span><i class="fa-solid fa-mountain"></i> Khandagiri Rock Caves</span>
+              </div>
+              <div class="dist-footer-row">
+                <span><strong>7</strong> Sites</span>
+                <span><strong>5</strong> Audio Guides</span>
+                <span class="crowd-pill high">High Footfall (Core)</span>
+              </div>
+            </div>
+
+            <div class="district-box">
+              <div class="dist-badge">District 03</div>
+              <h4>Cuttack District</h4>
+              <span class="dist-subtitle">Silver City • Barabati Medieval Fort • Choudwar</span>
+              <div class="dist-points">
+                <span><i class="fa-solid fa-ring"></i> Tarakasi Silver Filigree</span>
+                <span><i class="fa-solid fa-shield-halved"></i> 10th-Century Barabati Fort</span>
+                <span><i class="fa-solid fa-ship"></i> Bali Jatra Maritime Lore</span>
+              </div>
+              <div class="dist-footer-row">
+                <span><strong>5</strong> Sites</span>
+                <span><strong>3</strong> Audio Guides</span>
+                <span class="crowd-pill low">Quiet & Offbeat</span>
+              </div>
+            </div>
+
+            <div class="district-box">
+              <div class="dist-badge">District 04</div>
+              <h4>Sambalpur & Bargarh</h4>
+              <span class="dist-subtitle">Western Handloom Belt • Hirakud • Barpali</span>
+              <div class="dist-points">
+                <span><i class="fa-solid fa-vest-patches"></i> Bandhakala (Ikat) Weaving</span>
+                <span><i class="fa-solid fa-masks-theater"></i> Dhanu Jatra Open Stage</span>
+                <span><i class="fa-solid fa-water"></i> Huma Leaning Temple</span>
+              </div>
+              <div class="dist-footer-row">
+                <span><strong>6</strong> Sites</span>
+                <span><strong>3</strong> Audio Guides</span>
+                <span class="crowd-pill low">Serene Trail</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: SMART AI ROUTING DE-CONGESTION -->
+    <section id="smart-rerouting" class="section-block">
+      <div class="container">
+        <div class="ai-rerouting-card">
+          <div class="rerouting-text-col">
+            <span class="ai-beacon-pill"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Geospatial Rerouting Active</span>
+            <h2>Heavy Crowd Alert at Puri Grand Road & Konark Core!</h2>
+            <p>
+              Current footfall at Konark Sun Temple plaza is at <strong>86% peak capacity</strong> (1.5-hour queue). 
+              <strong>YATRAसंस्कृति AI</strong> recommends diverting 14 km inland to <strong>Raghurajpur Heritage Craft Village</strong> and <strong>Pipili Applique Enclave</strong> for an intimate, crowd-free living culture experience.
+            </p>
+            <div class="reroute-stats-row">
+              <div class="r-stat-box"><i class="fa-solid fa-clock"></i> Save: <strong>75 Mins Wait Time</strong></div>
+              <div class="r-stat-box"><i class="fa-solid fa-seedling"></i> Carbon Saved: <strong>4.2 kg CO₂</strong></div>
+              <div class="r-stat-box"><i class="fa-solid fa-hand-holding-dollar"></i> Direct Local Artisan Impact: <strong>100%</strong></div>
+            </div>
+          </div>
+          <div class="rerouting-cta-col">
+            <button class="btn-accept-trail" onclick="showToast('Rerouting Trail Activated! Directing to Raghurajpur.')"><i class="fa-solid fa-route"></i> Follow Recommended Offbeat Trail</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: CURATED ODISHA DESTINATIONS -->
+    <section id="destinations" class="section-block bg-translucent-ruins">
+      <div class="container">
+        
+        <div class="section-header-box">
+          <span class="section-mini-tag"><i class="fa-solid fa-compass"></i> Menu Item 02</span>
+          <h2 class="section-main-heading">Odisha Living Heritage Directory</h2>
+          <p class="section-sub-heading">Discover celebrated architectural marvels alongside secret artisan hamlets, with detailed historical dossiers and location-triggered audio stories.</p>
+        </div>
+
+        <div class="destination-cards-grid">
+
+          <!-- CARD 1: Raghurajpur (HIDDEN GEM) -->
+          <div class="dest-item-card gem-card">
+            <div class="dest-media-container">
+              <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=700&q=80" alt="Raghurajpur Heritage Village" class="dest-cover-img">
+              <span class="dest-badge-type gem"><i class="fa-solid fa-gem"></i> Hidden Gem • Artisan Village</span>
+              <span class="dest-footfall-status low"><i class="fa-solid fa-circle-check"></i> Low Footfall (14% Density)</span>
+              <button class="btn-dest-audio" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+            </div>
+
+            <div class="dest-info-body">
+              <div class="dest-header-flex">
+                <span class="dest-geo-info"><i class="fa-solid fa-location-dot"></i> Puri District • 12 km from Puri</span>
+                <div class="dest-stars"><i class="fa-solid fa-star"></i> 4.96 <span>(412 reviews)</span></div>
+              </div>
+
+              <h3 class="dest-place-name">Raghurajpur Pattachitra Heritage Village</h3>
+              
+              <div class="dest-history-accordion">
+                <strong><i class="fa-solid fa-scroll"></i> Living Culture & History:</strong>
+                <p>
+                  India's first declared Heritage Crafts Village where every home is an active artisan studio. Preserves <strong>Pattachitra</strong> (5th century BC cloth-scroll painting), Tala Pattachitra (palm leaf engraving), and cow-dung papier-mâché toys. Birthplace of Odissi legend Guru Kelucharan Mohapatra.
+                </p>
+              </div>
+
+              <div class="connected-artisan-strip">
+                <div class="artisan-badge-icon"><i class="fa-solid fa-paintbrush"></i></div>
+                <div class="artisan-badge-text">
+                  <strong>Featured Master Artisan:</strong>
+                  <span>Guru Rabindra Maharana (Palm Leaf Inscription) • Studio #14</span>
+                </div>
+                <button class="btn-artisan-connect" onclick="quickBookArtisan('Guru Rabindra Maharana', 500)"><i class="fa-solid fa-hands-holding-circle"></i> Connect</button>
+              </div>
+
+              <div class="dest-footer-strip">
+                <div class="dest-keywords"><span>Pattachitra</span><span>Palm Leaf</span><span>Gotipua Folk</span></div>
+                <div class="dest-sos-info"><i class="fa-solid fa-phone-volume"></i> Police: 112</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2: Konark Sun Temple (KNOWN LANDMARK) -->
+          <div class="dest-item-card known-card">
+            <div class="dest-media-container">
+              <img src="https://images.unsplash.com/photo-1600100397608-f010f443905e?auto=format&fit=crop&w=700&q=80" alt="Konark Sun Temple" class="dest-cover-img">
+              <span class="dest-badge-type known"><i class="fa-solid fa-landmark-dome"></i> Major Landmark • UNESCO Site</span>
+              <span class="dest-footfall-status high"><i class="fa-solid fa-triangle-exclamation"></i> High Footfall (88% Peak)</span>
+              <button class="btn-dest-audio" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+            </div>
+
+            <div class="dest-info-body">
+              <div class="dest-header-flex">
+                <span class="dest-geo-info"><i class="fa-solid fa-location-dot"></i> Puri District • Marine Drive</span>
+                <div class="dest-stars"><i class="fa-solid fa-star"></i> 4.88 <span>(12,450 reviews)</span></div>
+              </div>
+
+              <h3 class="dest-place-name">Konark Sun Temple (The Black Pagoda)</h3>
+              
+              <div class="dest-history-accordion">
+                <strong><i class="fa-solid fa-scroll"></i> History & Architectural Marvel:</strong>
+                <p>
+                  Built in 1250 CE by King Narasimhadeva I of the Eastern Ganga Dynasty. Designed as a colossal 24-wheeled chariot of Surya pulled by 7 galloping stone steeds. The wheels function as precise sundials calculating time to the exact minute.
+                </p>
+              </div>
+
+              <div class="connected-artisan-strip">
+                <div class="artisan-badge-icon"><i class="fa-solid fa-hammer"></i></div>
+                <div class="artisan-badge-text">
+                  <strong>Connected Craft Guild:</strong>
+                  <span>Konark Stone Carvers Guild (Descendants of 1200 Temple Sculptors)</span>
+                </div>
+                <button class="btn-artisan-connect" onclick="quickBookArtisan('Konark Stone Carvers', 600)"><i class="fa-solid fa-hands-holding-circle"></i> Connect</button>
+              </div>
+
+              <div class="dest-footer-strip">
+                <div class="dest-keywords"><span>UNESCO</span><span>13th Century</span><span>Stone Sculpting</span></div>
+                <div class="dest-sos-info"><i class="fa-solid fa-phone-volume"></i> Help: 112</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3: Ratnagiri Buddhist Monastery (HIDDEN GEM) -->
+          <div class="dest-item-card gem-card">
+            <div class="dest-media-container">
+              <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=700&q=80" alt="Ratnagiri Buddhist Monastery" class="dest-cover-img">
+              <span class="dest-badge-type gem"><i class="fa-solid fa-gem"></i> Hidden Gem • Diamond Triangle</span>
+              <span class="dest-footfall-status low"><i class="fa-solid fa-circle-check"></i> Quiet & Serene (12% Density)</span>
+              <button class="btn-dest-audio" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+            </div>
+
+            <div class="dest-info-body">
+              <div class="dest-header-flex">
+                <span class="dest-geo-info"><i class="fa-solid fa-location-dot"></i> Jajpur District • 90 km from Bhubaneswar</span>
+                <div class="dest-stars"><i class="fa-solid fa-star"></i> 4.92 <span>(280 reviews)</span></div>
+              </div>
+
+              <h3 class="dest-place-name">Ratnagiri & Lalitgiri Buddhist Viharas</h3>
+              
+              <div class="dest-history-accordion">
+                <strong><i class="fa-solid fa-scroll"></i> Living Culture & History:</strong>
+                <p>
+                  A premier Buddhist academic seat between the 5th and 12th centuries CE rivaling Nalanda. Celebrated for its exquisitely carved green chlorite stone portal, giant monolithic Buddha heads, and rare Tibetan-style Vajrayana tantric iconography.
+                </p>
+              </div>
+
+              <div class="connected-artisan-strip">
+                <div class="artisan-badge-icon"><i class="fa-solid fa-gem"></i></div>
+                <div class="artisan-badge-text">
+                  <strong>Connected Craft Guild:</strong>
+                  <span>Jajpur Traditional Terracotta & Stone Inscription Guild</span>
+                </div>
+                <button class="btn-artisan-connect" onclick="quickBookArtisan('Jajpur Terracotta Guild', 450)"><i class="fa-solid fa-hands-holding-circle"></i> Connect</button>
+              </div>
+
+              <div class="dest-footer-strip">
+                <div class="dest-keywords"><span>Buddhist Vihara</span><span>Vajrayana</span><span>8th Century</span></div>
+                <div class="dest-sos-info"><i class="fa-solid fa-phone-volume"></i> Help: 112</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: RURAL ARTISAN & CRAFTSMEN HUB -->
+    <section id="artisan-network" class="section-block">
+      <div class="container">
+        
+        <div class="section-header-box">
+          <span class="section-mini-tag"><i class="fa-solid fa-hands-holding-heart"></i> Menu Item 03</span>
+          <h2 class="section-main-heading">Connect Directly with Rural Master Craftsmen</h2>
+          <p class="section-sub-heading">Zero middlemen. 100% of your tips, masterclass bookings, and handcrafted purchases go straight to certified indigenous master creators.</p>
+        </div>
+
+        <div class="artisan-nav-strip">
+          <button class="artisan-filter-btn active">All Master Guilds</button>
+          <button class="artisan-filter-btn">Pattachitra & Palm Leaf</button>
+          <button class="artisan-filter-btn">Sambalpuri Ikat Handloom</button>
+          <button class="artisan-filter-btn">Tarakasi Silver Filigree</button>
+          <button class="artisan-filter-btn">Dokra Brass Casting</button>
+        </div>
+
+        <div class="artisan-cards-grid">
+
+          <!-- ARTISAN 1: Pattachitra Master -->
+          <div class="artisan-profile-card">
+            <div class="artisan-top-info">
+              <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80" alt="Guru Rabindra Maharana" class="artisan-avatar-img">
+              <div class="artisan-meta-block">
+                <span class="artisan-provenance-badge"><i class="fa-solid fa-certificate"></i> GI Provenance Verified</span>
+                <span class="artisan-village-tag"><i class="fa-solid fa-location-pin"></i> Raghurajpur, Puri</span>
+              </div>
+            </div>
+
+            <div class="artisan-bio-body">
+              <div class="artisan-name-rating-row">
+                <h4>Guru Rabindra Maharana</h4>
+                <span class="artisan-score-pill"><i class="fa-solid fa-star"></i> 5.0 (189)</span>
+              </div>
+              <p class="artisan-craft-title">Master of Palm Leaf Engraving (Tala Pattachitra) & Natural Dyes</p>
+              <p class="artisan-bio-desc">
+                Practicing the 800-year-old art using dried palmyra leaves inscribed with iron stylus (Lekhani) and stained with lamp soot and wild bean extracts.
+              </p>
+
+              <div class="artisan-authenticity-seal">
+                <i class="fa-solid fa-fingerprint"></i>
+                <span>Authenticity ID: #OD-PATTA-RAGHU-204</span>
+              </div>
+
+              <div class="artisan-buttons-group">
+                <button class="btn-book-masterclass" onclick="quickBookArtisan('Guru Rabindra Maharana', 500)"><i class="fa-solid fa-calendar-check"></i> Book Masterclass (₹500)</button>
+                <button class="btn-tip-artisan" onclick="sendDirectTip('Guru Rabindra Maharana', 100)"><i class="fa-solid fa-heart"></i> Tip ₹100</button>
+                <button class="btn-flag-report" onclick="flagGrievance('Guru Rabindra Maharana')"><i class="fa-solid fa-flag"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ARTISAN 2: Sambalpuri Ikat Weaver -->
+          <div class="artisan-profile-card">
+            <div class="artisan-top-info">
+              <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Smt. Manorama Meher" class="artisan-avatar-img">
+              <div class="artisan-meta-block">
+                <span class="artisan-provenance-badge"><i class="fa-solid fa-certificate"></i> UNESCO Master Weaver</span>
+                <span class="artisan-village-tag"><i class="fa-solid fa-location-pin"></i> Barpali, Bargarh</span>
+              </div>
+            </div>
+
+            <div class="artisan-bio-body">
+              <div class="artisan-name-rating-row">
+                <h4>Smt. Manorama Meher</h4>
+                <span class="artisan-score-pill"><i class="fa-solid fa-star"></i> 4.98 (240)</span>
+              </div>
+              <p class="artisan-craft-title">Bandhakala (Double Ikat) Silk & Natural Madder Root Dyeing</p>
+              <p class="artisan-bio-desc">
+                Leader of a 32-women cooperative weaving intricate mathematical poetry and Konark wheels onto handspun mulberry silk.
+              </p>
+
+              <div class="artisan-authenticity-seal">
+                <i class="fa-solid fa-fingerprint"></i>
+                <span>Authenticity ID: #OD-IKAT-BARP-901</span>
+              </div>
+
+              <div class="artisan-buttons-group">
+                <button class="btn-book-masterclass" onclick="quickBookArtisan('Smt. Manorama Meher', 650)"><i class="fa-solid fa-calendar-check"></i> Book Handloom Tour (₹650)</button>
+                <button class="btn-tip-artisan" onclick="sendDirectTip('Smt. Manorama Meher', 100)"><i class="fa-solid fa-heart"></i> Tip ₹100</button>
+                <button class="btn-flag-report" onclick="flagGrievance('Smt. Manorama Meher')"><i class="fa-solid fa-flag"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ARTISAN 3: Dokra Metal Sculptor -->
+          <div class="artisan-profile-card">
+            <div class="artisan-top-info">
+              <img src="https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?auto=format&fit=crop&w=600&q=80" alt="Shri Budhuram Bhatra" class="artisan-avatar-img">
+              <div class="artisan-meta-block">
+                <span class="artisan-provenance-badge"><i class="fa-solid fa-certificate"></i> Tribal Guild Certified</span>
+                <span class="artisan-village-tag"><i class="fa-solid fa-location-pin"></i> Gupteswar, Koraput</span>
+              </div>
+            </div>
+
+            <div class="artisan-bio-body">
+              <div class="artisan-name-rating-row">
+                <h4>Shri Budhuram Bhatra</h4>
+                <span class="artisan-score-pill"><i class="fa-solid fa-star"></i> 4.95 (162)</span>
+              </div>
+              <p class="artisan-craft-title">Ancient 4,000-Year Lost-Wax (Cire Perdue) Dokra Brass Casting</p>
+              <p class="artisan-bio-desc">
+                Preserving prehistoric metal-casting methods using beeswax, river clay, and recycled brass to sculpt indigenous tribal deities.
+              </p>
+
+              <div class="artisan-authenticity-seal">
+                <i class="fa-solid fa-fingerprint"></i>
+                <span>Authenticity ID: #OD-DOKRA-KORAP-411</span>
+              </div>
+
+              <div class="artisan-buttons-group">
+                <button class="btn-book-masterclass" onclick="quickBookArtisan('Shri Budhuram Bhatra', 700)"><i class="fa-solid fa-calendar-check"></i> Book Studio Tour (₹700)</button>
+                <button class="btn-tip-artisan" onclick="sendDirectTip('Shri Budhuram Bhatra', 100)"><i class="fa-solid fa-heart"></i> Tip ₹100</button>
+                <button class="btn-flag-report" onclick="flagGrievance('Shri Budhuram Bhatra')"><i class="fa-solid fa-flag"></i></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: MULTILINGUAL AUDIO LORE PLAYER -->
+    <section id="audio-stories" class="section-block bg-translucent-ruins">
+      <div class="container">
+        
+        <div class="section-header-box">
+          <span class="section-mini-tag"><i class="fa-solid fa-waveform-lines"></i> Menu Item 04</span>
+          <h2 class="section-main-heading">Multilingual Spatial Audio Stories</h2>
+          <p class="section-sub-heading">Location-triggered folklore narrated by native storytellers with authentic regional dialects and synchronized translations.</p>
+        </div>
+
+        <div class="audio-interactive-grid">
+          
+          <!-- Main Player Deck -->
+          <div class="audio-main-deck">
+            <div class="player-top-indicator">
+              <span class="beacon-geo-pill"><i class="fa-solid fa-satellite"></i> Geo-Triggered: Raghurajpur Heritage Lane</span>
+              <div class="narrator-profile-tag">
+                <i class="fa-solid fa-sparkles"></i> Narrator: <strong>Grandmother Shanti (Elder Folk Lore)</strong>
+              </div>
+            </div>
+
+            <div class="player-core-layout">
+              <!-- Sized Monument Album Artwork -->
+              <div class="audio-cover-frame">
+                <img src="https://images.unsplash.com/photo-1600100397608-f010f443905e?auto=format&fit=crop&w=600&q=80" alt="Konark Sun Temple Stone Monument - Legend of Dharmapada">
+                <div class="play-pulse-circle" id="masterPlayBtn" onclick="toggleAudioPlayback()">
+                  <i class="fa-solid fa-play" id="playIcon"></i>
+                </div>
+              </div>
+
+              <div class="audio-meta-deck">
+                <h3 class="track-headline">The Legend of Dharmapada & the 1200 Stone Artisans of Konark</h3>
+                <p class="track-attribution"><i class="fa-solid fa-feather"></i> Oral Tradition of Kalinga • Recorded with Konark Sculptor Guild</p>
+
+                <div class="audio-selectors-row">
+                  <div class="select-field-box">
+                    <label><i class="fa-solid fa-language"></i> Story Language:</label>
+                    <select class="styled-audio-dropdown">
+                      <option selected>ଓଡ଼ିଆ (Odia - Authentic Folk Dialect)</option>
+                      <option>English (Rich Narrative Guide)</option>
+                      <option>हिन्दी (पारंपरिक ओड़िया गाथा)</option>
+                      <option>বাংলা (উড়িষ্যা লোককথা)</option>
+                      <option>తెలుగు (కళింగ చారిత్రక కథ)</option>
+                    </select>
+                  </div>
+
+                  <div class="select-field-box">
+                    <label><i class="fa-solid fa-gauge-high"></i> Speed:</label>
+                    <select class="styled-audio-dropdown-sm">
+                      <option>0.8x</option>
+                      <option selected>1.0x</option>
+                      <option>1.2x</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="soundwave-wrapper" id="soundwaveContainer">
+                  <div class="sound-bar-elem live"></div>
+                  <div class="sound-bar-elem live"></div>
+                  <div class="sound-bar-elem live"></div>
+                  <div class="sound-bar-elem live"></div>
+                  <div class="sound-bar-elem live"></div>
+                  <div class="sound-bar-elem live"></div>
+                  <div class="sound-bar-elem live"></div>
+                  <div class="sound-bar-elem"></div>
+                  <div class="sound-bar-elem"></div>
+                  <div class="sound-bar-elem"></div>
+                  <div class="sound-bar-elem"></div>
+                </div>
+
+                <div class="audio-scrubber-wrap">
+                  <span class="scrub-time-current">02:15</span>
+                  <div class="scrub-track-rail">
+                    <div class="scrub-fill-progress" style="width: 48%;"></div>
+                  </div>
+                  <span class="scrub-time-duration">05:40</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Synchronized Transcript -->
+            <div class="live-transcript-card">
+              <div class="transcript-header-label">
+                <i class="fa-solid fa-closed-captioning"></i> Live Synchronized Subtitles (AI Translated):
+              </div>
+              <p class="transcript-dialogue">
+                "...When the 1200 master craftsmen could not fix the magnetic crown of the Sun Temple, 12-year-old Dharmapada placed the stone pinnacle and leapt into the roaring sea to save his father and brotherhood from the King's wrath..."
+              </p>
+            </div>
+          </div>
+
+          <!-- Playlist & Offline Pack -->
+          <div class="audio-playlist-sidebar">
+            <h4 class="sidebar-heading"><i class="fa-solid fa-list-check"></i> Nearby Geo-Unlocked Stories</h4>
+
+            <div class="playlist-item-card active">
+              <div class="pl-thumb-icon"><i class="fa-solid fa-volume-high"></i></div>
+              <div class="pl-info-block">
+                <h5>The Secret Mineral Dyes of Raghurajpur</h5>
+                <p>Raghurajpur Village • 80m away</p>
+                <span class="pl-lang-tag"><i class="fa-solid fa-language"></i> 6 Languages</span>
+              </div>
+              <button class="btn-play-mini-track" onclick="toggleAudioPlayback()"><i class="fa-solid fa-play"></i></button>
+            </div>
+
+            <div class="playlist-item-card">
+              <div class="pl-thumb-icon"><i class="fa-solid fa-book-open"></i></div>
+              <div class="pl-info-block">
+                <h5>Dhauli: The River That Turned from Blood to Peace</h5>
+                <p>Dhauli Peace Pagoda • Khordha</p>
+                <span class="pl-lang-tag"><i class="fa-solid fa-language"></i> 7 Languages</span>
+              </div>
+              <button class="btn-play-mini-track" onclick="toggleAudioPlayback()"><i class="fa-solid fa-play"></i></button>
+            </div>
+
+            <div class="offline-pack-widget">
+              <i class="fa-solid fa-cloud-arrow-down pack-dl-icon"></i>
+              <div class="pack-dl-text">
+                <strong>Offline Odisha Audio Pack (120 MB)</strong>
+                <p>Download audio stories and maps for remote rural villages with zero internet connectivity.</p>
+              </div>
+              <button class="btn-pack-download" onclick="showToast('Odisha Offline Pack Downloaded Successfully!')"><i class="fa-solid fa-download"></i></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: PAN-INDIA DIRECTORY -->
+    <section id="india-directory" class="section-block">
+      <div class="container">
+        
+        <div class="section-header-box">
+          <span class="section-mini-tag"><i class="fa-solid fa-map-location-dot"></i> Menu Item 05</span>
+          <h2 class="section-main-heading">Pan-India Scalable Heritage Network</h2>
+          <p class="section-sub-heading">Scalable architecture mapped across India's states. Explore active hubs and upcoming living heritage clusters.</p>
+        </div>
+
+        <div class="india-grid-container">
+          <div class="india-state-box active-prototype">
+            <div class="state-cover-box">
+              <img src="https://images.unsplash.com/photo-1600100397608-f010f443905e?auto=format&fit=crop&w=500&q=80" alt="Odisha">
+              <span class="state-status-pill active"><i class="fa-solid fa-check-circle"></i> Active Prototype</span>
+            </div>
+            <div class="state-card-content">
+              <h4>Odisha (Utkala)</h4>
+              <p class="state-craft-list">Pattachitra • Konark Sun Temple • Sambalpuri Ikat • Tarakasi Filigree</p>
+              <div class="state-stats-row">
+                <span><strong>30</strong> Sites</span>
+                <span><strong>14</strong> Guilds</span>
+                <span><strong>1,850+</strong> Artisans</span>
+              </div>
+              <a href="#destinations" class="btn-state-action active" onclick="switchMenuTab('destinations')">Explore Odisha Trails <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="india-state-box">
+            <div class="state-cover-box">
+              <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=500&q=80" alt="Rajasthan">
+              <span class="state-status-pill upcoming"><i class="fa-solid fa-clock"></i> Expanding Next</span>
+            </div>
+            <div class="state-card-content">
+              <h4>Rajasthan</h4>
+              <p class="state-craft-list">Shekhawati Frescoes • Bagru Block Print • Blue Pottery • Camel Herders Lore</p>
+              <div class="state-stats-row">
+                <span><strong>45</strong> Sites</span>
+                <span><strong>22</strong> Guilds</span>
+                <span><strong>3,200+</strong> Artisans</span>
+              </div>
+              <button class="btn-state-action" disabled>Preview Network <i class="fa-solid fa-lock"></i></button>
+            </div>
+          </div>
+
+          <div class="india-state-box">
+            <div class="state-cover-box">
+              <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=500&q=80" alt="Kerala">
+              <span class="state-status-pill upcoming"><i class="fa-solid fa-clock"></i> Expanding Next</span>
+            </div>
+            <div class="state-card-content">
+              <h4>Kerala</h4>
+              <p class="state-craft-list">Aranmula Metal Mirror • Theyyam Ritual Lore • Kalaripayattu Guilds • Coir Weaving</p>
+              <div class="state-stats-row">
+                <span><strong>38</strong> Sites</span>
+                <span><strong>18</strong> Guilds</span>
+                <span><strong>2,100+</strong> Artisans</span>
+              </div>
+              <button class="btn-state-action" disabled>Preview Network <i class="fa-solid fa-lock"></i></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 7: EMERGENCY & SOS SAFETY -->
+    <section id="emergency-section" class="section-block bg-translucent-ruins">
+      <div class="container">
+        
+        <div class="emergency-portal-flex">
+          <div class="emergency-content-col">
+            <span class="sos-pill-badge"><i class="fa-solid fa-shield-cat"></i> Safety, SOS & Grievance Redressal</span>
+            <h2>24x7 Emergency Helpline & Incident Reporting</h2>
+            <p>Direct integration with state tourism police departments, emergency medical response networks, and fair-trade craft compliance councils.</p>
+
+            <div class="sos-cards-quad">
+              <div class="sos-quad-item">
+                <i class="fa-solid fa-phone-flip sos-quad-icon"></i>
+                <div><strong>National Emergency</strong><span class="sos-quad-num">112 (All India)</span></div>
+              </div>
+              <div class="sos-quad-item">
+                <i class="fa-solid fa-person-shelter sos-quad-icon"></i>
+                <div><strong>Odisha Tourism Police</strong><span class="sos-quad-num">1800-208-1414</span></div>
+              </div>
+              <div class="sos-quad-item">
+                <i class="fa-solid fa-venus sos-quad-icon"></i>
+                <div><strong>Women Tourist Helpline</strong><span class="sos-quad-num">1091 (Toll Free)</span></div>
+              </div>
+              <div class="sos-quad-item">
+                <i class="fa-solid fa-truck-medical sos-quad-icon"></i>
+                <div><strong>Ambulance & Medical</strong><span class="sos-quad-num">108</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-form-deck">
+            <h4><i class="fa-solid fa-triangle-exclamation"></i> Report an Issue or Artisan Grievance</h4>
+            <p class="form-instructions">Flag unauthorized touts, counterfeit GI craft sellers, or request tourist safety assistance.</p>
+            
+            <form class="grievance-form-element" onsubmit="event.preventDefault(); showToast('Report submitted to Tourist Police & Heritage Council!');">
+              <div class="form-input-row">
+                <label>Select Target District / Location:</label>
+                <select class="styled-form-control">
+                  <option>Puri (Raghurajpur / Konark / Grand Road)</option>
+                  <option>Khordha (Bhubaneswar / Dhauli)</option>
+                  <option>Cuttack (Tarakasi Lanes)</option>
+                  <option>Bargarh & Sambalpur (Handloom Belt)</option>
+                  <option>Jajpur (Ratnagiri Monasteries)</option>
+                </select>
+              </div>
+
+              <div class="form-input-row">
+                <label>Issue Type:</label>
+                <select class="styled-form-control">
+                  <option>Safety / Harassment / Overcrowding Alert</option>
+                  <option>Counterfeit Art / Middleman Exploitation</option>
+                  <option>Medical or Road Assistance</option>
+                </select>
+              </div>
+
+              <div class="form-input-row">
+                <label>Description of Incident:</label>
+                <textarea class="styled-form-control" rows="3" placeholder="Provide details, shop name, or exact GPS landmark..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-fire-report"><i class="fa-solid fa-paper-plane"></i> Submit Incident Report</button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+      <div class="container footer-columns-grid">
+        
+        <div class="footer-block brand-block">
+          <div class="brand-logo">
+            <i class="fa-solid fa-dharmachakra"></i>
+            <span class="brand-name-combo">
+              <span class="brand-en">YATRA</span><span class="brand-hi">संस्कृति</span>
+              <span class="ai-pill-tag">AI</span>
+            </span>
+          </div>
+          <p class="footer-platform-desc">
+            An Open Heritage & Sustainable Tourism Platform dedicated to de-congesting Indian landmarks, digitizing intangible oral folklore, and empowering grassroots traditional craftspeople.
+          </p>
+          <p class="footer-copyright">© 2026 YATRAसंस्कृति AI Platform. Preserving Ancient India's Living Heritage.</p>
+        </div>
+
+        <div class="footer-block">
+          <h4>Odisha Prototype Trails</h4>
+          <ul>
+            <li><a href="#destinations" onclick="switchMenuTab('destinations')">Raghurajpur Pattachitra Village</a></li>
+            <li><a href="#destinations" onclick="switchMenuTab('destinations')">Ratnagiri Buddhist Diamond Triangle</a></li>
+            <li><a href="#destinations" onclick="switchMenuTab('destinations')">Pipili Applique & Patchwork</a></li>
+            <li><a href="#destinations" onclick="switchMenuTab('destinations')">Cuttack Tarakasi Silver Guild</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-block">
+          <h4>Community & Artisans</h4>
+          <ul>
+            <li><a href="#artisan-network" onclick="switchMenuTab('artisans')">Artisan Guild Directory</a></li>
+            <li><a href="#audio-stories" onclick="switchMenuTab('audio')">Oral Lore Digitization</a></li>
+            <li><a href="#emergency-section" onclick="switchMenuTab('emergency')">Fair Trade Redressal</a></li>
+            <li><a href="#smart-rerouting" onclick="switchMenuTab('reroute')">Geospatial Footfall Engine</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-block">
+          <h4>24x7 Safety & Helplines</h4>
+          <p class="footer-helpline-row">Emergency: <strong>112</strong></p>
+          <p class="footer-helpline-row">Odisha Tourism Police: <strong>1800-208-1414</strong></p>
+          <p class="footer-helpline-row">Women Helpline: <strong>1091</strong></p>
+          <div class="footer-social-links">
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- =========================================================================
+       JAVASCRIPT: INITIAL LOGIN GATE & MENU CONTROLLER
+       ========================================================================= -->
+  <script>
+    // 1. Toast Notification Utility
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('app-toast');
+      const toastMsg = document.getElementById('toast-msg');
+      const toastIcon = document.getElementById('toast-icon');
+
+      toastMsg.innerText = message;
+      if (isError) {
+        toast.style.borderColor = 'var(--crimson-sos)';
+        toastIcon.className = 'fa-solid fa-triangle-exclamation';
+        toastIcon.style.color = 'var(--crimson-sos)';
+      } else {
+        toast.style.borderColor = 'var(--gold-warm)';
+        toastIcon.className = 'fa-solid fa-circle-check';
+        toastIcon.style.color = 'var(--green-normal)';
+      }
+
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 4000);
+    }
+
+    // 2. Gateway Role & Mode Switching
+    function switchGateRole(role) {
+      const tabTourist = document.getElementById('tab-gate-tourist');
+      const tabArtisan = document.getElementById('tab-gate-artisan');
+      const modeToggle = document.getElementById('gateModeToggle');
+
+      const formSignIn = document.getElementById('form-gate-signin');
+      const formOtp = document.getElementById('form-gate-otp');
+      const formSignUp = document.getElementById('form-gate-signup');
+      const formArtisan = document.getElementById('form-gate-artisan');
+
+      formSignIn.classList.remove('active');
+      formOtp.classList.remove('active');
+      formSignUp.classList.remove('active');
+      formArtisan.classList.remove('active');
+
+      if (role === 'tourist') {
+        tabTourist.classList.add('active');
+        tabArtisan.classList.remove('active');
+        modeToggle.style.display = 'flex';
+        switchGateMode('signin');
+      } else {
+        tabArtisan.classList.add('active');
+        tabTourist.classList.remove('active');
+        modeToggle.style.display = 'none';
+        formArtisan.classList.add('active');
+      }
+    }
+
+    function switchGateMode(mode) {
+      const btnIn = document.getElementById('btn-gate-signin');
+      const btnOtp = document.getElementById('btn-gate-otp');
+      const btnUp = document.getElementById('btn-gate-signup');
+
+      const formIn = document.getElementById('form-gate-signin');
+      const formOtp = document.getElementById('form-gate-otp');
+      const formUp = document.getElementById('form-gate-signup');
+
+      btnIn.classList.remove('active');
+      btnOtp.classList.remove('active');
+      btnUp.classList.remove('active');
+
+      formIn.classList.remove('active');
+      formOtp.classList.remove('active');
+      formUp.classList.remove('active');
+
+      if (mode === 'signin') {
+        btnIn.classList.add('active');
+        formIn.classList.add('active');
+      } else if (mode === 'otp') {
+        btnOtp.classList.add('active');
+        formOtp.classList.add('active');
+      } else if (mode === 'signup') {
+        btnUp.classList.add('active');
+        formUp.classList.add('active');
+      }
+    }
+
+    function moveGateOtpFocus(elem) {
+      if (elem.value.length === 1 && elem.nextElementSibling) {
+        elem.nextElementSibling.focus();
+      }
+    }
+
+    // 3. Login Flow & Unlocking the Platform Menu
+    function activatePlatformSession(userName, userRole, avatarUrl) {
+      const user = { name: userName, role: userRole, avatar: avatarUrl, authenticated: true };
+      localStorage.setItem('yatrasanskriti_session', JSON.stringify(user));
+
+      // Transition from Gateway Screen to Platform Dashboard
+      document.getElementById('login-gate-screen').style.display = 'none';
+      document.getElementById('main-platform-app').style.display = 'block';
+
+      // Update Navigation Bar Profile Data
+      document.getElementById('navUserName').innerText = `Namaste, ${userName.split(' ')[0]}`;
+      document.getElementById('dropdownUserName').innerText = userName;
+      document.getElementById('dropdownUserRole').innerHTML = `<i class="fa-solid fa-certificate"></i> ${userRole}`;
+      document.getElementById('navAvatarImg').src = avatarUrl;
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      showToast(`Namaste ${userName}! You are now logged in to YATRAसंस्कृति.`);
+    }
+
+    function handleGateLogin(e, loginType) {
+      e.preventDefault();
+      if (loginType === 'tourist-password') {
+        const id = document.getElementById('gate-signin-id').value;
+        const name = id.includes('@') ? 'Ananya Mishra' : 'Priyanka Dasgupta';
+        activatePlatformSession(name, 'Verified Cultural Explorer', 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80');
+      } else if (loginType === 'tourist-otp') {
+        activatePlatformSession('Rohan Mishra', 'Verified Mobile Explorer', 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=120&q=80');
+      } else if (loginType === 'tourist-signup') {
+        const name = document.getElementById('gate-signup-name').value;
+        activatePlatformSession(name, 'Verified Cultural Explorer', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80');
+      } else if (loginType === 'artisan-portal') {
+        activatePlatformSession('Guru Rabindra Maharana', 'GI Master Craftsman (#OD-PATTA-204)', 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=120&q=80');
+      }
+    }
+
+    function handleSocialGateLogin(provider) {
+      showToast(`Connecting via ${provider} secure gateway...`);
+      setTimeout(() => {
+        activatePlatformSession('Dr. Marcus Lindqvist', 'Verified Cultural Historian', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80');
+      }, 600);
+    }
+
+    function handleGuestLogin() {
+      activatePlatformSession('Guest Explorer', 'Guest Visitor', 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80');
+    }
+
+    function performLogout() {
+      localStorage.removeItem('yatrasanskriti_session');
+      document.getElementById('main-platform-app').style.display = 'none';
+      document.getElementById('login-gate-screen').style.display = 'flex';
+      document.getElementById('profileDropdownCard').classList.remove('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      showToast('You have signed out. Shubh Yatra!');
+    }
+
+    function toggleProfileDropdown() {
+      document.getElementById('profileDropdownCard').classList.toggle('active');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      const widget = document.querySelector('.auth-user-widget');
+      const card = document.getElementById('profileDropdownCard');
+      if (widget && !widget.contains(e.target) && card) {
+        card.classList.remove('active');
+      }
+    });
+
+    // 4. Interactive Menu Tab Switching
+    function switchMenuTab(tabKey) {
+      // Update menu buttons
+      document.querySelectorAll('.menu-pill-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-tab') === tabKey);
+      });
+
+      // Smooth scroll to target module section
+      const targetMap = {
+        'overview': 'overview-section',
+        'hierarchy': 'hierarchy-explorer',
+        'reroute': 'smart-rerouting',
+        'destinations': 'destinations',
+        'artisans': 'artisan-network',
+        'audio': 'audio-stories',
+        'india': 'india-directory',
+        'emergency': 'emergency-section'
+      };
+
+      const targetId = targetMap[tabKey];
+      if (targetId) {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
+    function switchFilter(btn, filterType) {
+      document.querySelectorAll('.filter-chips-wrap .chip-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      showToast(`Filter applied: ${btn.innerText.trim()}`);
+    }
+
+    function quickBookArtisan(artisanName, fee) {
+      showToast(`Masterclass booking with ${artisanName} confirmed (₹${fee}).`);
+    }
+
+    function sendDirectTip(artisanName, amount) {
+      showToast(`Transferred ₹${amount} direct micro-tip to ${artisanName}'s guild!`);
+    }
+
+    function flagGrievance(artisanName) {
+      showToast(`Grievance submitted for compliance audit with ${artisanName}.`);
+    }
+
+    function toggleAudioPlayback() {
+      const playIcon = document.getElementById('playIcon');
+      const isPlaying = playIcon.classList.contains('fa-pause');
+      if (isPlaying) {
+        playIcon.className = 'fa-solid fa-play';
+        showToast('Audio story paused.');
+      } else {
+        playIcon.className = 'fa-solid fa-pause';
+        showToast('Playing: The Legend of Dharmapada & 1200 Konark Artisans');
+      }
+    }
+
+    // Auto-restore session on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const stored = localStorage.getItem('yatrasanskriti_session');
+      if (stored) {
+        try {
+          const user = JSON.parse(stored);
+          if (user.authenticated) {
+            activatePlatformSession(user.name, user.role, user.avatar);
+          }
+        } catch (e) {}
+      }
+    });
+  </script>
+
+</body>
+</html>

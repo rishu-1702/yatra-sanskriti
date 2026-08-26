@@ -1,0 +1,20 @@
+{
+  "name": "yatra-sanskriti",
+  "version": "2.0.0",
+  "description": "AI Smart Tourism & Living Heritage Platform with Real-Time Nearby Services",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "smart-tourism",
+    "living-heritage",
+    "odisha",
+    "geospatial",
+    "artisan-guilds",
+    "audio-lore"
+  ],
+  "author": "YATRAसंस्कृति Team",
+  "license": "MIT"
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "dest-raghurajpur",
+    "name": "Raghurajpur Pattachitra Heritage Village",
+    "district": "Puri",
+    "lat": 19.8732,
+    "lng": 85.8241,
+    "category": "Hidden Gem",
+    "isGem": true,
+    "footfallStatus": "Low Density (14% Capacity)",
+    "crowdLevel": "low",
+    "averageWaitMins": 0,
+    "description": "India's first declared Heritage Crafts Village where every home is an active artisan studio. Preserves 5th-century Pattachitra cloth scroll painting and palm-leaf engraving.",
+    "ticketPrice": "Free Entry"
+  },
+  {
+    "id": "dest-konark",
+    "name": "Konark Sun Temple (The Black Pagoda)",
+    "district": "Puri",
+    "lat": 19.8876,
+    "lng": 86.0945,
+    "category": "Known Landmark",
+    "isGem": false,
+    "footfallStatus": "High Peak Density (88% Capacity)",
+    "crowdLevel": "high",
+    "averageWaitMins": 75,
+    "description": "UNESCO World Heritage Site built in 1250 CE. Colossal 24-wheeled sun chariot calculating time to the exact minute.",
+    "ticketPrice": "₹40 (Indian Citizens) / ₹600 (Foreign Nationals)"
+  },
+  {
+    "id": "dest-ratnagiri",
+    "name": "Ratnagiri & Lalitgiri Buddhist Viharas",
+    "district": "Jajpur",
+    "lat": 20.6415,
+    "lng": 86.3362,
+    "category": "Hidden Gem",
+    "isGem": true,
+    "footfallStatus": "Serene & Quiet (12% Capacity)",
+    "crowdLevel": "low",
+    "averageWaitMins": 0,
+    "description": "Premier Buddhist academic monastic seat (5th-12th century CE) celebrated for its carved chlorite portal and Tantric Vajrayana stupas.",
+    "ticketPrice": "₹25 (ASI Protected)"
+  }
+]
