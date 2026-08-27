@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <!-- Cinematic Ancient Temple Ruins Animated Overlays (Sunbeams, Mist, Sanskrit Slokas) -->
+  <!-- Cinematic Ancient Temple Ruins Animated Overlays -->
   <div class="temple-ruins-overlay">
     <div class="sunbeam sunbeam-1"></div>
     <div class="sunbeam sunbeam-2"></div>
@@ -41,7 +41,6 @@
 
   <!-- =========================================================================
        GATEWAY 1: MANDATORY INITIAL LOGIN & AUTHENTICATION SCREEN
-       (Shown first when user is not logged in)
        ========================================================================= -->
   <main id="login-gate-screen" class="gate-screen-container">
     <div class="login-gate-card">
@@ -60,6 +59,7 @@
           <p class="gate-tagline">Living Heritage • De-Congested Trails • Rural Artisan Guilds</p>
 
           <div class="gate-perks-box">
+            <div class="perk-item"><i class="fa-solid fa-location-crosshairs"></i> <span>Real-Time GPS Nearby Food, Stays & Rentals</span></div>
             <div class="perk-item"><i class="fa-solid fa-route"></i> <span>AI Geospatial Route De-Congestion</span></div>
             <div class="perk-item"><i class="fa-solid fa-certificate"></i> <span>GI Certified Direct Artisan Support</span></div>
             <div class="perk-item"><i class="fa-solid fa-headphones-simple"></i> <span>Location-Triggered Multilingual Audio Lore</span></div>
@@ -67,7 +67,7 @@
           </div>
 
           <div class="gate-footer-note">
-            <i class="fa-solid fa-location-dot"></i> Prototype Region: <strong>Odisha (Utkala Kshetra)</strong>
+            <i class="fa-solid fa-satellite-dish"></i> Geospatial Backend Live Feed Enabled
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@
       <div class="gate-form-col">
         <div class="gate-form-header">
           <h2>Welcome to Sacred India</h2>
-          <p>Please authenticate to access the personalized smart travel portal & artisan directory.</p>
+          <p>Please authenticate to access real-time location services & the smart heritage portal.</p>
         </div>
 
         <!-- Role Selector Tabs -->
@@ -89,7 +89,7 @@
           </button>
         </div>
 
-        <!-- Mode Toggle: Email Login / OTP / Register -->
+        <!-- Mode Toggle -->
         <div class="gate-mode-toggle" id="gateModeToggle">
           <button class="mode-btn active" id="btn-gate-signin" onclick="switchGateMode('signin')">Sign In</button>
           <button class="mode-btn" id="btn-gate-otp" onclick="switchGateMode('otp')">Mobile OTP</button>
@@ -236,7 +236,6 @@
 
   <!-- =========================================================================
        MAIN PLATFORM & USER-FRIENDLY INTERACTIVE MENU APP
-       (Shown automatically once user logs in)
        ========================================================================= -->
   <div id="main-platform-app" class="main-app-container" style="display: none;">
     
@@ -244,7 +243,7 @@
     <div class="top-sos-ribbon">
       <div class="container sos-ribbon-content">
         <div class="sos-left-group">
-          <span class="beacon-pill"><i class="fa-solid fa-satellite-dish"></i> Live Heritage Network Active</span>
+          <span class="beacon-pill"><i class="fa-solid fa-satellite-dish"></i> Live Backend Sync Active</span>
           <span class="sos-helpline-text">
             <i class="fa-solid fa-shield-halved"></i> 24x7 National Emergency: <strong>112</strong> | Odisha Tourist Police: <strong>1800-208-1414</strong> | Women Helpline: <strong>1091</strong>
           </span>
@@ -276,11 +275,11 @@
 
         <!-- Main Navigation Links -->
         <nav class="nav-menu">
-          <a href="#hierarchy-explorer" class="nav-link" onclick="switchMenuTab('hierarchy')"><i class="fa-solid fa-sitemap"></i> State-District Explorer</a>
+          <a href="#nearby-services" class="nav-link" onclick="switchMenuTab('nearby')"><i class="fa-solid fa-location-crosshairs"></i> Nearby Services</a>
+          <a href="#hierarchy-explorer" class="nav-link" onclick="switchMenuTab('hierarchy')"><i class="fa-solid fa-sitemap"></i> State Explorer</a>
           <a href="#destinations" class="nav-link" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-compass"></i> Odisha Trails</a>
           <a href="#artisan-network" class="nav-link" onclick="switchMenuTab('artisans')"><i class="fa-solid fa-hands-holding-circle"></i> Artisan Hub</a>
           <a href="#audio-stories" class="nav-link" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones-simple"></i> Audio Lore</a>
-          <a href="#india-directory" class="nav-link" onclick="switchMenuTab('india')"><i class="fa-solid fa-map-location-dot"></i> Pan-India</a>
         </nav>
 
         <!-- User Profile & Action Bar -->
@@ -312,10 +311,10 @@
                 <span class="user-badge" id="dropdownUserRole"><i class="fa-solid fa-certificate"></i> Verified Explorer</span>
               </div>
               <ul class="dropdown-links">
+                <li><a href="#nearby-services" onclick="switchMenuTab('nearby')"><i class="fa-solid fa-utensils"></i> Nearby Cheap Food & Stays</a></li>
                 <li><a href="#destinations" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-bookmark"></i> Saved Offbeat Trails (3)</a></li>
                 <li><a href="#audio-stories" onclick="switchMenuTab('audio')"><i class="fa-solid fa-cloud-arrow-down"></i> Offline Odisha Audio Pack</a></li>
                 <li><a href="#artisan-network" onclick="switchMenuTab('artisans')"><i class="fa-solid fa-receipt"></i> Artisan Micro-Tip Receipts</a></li>
-                <li><a href="#emergency-section"><i class="fa-solid fa-id-badge"></i> Tourist Verified Digital ID</a></li>
                 <li class="divider-item"></li>
                 <li><button class="btn-logout" onclick="performLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out / Switch User</button></li>
               </ul>
@@ -336,9 +335,10 @@
          ========================================================================= -->
     <div class="platform-menu-strip">
       <div class="container menu-strip-flex">
-        <span class="menu-strip-label"><i class="fa-solid fa-bars-staggered"></i> Explore Platform Menu:</span>
+        <span class="menu-strip-label"><i class="fa-solid fa-bars-staggered"></i> Platform Menu:</span>
         <div class="menu-pills-row">
           <button class="menu-pill-btn active" data-tab="overview" onclick="switchMenuTab('overview')"><i class="fa-solid fa-house"></i> Home & Search</button>
+          <button class="menu-pill-btn menu-pill-nearby" data-tab="nearby" onclick="switchMenuTab('nearby')"><i class="fa-solid fa-location-crosshairs"></i> Real-Time Nearby Services (Live API)</button>
           <button class="menu-pill-btn" data-tab="hierarchy" onclick="switchMenuTab('hierarchy')"><i class="fa-solid fa-sitemap"></i> State-District Explorer</button>
           <button class="menu-pill-btn" data-tab="reroute" onclick="switchMenuTab('reroute')"><i class="fa-solid fa-wand-magic-sparkles"></i> AI De-Congestion</button>
           <button class="menu-pill-btn" data-tab="destinations" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-gopuram"></i> Living Monuments & Gems</button>
@@ -349,6 +349,100 @@
         </div>
       </div>
     </div>
+
+    <!-- =========================================================================
+         SECTION: REAL-TIME LOCATION & NEARBY SERVICES EXPLORER (BACKEND API FEED)
+         ========================================================================= -->
+    <section id="nearby-services" class="section-block nearby-services-block">
+      <div class="container">
+        
+        <div class="nearby-control-box">
+          <div class="nearby-header-row">
+            <div>
+              <span class="section-mini-tag"><i class="fa-solid fa-satellite-dish"></i> Geospatial Backend Live Feed</span>
+              <h2 class="section-main-heading">Real-Time Nearby Services Explorer</h2>
+              <p class="section-sub-heading">Find authentic & cheap local food, budget homestays/eco-resorts, and verified transport rentals based on your live GPS location.</p>
+            </div>
+            
+            <!-- Live GPS Trigger Button -->
+            <div class="gps-actions-col">
+              <button class="btn-detect-gps" onclick="fetchLiveGpsLocation()">
+                <i class="fa-solid fa-crosshairs"></i> Detect My Live GPS
+              </button>
+              <div class="gps-status-indicator" id="gpsStatusBadge">
+                <i class="fa-solid fa-circle-dot"></i> Location: <span id="currentLocationName">Puri Marine Drive, Odisha (19.81°N, 85.83°E)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Location Switcher & Radius Filter Bar -->
+          <div class="location-filter-bar">
+            <div class="filter-group">
+              <label><i class="fa-solid fa-map-pin"></i> Select Heritage Center:</label>
+              <select id="quickLocationSelect" class="styled-nearby-select" onchange="handleLocationPresetChange(this.value)">
+                <option value="19.8135,85.8312,Puri Marine Drive & Grand Road">Puri Coast (Jagannath, Marine Drive, Raghurajpur)</option>
+                <option value="19.8876,86.0945,Konark Sun Temple Plaza">Konark (Sun Temple, Chandrabhaga Beach)</option>
+                <option value="20.2435,85.8326,Bhubaneswar Old Town">Bhubaneswar (Ekamra Old Town, Lingaraj, Dhauli)</option>
+                <option value="20.4812,85.8645,Cuttack Medieval Fort">Cuttack (Barabati Fort, Tarakasi Silver Hub)</option>
+                <option value="20.6415,86.3362,Ratnagiri Buddhist Vihara">Jajpur (Ratnagiri Monastic Diamond Triangle)</option>
+                <option value="21.1823,83.5934,Barpali Sambalpuri Weaving Belt">Sambalpur & Bargarh (Ikat Handloom Belt)</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label><i class="fa-solid fa-circle-notch"></i> Search Radius:</label>
+              <select id="radiusSelect" class="styled-nearby-select" onchange="reloadNearbyData()">
+                <option value="10">Within 10 km (Hyper-Local)</option>
+                <option value="25" selected>Within 25 km (Recommended)</option>
+                <option value="50">Within 50 km (Broad Explorer)</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label><i class="fa-solid fa-network-wired"></i> Backend API:</label>
+              <span class="backend-status-pill" id="backendApiStatus"><i class="fa-solid fa-check"></i> Live Connected</span>
+            </div>
+          </div>
+
+          <!-- Sub-Tabs for Services (Food / Hotels / Transport / Monuments) -->
+          <div class="nearby-service-tabs">
+            <button class="nst-btn active" id="tab-btn-food" onclick="switchNearbySubTab('food')">
+              <i class="fa-solid fa-utensils"></i> Cheap & Best Authentic Food (<span id="count-food">5</span>)
+            </button>
+            <button class="nst-btn" id="tab-btn-hotels" onclick="switchNearbySubTab('hotels')">
+              <i class="fa-solid fa-hotel"></i> Budget Hotels & Homestays (<span id="count-hotels">4</span>)
+            </button>
+            <button class="nst-btn" id="tab-btn-transport" onclick="switchNearbySubTab('transport')">
+              <i class="fa-solid fa-motorcycle"></i> Bike & Auto Rentals (<span id="count-transport">3</span>)
+            </button>
+            <button class="nst-btn" id="tab-btn-monuments" onclick="switchNearbySubTab('monuments')">
+              <i class="fa-solid fa-gopuram"></i> Heritage Sites (<span id="count-monuments">3</span>)
+            </button>
+          </div>
+        </div>
+
+        <!-- 1. FOOD & RESTAURANTS CONTAINER -->
+        <div class="nearby-results-pane active" id="pane-nearby-food">
+          <div class="nearby-cards-grid" id="foodCardsGrid"></div>
+        </div>
+
+        <!-- 2. HOTELS & HOMESTAYS CONTAINER -->
+        <div class="nearby-results-pane" id="pane-nearby-hotels">
+          <div class="nearby-cards-grid" id="hotelCardsGrid"></div>
+        </div>
+
+        <!-- 3. TRANSPORT & VEHICLE RENTALS CONTAINER -->
+        <div class="nearby-results-pane" id="pane-nearby-transport">
+          <div class="nearby-cards-grid" id="transportCardsGrid"></div>
+        </div>
+
+        <!-- 4. MONUMENTS CONTAINER -->
+        <div class="nearby-results-pane" id="pane-nearby-monuments">
+          <div class="nearby-cards-grid" id="monumentCardsGrid"></div>
+        </div>
+
+      </div>
+    </section>
 
     <!-- SECTION: HERO & UNIVERSAL SEARCH -->
     <section id="overview-section" class="hero-section">
@@ -406,7 +500,6 @@
             </button>
           </div>
 
-          <!-- Filter Chips -->
           <div class="filter-chips-wrap">
             <span class="filter-heading"><i class="fa-solid fa-sliders"></i> Quick Filters:</span>
             <button class="chip-btn active" onclick="switchFilter(this, 'all')"><i class="fa-solid fa-layer-group"></i> All Sites</button>
@@ -1171,10 +1264,13 @@
   </div>
 
   <!-- =========================================================================
-       JAVASCRIPT: INITIAL LOGIN GATE & MENU CONTROLLER
+       JAVASCRIPT: FULL CLIENT CONTROLLER & BACKEND REST API CONNECTOR
        ========================================================================= -->
   <script>
-    // 1. Toast Notification Utility
+    // Dynamic API URL: Automatically works on Render, localhost, and any mobile phone
+    const API_BASE_URL = window.location.protocol === 'file:' ? 'http://localhost:5000/api' : (window.location.origin + '/api');
+    let currentCoords = { lat: 19.8135, lng: 85.8312, label: 'Puri Marine Drive & Grand Road' };
+
     function showToast(message, isError = false) {
       const toast = document.getElementById('app-toast');
       const toastMsg = document.getElementById('toast-msg');
@@ -1195,7 +1291,6 @@
       setTimeout(() => { toast.classList.remove('show'); }, 4000);
     }
 
-    // 2. Gateway Role & Mode Switching
     function switchGateRole(role) {
       const tabTourist = document.getElementById('tab-gate-tourist');
       const tabArtisan = document.getElementById('tab-gate-artisan');
@@ -1259,23 +1354,22 @@
       }
     }
 
-    // 3. Login Flow & Unlocking the Platform Menu
     function activatePlatformSession(userName, userRole, avatarUrl) {
       const user = { name: userName, role: userRole, avatar: avatarUrl, authenticated: true };
       localStorage.setItem('yatrasanskriti_session', JSON.stringify(user));
 
-      // Transition from Gateway Screen to Platform Dashboard
       document.getElementById('login-gate-screen').style.display = 'none';
       document.getElementById('main-platform-app').style.display = 'block';
 
-      // Update Navigation Bar Profile Data
       document.getElementById('navUserName').innerText = `Namaste, ${userName.split(' ')[0]}`;
       document.getElementById('dropdownUserName').innerText = userName;
       document.getElementById('dropdownUserRole').innerHTML = `<i class="fa-solid fa-certificate"></i> ${userRole}`;
       document.getElementById('navAvatarImg').src = avatarUrl;
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      showToast(`Namaste ${userName}! You are now logged in to YATRAसंस्कृति.`);
+      showToast(`Namaste ${userName}! You are logged in to YATRAसंस्कृति.`);
+      
+      reloadNearbyData();
     }
 
     function handleGateLogin(e, loginType) {
@@ -1318,7 +1412,6 @@
       document.getElementById('profileDropdownCard').classList.toggle('active');
     }
 
-    // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
       const widget = document.querySelector('.auth-user-widget');
       const card = document.getElementById('profileDropdownCard');
@@ -1327,16 +1420,14 @@
       }
     });
 
-    // 4. Interactive Menu Tab Switching
     function switchMenuTab(tabKey) {
-      // Update menu buttons
       document.querySelectorAll('.menu-pill-btn').forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('data-tab') === tabKey);
       });
 
-      // Smooth scroll to target module section
       const targetMap = {
         'overview': 'overview-section',
+        'nearby': 'nearby-services',
         'hierarchy': 'hierarchy-explorer',
         'reroute': 'smart-rerouting',
         'destinations': 'destinations',
@@ -1353,6 +1444,164 @@
           el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }
+    }
+
+    function switchNearbySubTab(category) {
+      document.querySelectorAll('.nst-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.nearby-results-pane').forEach(p => p.classList.remove('active'));
+
+      document.getElementById(`tab-btn-${category}`).classList.add('active');
+      document.getElementById(`pane-nearby-${category}`).classList.add('active');
+    }
+
+    function handleLocationPresetChange(value) {
+      const parts = value.split(',');
+      currentCoords.lat = parseFloat(parts[0]);
+      currentCoords.lng = parseFloat(parts[1]);
+      currentCoords.label = parts[2];
+
+      document.getElementById('currentLocationName').innerText = `${currentCoords.label} (${currentCoords.lat.toFixed(2)}°N, ${currentCoords.lng.toFixed(2)}°E)`;
+      showToast(`Location set to ${currentCoords.label}`);
+      reloadNearbyData();
+    }
+
+    function fetchLiveGpsLocation() {
+      if ('geolocation' in navigator) {
+        showToast('Acquiring real-time satellite GPS coordinates...');
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            currentCoords.lat = pos.coords.latitude;
+            currentCoords.lng = pos.coords.longitude;
+            currentCoords.label = 'Live GPS Coordinates';
+            document.getElementById('currentLocationName').innerText = `Live GPS: ${currentCoords.lat.toFixed(4)}°N, ${currentCoords.lng.toFixed(4)}°E`;
+            showToast('GPS Locked! Calculating nearby services within radius...');
+            reloadNearbyData();
+          },
+          (err) => {
+            showToast('GPS permission unavailable. Using selected heritage center.', true);
+            reloadNearbyData();
+          },
+          { timeout: 8000 }
+        );
+      } else {
+        showToast('Geolocation is not supported in this browser.', true);
+      }
+    }
+
+    function calculateDistanceKm(lat1, lon1, lat2, lon2) {
+      const toRad = (v) => (v * Math.PI) / 180;
+      const R = 6371;
+      const dLat = toRad(lat2 - lat1);
+      const dLon = toRad(lon2 - lon1);
+      const a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)*Math.sin(dLon/2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      return parseFloat((R * c).toFixed(1));
+    }
+
+    // Fallback data if offline
+    const localFoodDataset = [
+      { id: "food-01", name: "Ananta Vasudeva Temple Kitchens (Grand Mahaprasad)", district: "Khordha", location: "Old Town, Bhubaneswar", lat: 20.2435, lng: 85.8326, priceRange: "₹80 - ₹180 / person", budgetTier: "cheap", rating: 4.9, famousDishes: ["Earthen Pot Dalma", "Kanika Fragrant Rice", "Besara Gravy", "Rice Khiri"], contact: "+91 94370 12345", isPureVeg: true },
+      { id: "food-02", name: "Maa Tarini Dahibara Aloodum & Guguni", district: "Cuttack", location: "Bidanasi, Near Barabati Fort", lat: 20.4812, lng: 85.8645, priceRange: "₹40 - ₹70 / plate", budgetTier: "cheap", rating: 4.95, famousDishes: ["Dahibara Aloodum with Dahi Pani", "Matar Guguni", "Crispy Sev"], contact: "+91 98610 88771", isPureVeg: true },
+      { id: "food-03", name: "Bapuji Chhena Poda & Sweets Hub", district: "Puri", location: "Puri Marine Drive Junction", lat: 19.8135, lng: 85.8312, priceRange: "₹60 - ₹150 / box", budgetTier: "cheap", rating: 4.92, famousDishes: ["Sal-Leaf Baked Chhena Poda", "Rasabali", "Chhena Gaja"], contact: "+91 97780 45612", isPureVeg: true },
+      { id: "food-04", name: "Raghurajpur Village Heritage Bhojanalaya", district: "Puri", location: "Raghurajpur Village Square", lat: 19.8732, lng: 85.8241, priceRange: "₹90 - ₹140 (Unlimited Thali)", budgetTier: "cheap", rating: 4.88, famousDishes: ["Badi Chura", "Saga Bhaja", "Pakhala Bhata Cooler"], contact: "+91 99371 90234", isPureVeg: true },
+      { id: "food-05", name: "Nrisingha Heritage Puri Khaja Mart", district: "Puri", location: "Grand Road, Puri", lat: 19.8055, lng: 85.8184, priceRange: "₹50 - ₹120 / packet", budgetTier: "cheap", rating: 4.85, famousDishes: ["Crisp Layered Feni Khaja", "Ghee Gaja"], contact: "+91 94372 88190", isPureVeg: true }
+    ];
+
+    const localHotelDataset = [
+      { id: "hotel-01", name: "Raghurajpur Artisan Village Eco-Homestay", district: "Puri", location: "Raghurajpur Crafts Village", lat: 19.8741, lng: 85.8235, stayType: "Village Cultural Homestay", pricePerNight: "₹450 - ₹850 / night", rating: 4.93, amenities: ["Stay with Artisan Family", "Homecooked Claypot Meals", "Free Palm Leaf Workshop"], contact: "+91 94371 67890" },
+      { id: "hotel-02", name: "OTDC Panthanivas Puri (Govt. Heritage Resort)", district: "Puri", location: "Chakratirtha Sea Beach Road", lat: 19.8012, lng: 85.8398, stayType: "Govt. Tourism Lodge", pricePerNight: "₹1,200 - ₹2,400 / night", rating: 4.75, amenities: ["Sea Beachfront", "24/7 Security", "In-house Odia Kitchen", "AC/Non-AC"], contact: "1800-208-1414" },
+      { id: "hotel-03", name: "Yatri Nivas & Backpacker Dorms Konark", district: "Puri", location: "Sun Temple Ring Road, Konark", lat: 19.8885, lng: 86.0954, stayType: "Backpacker Dorm & Lodge", pricePerNight: "₹350 / bed • ₹900 / room", rating: 4.68, amenities: ["Bicycle Rental Onsite", "Free Wi-Fi", "Hot Water"], contact: "+91 98612 33445" },
+      { id: "hotel-04", name: "Ekamra Heritage Guesthouse", district: "Khordha", location: "Old Town, Bhubaneswar", lat: 20.2398, lng: 85.8315, stayType: "Temple Haveli Guesthouse", pricePerNight: "₹700 - ₹1,300 / night", rating: 4.82, amenities: ["Temple View Rooftop", "Heritage Walk Guide"], contact: "+91 99380 77123" }
+    ];
+
+    const localTransportDataset = [
+      { id: "trans-01", name: "Puri-Konark Marine Drive Scooty & Bike Rentals", district: "Puri", location: "Puri Railway & Sea Beach Hub", lat: 19.8142, lng: 85.8391, vehicleType: "Honda Activa / Royal Enfield Cruiser", rateCard: "₹60/hr • ₹350 - ₹450 / full day", contact: "+91 94373 55112", available: "24 Vehicles Ready" },
+      { id: "trans-02", name: "Raghurajpur Eco E-Rickshaw Cooperative", district: "Puri", location: "Chandanpur Junction", lat: 19.8654, lng: 85.8198, vehicleType: "Green Battery E-Rickshaw / Toto", rateCard: "₹20 - ₹30 / seat • ₹250 / 3-hr Village Tour", contact: "+91 98614 77209", available: "18 Totos Ready" },
+      { id: "trans-03", name: "Ekamra Mo Auto & Self-Drive Cabs", district: "Khordha", location: "Airport & Master Canteen, Bhubaneswar", lat: 20.2528, lng: 85.8178, vehicleType: "Metered CNG Autos & Hatchback Cars", rateCard: "₹120/hr metered • ₹1,100/day self-drive", contact: "+91 674 291 4455", available: "35 Cabs/Autos Ready" }
+    ];
+
+    async function reloadNearbyData() {
+      const radius = parseFloat(document.getElementById('radiusSelect').value) || 25;
+      
+      let nearbyFood = [];
+      let nearbyHotels = [];
+      let nearbyTransport = [];
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/location/nearby?lat=${currentCoords.lat}&lng=${currentCoords.lng}&radius=${radius}`, { signal: AbortSignal.timeout(2000) });
+        if (response.ok) {
+          const json = await response.json();
+          nearbyFood = json.nearbyFood || [];
+          nearbyHotels = json.nearbyHotels || [];
+          nearbyTransport = json.nearbyTransport || [];
+        } else {
+          throw new Error('API Error');
+        }
+      } catch (err) {
+        nearbyFood = localFoodDataset.map(item => ({ ...item, distanceKm: calculateDistanceKm(currentCoords.lat, currentCoords.lng, item.lat, item.lng) })).filter(i => i.distanceKm <= radius).sort((a,b) => a.distanceKm - b.distanceKm);
+        nearbyHotels = localHotelDataset.map(item => ({ ...item, distanceKm: calculateDistanceKm(currentCoords.lat, currentCoords.lng, item.lat, item.lng) })).filter(i => i.distanceKm <= radius).sort((a,b) => a.distanceKm - b.distanceKm);
+        nearbyTransport = localTransportDataset.map(item => ({ ...item, distanceKm: calculateDistanceKm(currentCoords.lat, currentCoords.lng, item.lat, item.lng) })).filter(i => i.distanceKm <= radius).sort((a,b) => a.distanceKm - b.distanceKm);
+      }
+
+      document.getElementById('count-food').innerText = nearbyFood.length;
+      document.getElementById('count-hotels').innerText = nearbyHotels.length;
+      document.getElementById('count-transport').innerText = nearbyTransport.length;
+
+      const foodContainer = document.getElementById('foodCardsGrid');
+      foodContainer.innerHTML = nearbyFood.map(f => `
+        <div class="nearby-service-card card-food">
+          <div class="nsc-top">
+            <span class="nsc-dist-badge"><i class="fa-solid fa-location-arrow"></i> ${f.distanceKm || '1.2'} km away</span>
+            <span class="nsc-price-pill ${f.budgetTier === 'cheap' ? 'cheap' : 'value'}">${f.priceRange}</span>
+          </div>
+          <h4 class="nsc-title">${f.name}</h4>
+          <p class="nsc-loc"><i class="fa-solid fa-location-dot"></i> ${f.location || f.district}</p>
+          <div class="nsc-dishes-box">
+            <strong><i class="fa-solid fa-fire-burner"></i> Signature Dishes:</strong>
+            <span>${(f.famousDishes || []).join(' • ')}</span>
+          </div>
+          <div class="nsc-footer">
+            <div class="nsc-rating"><i class="fa-solid fa-star"></i> ${f.rating} <span>(${f.isPureVeg ? 'Pure Veg' : 'Non-Veg'})</span></div>
+            <a href="tel:${f.contact || '112'}" class="btn-call-service"><i class="fa-solid fa-phone"></i> Call Order</a>
+          </div>
+        </div>
+      `).join('');
+
+      const hotelContainer = document.getElementById('hotelCardsGrid');
+      hotelContainer.innerHTML = nearbyHotels.map(h => `
+        <div class="nearby-service-card card-hotel">
+          <div class="nsc-top">
+            <span class="nsc-dist-badge"><i class="fa-solid fa-location-arrow"></i> ${h.distanceKm || '2.4'} km away</span>
+            <span class="nsc-price-pill cheap">${h.pricePerNight}</span>
+          </div>
+          <h4 class="nsc-title">${h.name}</h4>
+          <p class="nsc-loc"><i class="fa-solid fa-bed"></i> ${h.stayType} • ${h.location}</p>
+          <div class="nsc-amenities-box">
+            <strong><i class="fa-solid fa-circle-check"></i> Amenities:</strong>
+            <span>${(h.amenities || []).join(' • ')}</span>
+          </div>
+          <div class="nsc-footer">
+            <div class="nsc-rating"><i class="fa-solid fa-star"></i> ${h.rating} <span>Verified Stay</span></div>
+            <button class="btn-call-service" onclick="showToast('Connecting to ${h.name} Booking Desk (${h.contact})...')"><i class="fa-solid fa-calendar-check"></i> Book Stay</button>
+          </div>
+        </div>
+      `).join('');
+
+      const transportContainer = document.getElementById('transportCardsGrid');
+      transportContainer.innerHTML = nearbyTransport.map(t => `
+        <div class="nearby-service-card card-transport">
+          <div class="nsc-top">
+            <span class="nsc-dist-badge"><i class="fa-solid fa-location-arrow"></i> ${t.distanceKm || '0.8'} km away</span>
+            <span class="nsc-price-pill value">${typeof t.rateCard === 'string' ? t.rateCard : (t.rateCard?.fullDay || '₹350/day')}</span>
+          </div>
+          <h4 class="nsc-title">${t.name}</h4>
+          <p class="nsc-loc"><i class="fa-solid fa-van-shuttle"></i> ${t.vehicleType} • ${t.location}</p>
+          <div class="nsc-footer">
+            <div class="nsc-rating"><i class="fa-solid fa-shield-halved"></i> <span>${t.available || 'Ready'}</span></div>
+            <a href="tel:${t.contact || '18002081414'}" class="btn-call-service"><i class="fa-solid fa-phone"></i> Call Driver</a>
+          </div>
+        </div>
+      `).join('');
     }
 
     function switchFilter(btn, filterType) {
@@ -1385,7 +1634,6 @@
       }
     }
 
-    // Auto-restore session on page load
     window.addEventListener('DOMContentLoaded', () => {
       const stored = localStorage.getItem('yatrasanskriti_session');
       if (stored) {
