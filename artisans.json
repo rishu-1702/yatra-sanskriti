@@ -9,8 +9,11 @@
     "lng": 85.8238,
     "giTagId": "#OD-PATTA-RAGHU-204",
     "rating": 5.0,
+    "reviewsCount": 189,
     "masterclassFee": 500,
-    "phone": "+91 94371 90234"
+    "phone": "+91 94371 90234",
+    "upiId": "rabindra.maharana@upi",
+    "bio": "Practicing the 800-year-old art using dried palmyra leaves inscribed with an iron stylus (Lekhani) and stained with lamp soot."
   },
   {
     "id": "artisan-02",
@@ -22,7 +25,26 @@
     "lng": 83.5934,
     "giTagId": "#OD-IKAT-BARP-901",
     "rating": 4.98,
+    "reviewsCount": 240,
     "masterclassFee": 650,
-    "phone": "+91 98613 22091"
+    "phone": "+91 98613 22091",
+    "upiId": "manorama.meher@upi",
+    "bio": "National Award winner leading a 32-women weaving cooperative weaving mathematical poetry and Konark wheels onto handspun silk."
+  },
+  {
+    "id": "artisan-03",
+    "name": "Shri Budhuram Bhatra",
+    "craftTitle": "Ancient 4,000-Year Lost-Wax (Cire Perdue) Dokra Brass Casting",
+    "district": "Koraput",
+    "village": "Gupteswar Forest Hamlet, Koraput",
+    "lat": 18.8122,
+    "lng": 82.7134,
+    "giTagId": "#OD-DOKRA-KORAP-411",
+    "rating": 4.95,
+    "reviewsCount": 162,
+    "masterclassFee": 700,
+    "phone": "+91 97782 55431",
+    "upiId": "budhuram.bhatra@upi",
+    "bio": "Preserving prehistoric metallurgy methods using beeswax, red river clay, and recycled brass to sculpt indigenous tribal art."
   }
 ]
