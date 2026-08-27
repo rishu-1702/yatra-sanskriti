@@ -40,12 +40,12 @@
   </div>
 
   <!-- =========================================================================
-       GATEWAY 1: MANDATORY INITIAL LOGIN & AUTHENTICATION SCREEN
+       GATEWAY: INITIAL AUTHENTICATION SCREEN (ANY USER CAN SIGN IN)
        ========================================================================= -->
   <main id="login-gate-screen" class="gate-screen-container">
     <div class="login-gate-card">
       
-      <!-- Left Column: Sacred Ancient Art & Overview -->
+      <!-- Left Column: Heritage Emblem & Key Features -->
       <div class="gate-visual-col">
         <div class="gate-visual-content">
           <div class="gate-brand-emblem">
@@ -62,21 +62,21 @@
             <div class="perk-item"><i class="fa-solid fa-location-crosshairs"></i> <span>Real-Time GPS Nearby Food, Stays & Rentals</span></div>
             <div class="perk-item"><i class="fa-solid fa-route"></i> <span>AI Geospatial Route De-Congestion</span></div>
             <div class="perk-item"><i class="fa-solid fa-certificate"></i> <span>GI Certified Direct Artisan Support</span></div>
-            <div class="perk-item"><i class="fa-solid fa-headphones-simple"></i> <span>Location-Triggered Multilingual Audio Lore</span></div>
-            <div class="perk-item"><i class="fa-solid fa-shield-halved"></i> <span>24x7 Tourist Safety & Digital Verification</span></div>
+            <div class="perk-item"><i class="fa-solid fa-headphones-simple"></i> <span>Interactive Multilingual Spatial Audio Lore</span></div>
+            <div class="perk-item"><i class="fa-solid fa-shield-halved"></i> <span>24x7 Tourist Police & Digital Safety</span></div>
           </div>
 
           <div class="gate-footer-note">
-            <i class="fa-solid fa-satellite-dish"></i> Geospatial Backend Live Feed Enabled
+            <i class="fa-solid fa-satellite-dish"></i> Geospatial Backend Live Feed Ready
           </div>
         </div>
       </div>
 
-      <!-- Right Column: Interactive Login & Role Selection -->
+      <!-- Right Column: Interactive Login -->
       <div class="gate-form-col">
         <div class="gate-form-header">
-          <h2>Welcome to Sacred India</h2>
-          <p>Please authenticate to access real-time location services & the smart heritage portal.</p>
+          <h2>Namaste & Welcome</h2>
+          <p>Sign in to access real-time location services, budget stays & audio lore.</p>
         </div>
 
         <!-- Role Selector Tabs -->
@@ -96,32 +96,32 @@
           <button class="mode-btn" id="btn-gate-signup" onclick="switchGateMode('signup')">Create Account</button>
         </div>
 
-        <!-- 1. EXPLORER SIGN IN FORM -->
+        <!-- 1. SIGN IN FORM -->
         <form class="gate-auth-form active" id="form-gate-signin" onsubmit="handleGateLogin(event, 'tourist-password')">
           <div class="form-group">
-            <label><i class="fa-solid fa-envelope"></i> Email or Mobile ID</label>
+            <label><i class="fa-solid fa-user"></i> Name, Email, or Mobile ID</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-at"></i>
-              <input type="text" id="gate-signin-id" placeholder="explorer@heritage.in or +91 9876543210" value="ananya.mishra@yatra.in" required>
+              <input type="text" id="gate-signin-id" placeholder="Enter your name or email..." required>
             </div>
           </div>
 
           <div class="form-group">
             <div class="label-split">
-              <label><i class="fa-solid fa-lock"></i> Security Password</label>
-              <a href="#" class="link-helper" onclick="alert('Password reset link sent to registered ID!')">Forgot?</a>
+              <label><i class="fa-solid fa-lock"></i> Password</label>
+              <a href="#" class="link-helper" onclick="showToast('Password reset link sent to your registered ID!')">Forgot?</a>
             </div>
             <div class="input-with-icon">
               <i class="fa-solid fa-key"></i>
-              <input type="password" id="gate-signin-pass" placeholder="••••••••" value="Yatra2026@" required>
+              <input type="password" id="gate-signin-pass" placeholder="••••••••" value="yatra2026" required>
             </div>
           </div>
 
           <button type="submit" class="btn-gate-primary">
-            <i class="fa-solid fa-right-to-bracket"></i> Sign In & Enter Menu
+            <i class="fa-solid fa-right-to-bracket"></i> Sign In & Enter Menu Hub
           </button>
 
-          <div class="gate-divider"><span>Or Fast Connect</span></div>
+          <div class="gate-divider"><span>Or Instant Connect</span></div>
 
           <div class="social-fast-grid">
             <button type="button" class="btn-social" onclick="handleSocialGateLogin('Google')"><i class="fa-brands fa-google"></i> Google</button>
@@ -129,19 +129,19 @@
           </div>
         </form>
 
-        <!-- 2. EXPLORER OTP LOGIN FORM -->
+        <!-- 2. OTP FORM -->
         <form class="gate-auth-form" id="form-gate-otp" onsubmit="handleGateLogin(event, 'tourist-otp')">
           <div class="form-group">
-            <label><i class="fa-solid fa-mobile-screen"></i> Indian Mobile Number (+91)</label>
+            <label><i class="fa-solid fa-mobile-screen"></i> Mobile Number (+91)</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-phone"></i>
-              <input type="tel" id="gate-otp-phone" placeholder="98765 43210" value="9876543210" required>
+              <input type="tel" id="gate-otp-phone" placeholder="Enter 10-digit number" required>
               <button type="button" class="btn-otp-action" onclick="showToast('OTP Code [202694] sent to your mobile!')">Send OTP</button>
             </div>
           </div>
 
           <div class="form-group">
-            <label><i class="fa-solid fa-shield-check"></i> 6-Digit OTP Verification</label>
+            <label><i class="fa-solid fa-shield-check"></i> 6-Digit OTP</label>
             <div class="otp-digit-inputs">
               <input type="text" maxlength="1" value="2" class="otp-digit" onkeyup="moveGateOtpFocus(this)">
               <input type="text" maxlength="1" value="0" class="otp-digit" onkeyup="moveGateOtpFocus(this)">
@@ -153,31 +153,31 @@
           </div>
 
           <button type="submit" class="btn-gate-primary">
-            <i class="fa-solid fa-shield-halved"></i> Verify & Enter Portal
+            <i class="fa-solid fa-shield-halved"></i> Verify & Enter
           </button>
         </form>
 
-        <!-- 3. EXPLORER SIGN UP FORM -->
+        <!-- 3. SIGN UP FORM -->
         <form class="gate-auth-form" id="form-gate-signup" onsubmit="handleGateLogin(event, 'tourist-signup')">
           <div class="form-group">
             <label><i class="fa-solid fa-user"></i> Full Name</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-user-pen"></i>
-              <input type="text" id="gate-signup-name" placeholder="Ananya Mishra" value="Ananya Mishra" required>
+              <input type="text" id="gate-signup-name" placeholder="Your full name" required>
             </div>
           </div>
           <div class="form-group">
             <label><i class="fa-solid fa-envelope"></i> Email Address</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-envelope-open"></i>
-              <input type="email" id="gate-signup-email" placeholder="explorer@example.com" value="ananya@culture.in" required>
+              <input type="email" id="gate-signup-email" placeholder="name@example.com" required>
             </div>
           </div>
           <div class="form-group">
             <label><i class="fa-solid fa-lock"></i> Set Password</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-lock-open"></i>
-              <input type="password" id="gate-signup-pass" placeholder="Min 8 characters" value="Explorer2026!" required>
+              <input type="password" id="gate-signup-pass" placeholder="Min 6 characters" value="Explorer2026!" required>
             </div>
           </div>
           <button type="submit" class="btn-gate-primary">
@@ -185,21 +185,21 @@
           </button>
         </form>
 
-        <!-- 4. MASTER ARTISAN GUILD LOGIN FORM -->
+        <!-- 4. ARTISAN GUILD LOGIN FORM -->
         <form class="gate-auth-form" id="form-gate-artisan" onsubmit="handleGateLogin(event, 'artisan-portal')">
           <div class="artisan-info-banner">
             <i class="fa-solid fa-award"></i>
             <div>
-              <strong>Odisha Master Craftsmen & SHG Guild Gateway</strong>
-              <p>Direct fair-trade studio tours, GI tag provenance verification, and 100% micro-tip payouts.</p>
+              <strong>Master Craftsmen & SHG Guild Gateway</strong>
+              <p>Direct fair-trade studio tours, GI tag provenance, and 100% micro-tip payouts.</p>
             </div>
           </div>
 
           <div class="form-group">
-            <label><i class="fa-solid fa-fingerprint"></i> Registered Artisan GI ID</label>
+            <label><i class="fa-solid fa-fingerprint"></i> Artisan Name or GI Tag ID</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-id-badge"></i>
-              <input type="text" id="gate-artisan-id" placeholder="#OD-PATTA-RAGHU-204" value="#OD-PATTA-RAGHU-204" required>
+              <input type="text" id="gate-artisan-id" placeholder="e.g. Guru Rabindra or #OD-PATTA-204" required>
             </div>
           </div>
 
@@ -207,21 +207,16 @@
             <label><i class="fa-solid fa-key"></i> Artisan Security PIN</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-lock"></i>
-              <input type="password" id="gate-artisan-pin" placeholder="4-digit Master PIN" value="1234" required>
+              <input type="password" id="gate-artisan-pin" placeholder="4-digit PIN" value="1234" required>
             </div>
           </div>
 
           <button type="submit" class="btn-gate-primary btn-artisan-gate">
-            <i class="fa-solid fa-hands-holding-circle"></i> Log In to Artisan Studio Hub
+            <i class="fa-solid fa-hands-holding-circle"></i> Enter Artisan Studio Hub
           </button>
-
-          <div class="artisan-help-row">
-            <span>Need GI Tag Guild Enrollment?</span>
-            <a href="tel:18002081414" class="link-gi-help"><i class="fa-solid fa-headset"></i> Call Directorate 1800-208-1414</a>
-          </div>
         </form>
 
-        <!-- Guest Exploration Quick Link -->
+        <!-- Guest Preview Link -->
         <div class="guest-skip-wrap">
           <button type="button" class="btn-guest-enter" onclick="handleGuestLogin()">
             <i class="fa-regular fa-eye"></i> Preview as Guest Explorer
@@ -235,7 +230,7 @@
 
 
   <!-- =========================================================================
-       MAIN PLATFORM & USER-FRIENDLY INTERACTIVE MENU APP
+       MAIN PLATFORM APPLICATION (REDESIGNED MODULAR MENU FORMAT)
        ========================================================================= -->
   <div id="main-platform-app" class="main-app-container" style="display: none;">
     
@@ -245,16 +240,16 @@
         <div class="sos-left-group">
           <span class="beacon-pill"><i class="fa-solid fa-satellite-dish"></i> Live Backend Sync Active</span>
           <span class="sos-helpline-text">
-            <i class="fa-solid fa-shield-halved"></i> 24x7 National Emergency: <strong>112</strong> | Odisha Tourist Police: <strong>1800-208-1414</strong> | Women Helpline: <strong>1091</strong>
+            <i class="fa-solid fa-shield-halved"></i> 24x7 National Helpline: <strong>112</strong> | Odisha Tourist Police: <strong>1800-208-1414</strong>
           </span>
         </div>
         <div class="sos-right-group">
-          <a href="#emergency-section" class="btn-quick-sos-top"><i class="fa-solid fa-triangle-exclamation"></i> Emergency SOS & Report</a>
+          <button class="btn-quick-sos-top" onclick="switchMenuTab('emergency')"><i class="fa-solid fa-triangle-exclamation"></i> Emergency SOS & Report</button>
         </div>
       </div>
     </div>
 
-    <!-- Primary Navigation Bar with Authenticated User State -->
+    <!-- Primary Top Navigation Bar -->
     <header class="navbar">
       <div class="container nav-flex">
         
@@ -273,48 +268,38 @@
           </div>
         </a>
 
-        <!-- Main Navigation Links -->
-        <nav class="nav-menu">
-          <a href="#nearby-services" class="nav-link" onclick="switchMenuTab('nearby')"><i class="fa-solid fa-location-crosshairs"></i> Nearby Services</a>
-          <a href="#hierarchy-explorer" class="nav-link" onclick="switchMenuTab('hierarchy')"><i class="fa-solid fa-sitemap"></i> State Explorer</a>
-          <a href="#destinations" class="nav-link" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-compass"></i> Odisha Trails</a>
-          <a href="#artisan-network" class="nav-link" onclick="switchMenuTab('artisans')"><i class="fa-solid fa-hands-holding-circle"></i> Artisan Hub</a>
-          <a href="#audio-stories" class="nav-link" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones-simple"></i> Audio Lore</a>
-        </nav>
-
-        <!-- User Profile & Action Bar -->
+        <!-- User Profile & Language Bar -->
         <div class="nav-action-btns">
           <div class="lang-dropdown-pill">
             <i class="fa-solid fa-language"></i>
-            <select id="app-language" aria-label="Select Language">
+            <select id="app-language" aria-label="Language">
               <option value="or" selected>ଓଡ଼ିଆ (Odia)</option>
               <option value="hi">हिन्दी (Hindi)</option>
               <option value="en">English</option>
               <option value="bn">বাংলা (Bengali)</option>
               <option value="te">తెలుగు (Telugu)</option>
               <option value="sa">संस्कृतम् (Sanskrit)</option>
-              <option value="fr">Français</option>
             </select>
           </div>
 
-          <!-- User Profile Dropdown Button -->
+          <!-- Dynamic User Profile Button -->
           <div class="auth-user-widget">
             <button class="btn-profile-badge" onclick="toggleProfileDropdown()">
               <img id="navAvatarImg" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80" alt="Avatar" class="avatar-thumb">
-              <span id="navUserName">Namaste, Ananya</span>
+              <span id="navUserName">Namaste, Explorer</span>
               <i class="fa-solid fa-chevron-down caret-icon"></i>
             </button>
 
             <div class="profile-dropdown-card" id="profileDropdownCard">
               <div class="dropdown-header">
-                <strong id="dropdownUserName">Ananya Mishra</strong>
-                <span class="user-badge" id="dropdownUserRole"><i class="fa-solid fa-certificate"></i> Verified Explorer</span>
+                <strong id="dropdownUserName">Cultural Explorer</strong>
+                <span class="user-badge" id="dropdownUserRole"><i class="fa-solid fa-certificate"></i> Verified User</span>
               </div>
               <ul class="dropdown-links">
-                <li><a href="#nearby-services" onclick="switchMenuTab('nearby')"><i class="fa-solid fa-utensils"></i> Nearby Cheap Food & Stays</a></li>
-                <li><a href="#destinations" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-bookmark"></i> Saved Offbeat Trails (3)</a></li>
-                <li><a href="#audio-stories" onclick="switchMenuTab('audio')"><i class="fa-solid fa-cloud-arrow-down"></i> Offline Odisha Audio Pack</a></li>
-                <li><a href="#artisan-network" onclick="switchMenuTab('artisans')"><i class="fa-solid fa-receipt"></i> Artisan Micro-Tip Receipts</a></li>
+                <li><a href="#" onclick="switchMenuTab('nearby')"><i class="fa-solid fa-utensils"></i> Nearby Food & Stays</a></li>
+                <li><a href="#" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-bookmark"></i> Saved Offbeat Trails</a></li>
+                <li><a href="#" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones"></i> Audio Lore Player</a></li>
+                <li><a href="#" onclick="switchMenuTab('artisans')"><i class="fa-solid fa-receipt"></i> Artisan Micro-Tip Receipts</a></li>
                 <li class="divider-item"></li>
                 <li><button class="btn-logout" onclick="performLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out / Switch User</button></li>
               </ul>
@@ -323,7 +308,7 @@
 
           <button class="btn-nav-decongest" onclick="switchMenuTab('reroute')">
             <i class="fa-solid fa-route"></i>
-            <span>De-Congest Route</span>
+            <span>AI De-Congest</span>
           </button>
         </div>
 
@@ -331,37 +316,155 @@
     </header>
 
     <!-- =========================================================================
-         INTERACTIVE PLATFORM MENU BAR (User-Friendly Categorized Dashboard)
+         REDESIGNED PLATFORM MENU COMMAND BAR (Modular Menu Format)
          ========================================================================= -->
-    <div class="platform-menu-strip">
+    <nav class="platform-menu-strip">
       <div class="container menu-strip-flex">
-        <span class="menu-strip-label"><i class="fa-solid fa-bars-staggered"></i> Platform Menu:</span>
+        <span class="menu-strip-label"><i class="fa-solid fa-bars-staggered"></i> Menu:</span>
         <div class="menu-pills-row">
-          <button class="menu-pill-btn active" data-tab="overview" onclick="switchMenuTab('overview')"><i class="fa-solid fa-house"></i> Home & Search</button>
-          <button class="menu-pill-btn menu-pill-nearby" data-tab="nearby" onclick="switchMenuTab('nearby')"><i class="fa-solid fa-location-crosshairs"></i> Real-Time Nearby Services (Live API)</button>
-          <button class="menu-pill-btn" data-tab="hierarchy" onclick="switchMenuTab('hierarchy')"><i class="fa-solid fa-sitemap"></i> State-District Explorer</button>
-          <button class="menu-pill-btn" data-tab="reroute" onclick="switchMenuTab('reroute')"><i class="fa-solid fa-wand-magic-sparkles"></i> AI De-Congestion</button>
-          <button class="menu-pill-btn" data-tab="destinations" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-gopuram"></i> Living Monuments & Gems</button>
-          <button class="menu-pill-btn" data-tab="artisans" onclick="switchMenuTab('artisans')"><i class="fa-solid fa-hands-holding-circle"></i> Rural Artisan Hub</button>
-          <button class="menu-pill-btn" data-tab="audio" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones"></i> Audio Lore Player</button>
-          <button class="menu-pill-btn" data-tab="india" onclick="switchMenuTab('india')"><i class="fa-solid fa-map-location-dot"></i> Pan-India Network</button>
-          <button class="menu-pill-btn" data-tab="emergency" onclick="switchMenuTab('emergency')"><i class="fa-solid fa-shield-heart"></i> 24x7 Safety & SOS</button>
+          <button class="menu-pill-btn active" data-tab="overview" onclick="switchMenuTab('overview')">
+            <i class="fa-solid fa-house"></i> 1. Portal & Search
+          </button>
+          <button class="menu-pill-btn menu-pill-nearby" data-tab="nearby" onclick="switchMenuTab('nearby')">
+            <i class="fa-solid fa-location-crosshairs"></i> 2. Nearby Services (Live GPS)
+          </button>
+          <button class="menu-pill-btn" data-tab="hierarchy" onclick="switchMenuTab('hierarchy')">
+            <i class="fa-solid fa-sitemap"></i> 3. State & Districts
+          </button>
+          <button class="menu-pill-btn" data-tab="reroute" onclick="switchMenuTab('reroute')">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 4. AI De-Congestion
+          </button>
+          <button class="menu-pill-btn" data-tab="destinations" onclick="switchMenuTab('destinations')">
+            <i class="fa-solid fa-gopuram"></i> 5. Living Monuments
+          </button>
+          <button class="menu-pill-btn" data-tab="artisans" onclick="switchMenuTab('artisans')">
+            <i class="fa-solid fa-hands-holding-circle"></i> 6. Artisan Guilds
+          </button>
+          <button class="menu-pill-btn" data-tab="audio" onclick="switchMenuTab('audio')">
+            <i class="fa-solid fa-headphones"></i> 7. Audio Lore Player
+          </button>
+          <button class="menu-pill-btn" data-tab="india" onclick="switchMenuTab('india')">
+            <i class="fa-solid fa-map-location-dot"></i> 8. Pan-India Network
+          </button>
+          <button class="menu-pill-btn" data-tab="emergency" onclick="switchMenuTab('emergency')">
+            <i class="fa-solid fa-shield-heart"></i> 9. 24x7 Safety & SOS
+          </button>
         </div>
       </div>
-    </div>
+    </nav>
 
     <!-- =========================================================================
-         SECTION: REAL-TIME LOCATION & NEARBY SERVICES EXPLORER (BACKEND API FEED)
+         MENU TAB 1: PORTAL HERO & UNIVERSAL SEARCH HUB
          ========================================================================= -->
-    <section id="nearby-services" class="section-block nearby-services-block">
+    <section id="menu-view-overview" class="menu-tab-view active">
+      <div class="container hero-container">
+        
+        <div class="heritage-kicker">
+          <span class="kicker-icon">🛕</span>
+          <span>Active Living Heritage Prototype: Odisha (Utkala)</span>
+        </div>
+
+        <h1 class="hero-title">
+          Step Beyond Crowded Monuments. <br>
+          <span class="gold-gradient">YATRAसंस्कृति</span> Unlocks Ancient Living Lore.
+        </h1>
+
+        <p class="hero-description">
+          An AI-powered smart tourism platform that dynamically reroutes travelers from overcrowded sites to nearby hidden ruins, geo-triggered oral folklores, and direct fair-trade rural master craftsman studios.
+        </p>
+
+        <!-- Universal Search Card -->
+        <div class="universal-search-card">
+          <div class="search-inputs-grid">
+            <div class="input-box text-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="site-search" placeholder="Search ruins, temples, or craft clusters (e.g. 'Raghurajpur Pattachitra', 'Konark')...">
+            </div>
+
+            <div class="input-box select-box">
+              <i class="fa-solid fa-landmark"></i>
+              <select id="state-select">
+                <option value="odisha" selected>Odisha (Active Prototype)</option>
+                <option value="rajasthan">Rajasthan (Expanding Next)</option>
+                <option value="kerala">Kerala (Expanding Next)</option>
+              </select>
+            </div>
+
+            <div class="input-box select-box">
+              <i class="fa-solid fa-city"></i>
+              <select id="district-select" onchange="handleLocationPresetChange(this.value)">
+                <option value="19.8135,85.8312,Puri Coast & Raghurajpur">Puri (Konark, Raghurajpur, Pipili)</option>
+                <option value="20.2435,85.8326,Bhubaneswar Old Town">Khordha (Bhubaneswar, Dhauli)</option>
+                <option value="20.4812,85.8645,Cuttack Medieval Fort">Cuttack (Tarakasi Silver Hub)</option>
+                <option value="21.1823,83.5934,Barpali Handloom Belt">Bargarh & Sambalpur (Ikat Silk)</option>
+                <option value="20.6415,86.3362,Ratnagiri Buddhist Vihara">Jajpur (Diamond Triangle)</option>
+              </select>
+            </div>
+
+            <button class="btn-search-fire" onclick="switchMenuTab('nearby'); showToast('Filtered results updated based on your search query!')">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Explore Trail
+            </button>
+          </div>
+
+          <!-- Quick Navigation Matrix -->
+          <div class="quick-nav-matrix">
+            <div class="q-card" onclick="switchMenuTab('nearby')">
+              <i class="fa-solid fa-utensils"></i>
+              <div><strong>Nearby Services</strong><span>Cheap Food, Stays & Scooty</span></div>
+            </div>
+            <div class="q-card" onclick="switchMenuTab('destinations')">
+              <i class="fa-solid fa-gopuram"></i>
+              <div><strong>Living Monuments</strong><span>Hidden Gems & UNESCO Sites</span></div>
+            </div>
+            <div class="q-card" onclick="switchMenuTab('artisans')">
+              <i class="fa-solid fa-hands-holding-circle"></i>
+              <div><strong>Artisan Guilds</strong><span>Direct Bookings & Micro-Tips</span></div>
+            </div>
+            <div class="q-card" onclick="switchMenuTab('audio')">
+              <i class="fa-solid fa-headphones"></i>
+              <div><strong>Spatial Audio Lore</strong><span>AI Multilingual Voice Stories</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Impact Ribbon -->
+        <div class="hero-metrics-strip">
+          <div class="metric-item">
+            <strong class="metric-value">30+</strong>
+            <span class="metric-title"><i class="fa-solid fa-gopuram"></i> Documented Heritage Sites</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <strong class="metric-value">1,850+</strong>
+            <span class="metric-title"><i class="fa-solid fa-users-gear"></i> Direct Rural Artisans</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <strong class="metric-value">7 Languages</strong>
+            <span class="metric-title"><i class="fa-solid fa-microphone-lines"></i> Spatial Audio Guides</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <strong class="metric-value">-38% Footfall</strong>
+            <span class="metric-title"><i class="fa-solid fa-arrow-trend-down"></i> AI De-Congestion Rate</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         MENU TAB 2: REAL-TIME NEARBY SERVICES EXPLORER (LIVE GPS & API)
+         ========================================================================= -->
+    <section id="menu-view-nearby" class="menu-tab-view">
       <div class="container">
         
         <div class="nearby-control-box">
           <div class="nearby-header-row">
             <div>
-              <span class="section-mini-tag"><i class="fa-solid fa-satellite-dish"></i> Geospatial Backend Live Feed</span>
+              <span class="section-mini-tag"><i class="fa-solid fa-satellite-dish"></i> Menu Item 02 • Geospatial Backend Live Feed</span>
               <h2 class="section-main-heading">Real-Time Nearby Services Explorer</h2>
-              <p class="section-sub-heading">Find authentic & cheap local food, budget homestays/eco-resorts, and verified transport rentals based on your live GPS location.</p>
+              <p class="section-sub-heading">Find authentic & cheap local food, budget homestays, and vehicle rentals dynamically calculated from your live GPS coordinates.</p>
             </div>
             
             <!-- Live GPS Trigger Button -->
@@ -370,7 +473,7 @@
                 <i class="fa-solid fa-crosshairs"></i> Detect My Live GPS
               </button>
               <div class="gps-status-indicator" id="gpsStatusBadge">
-                <i class="fa-solid fa-circle-dot"></i> Location: <span id="currentLocationName">Puri Marine Drive, Odisha (19.81°N, 85.83°E)</span>
+                <i class="fa-solid fa-circle-dot"></i> Location: <span id="currentLocationName">Puri Coast, Odisha (19.81°N, 85.83°E)</span>
               </div>
             </div>
           </div>
@@ -415,133 +518,35 @@
             <button class="nst-btn" id="tab-btn-transport" onclick="switchNearbySubTab('transport')">
               <i class="fa-solid fa-motorcycle"></i> Bike & Auto Rentals (<span id="count-transport">3</span>)
             </button>
-            <button class="nst-btn" id="tab-btn-monuments" onclick="switchNearbySubTab('monuments')">
-              <i class="fa-solid fa-gopuram"></i> Heritage Sites (<span id="count-monuments">3</span>)
-            </button>
           </div>
         </div>
 
-        <!-- 1. FOOD & RESTAURANTS CONTAINER -->
+        <!-- 1. FOOD CARDS GRID -->
         <div class="nearby-results-pane active" id="pane-nearby-food">
           <div class="nearby-cards-grid" id="foodCardsGrid"></div>
         </div>
 
-        <!-- 2. HOTELS & HOMESTAYS CONTAINER -->
+        <!-- 2. HOTELS CARDS GRID -->
         <div class="nearby-results-pane" id="pane-nearby-hotels">
           <div class="nearby-cards-grid" id="hotelCardsGrid"></div>
         </div>
 
-        <!-- 3. TRANSPORT & VEHICLE RENTALS CONTAINER -->
+        <!-- 3. TRANSPORT CARDS GRID -->
         <div class="nearby-results-pane" id="pane-nearby-transport">
           <div class="nearby-cards-grid" id="transportCardsGrid"></div>
         </div>
 
-        <!-- 4. MONUMENTS CONTAINER -->
-        <div class="nearby-results-pane" id="pane-nearby-monuments">
-          <div class="nearby-cards-grid" id="monumentCardsGrid"></div>
-        </div>
-
       </div>
     </section>
 
-    <!-- SECTION: HERO & UNIVERSAL SEARCH -->
-    <section id="overview-section" class="hero-section">
-      <div class="container hero-container">
-        
-        <div class="heritage-kicker">
-          <span class="kicker-icon">🛕</span>
-          <span>Logged in as Verified Explorer • Active Prototype: Odisha (Utkala)</span>
-        </div>
-
-        <h1 class="hero-title">
-          Step Beyond Crowded Monuments. <br>
-          <span class="gold-gradient">YATRAसंस्कृति</span> Unlocks Ancient Living Lore.
-        </h1>
-
-        <p class="hero-description">
-          An AI-powered smart tourism platform that dynamically reroutes travelers from overcrowded sites to nearby hidden ruins, geo-triggered oral folklores, and direct fair-trade rural master craftsman studios.
-        </p>
-
-        <!-- Universal Search Card -->
-        <div class="universal-search-card">
-          <div class="search-inputs-grid">
-            <div class="input-box text-box">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" id="site-search" placeholder="Search ancient ruins, heritage temples, or craft clusters (e.g. 'Raghurajpur Pattachitra', 'Konark', 'Sambalpuri Ikat')...">
-            </div>
-
-            <div class="input-box select-box">
-              <i class="fa-solid fa-landmark"></i>
-              <select id="state-select">
-                <option value="odisha" selected>Odisha (Active Prototype)</option>
-                <option value="rajasthan">Rajasthan (Coming Soon)</option>
-                <option value="kerala">Kerala (Coming Soon)</option>
-                <option value="tamilnadu">Tamil Nadu (Coming Soon)</option>
-                <option value="madhyapradesh">Madhya Pradesh (Coming Soon)</option>
-                <option value="assam">Assam (Coming Soon)</option>
-              </select>
-            </div>
-
-            <div class="input-box select-box">
-              <i class="fa-solid fa-city"></i>
-              <select id="district-select">
-                <option value="all">All Odisha Districts</option>
-                <option value="puri">Puri (Konark, Raghurajpur, Pipili)</option>
-                <option value="khordha">Khordha (Bhubaneswar, Dhauli)</option>
-                <option value="cuttack">Cuttack (Tarakasi Filigree)</option>
-                <option value="bargarh">Bargarh (Ikat Silk Weaving)</option>
-                <option value="jajpur">Jajpur (Buddhist Diamond Triangle)</option>
-                <option value="koraput">Koraput (Dokra Brass Casting)</option>
-              </select>
-            </div>
-
-            <button class="btn-search-fire" onclick="showToast('Filtered results updated based on your search query!')">
-              <i class="fa-solid fa-wand-magic-sparkles"></i> Explore Trail
-            </button>
-          </div>
-
-          <div class="filter-chips-wrap">
-            <span class="filter-heading"><i class="fa-solid fa-sliders"></i> Quick Filters:</span>
-            <button class="chip-btn active" onclick="switchFilter(this, 'all')"><i class="fa-solid fa-layer-group"></i> All Sites</button>
-            <button class="chip-btn chip-known" onclick="switchFilter(this, 'known')"><i class="fa-solid fa-monument"></i> Major Landmarks</button>
-            <button class="chip-btn chip-gem" onclick="switchFilter(this, 'gem')"><i class="fa-solid fa-gem"></i> Hidden Gems & Hamlets</button>
-            <button class="chip-btn" onclick="switchFilter(this, 'artisan')"><i class="fa-solid fa-palette"></i> Artisan Workshops</button>
-            <button class="chip-btn" onclick="switchFilter(this, 'audio')"><i class="fa-solid fa-headphones"></i> Audio Guides</button>
-          </div>
-        </div>
-
-        <!-- Live Impact Ribbon -->
-        <div class="hero-metrics-strip">
-          <div class="metric-item">
-            <strong class="metric-value">30+</strong>
-            <span class="metric-title"><i class="fa-solid fa-gopuram"></i> Documented Heritage Sites</span>
-          </div>
-          <div class="metric-divider"></div>
-          <div class="metric-item">
-            <strong class="metric-value">1,850+</strong>
-            <span class="metric-title"><i class="fa-solid fa-users-gear"></i> Direct Rural Artisans</span>
-          </div>
-          <div class="metric-divider"></div>
-          <div class="metric-item">
-            <strong class="metric-value">7 Languages</strong>
-            <span class="metric-title"><i class="fa-solid fa-microphone-lines"></i> Spatial Audio Guides</span>
-          </div>
-          <div class="metric-divider"></div>
-          <div class="metric-item">
-            <strong class="metric-value">-38% Footfall</strong>
-            <span class="metric-title"><i class="fa-solid fa-arrow-trend-down"></i> AI De-Congestion Rate</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECTION 1: HIERARCHY EXPLORER -->
-    <section id="hierarchy-explorer" class="section-block bg-translucent-ruins">
+    <!-- =========================================================================
+         MENU TAB 3: STATE & DISTRICT MATRIX EXPLORER
+         ========================================================================= -->
+    <section id="menu-view-hierarchy" class="menu-tab-view">
       <div class="container">
         
         <div class="section-header-box">
-          <span class="section-mini-tag"><i class="fa-solid fa-sitemap"></i> Menu Item 01</span>
+          <span class="section-mini-tag"><i class="fa-solid fa-sitemap"></i> Menu Item 03</span>
           <h2 class="section-main-heading">State → District → City → Heritage Location</h2>
           <p class="section-sub-heading">Explore ancient India's cultural map. Drill down into Odisha's diverse heritage districts or scale across pan-India states.</p>
         </div>
@@ -575,13 +580,6 @@
               <span class="state-badge-status">Network Mapped</span>
             </div>
           </button>
-          <button class="state-tab-card">
-            <span class="state-emoji">🐅</span>
-            <div class="state-tab-text">
-              <strong>Madhya Pradesh</strong>
-              <span class="state-badge-status">Network Mapped</span>
-            </div>
-          </button>
         </div>
 
         <div class="district-matrix-card">
@@ -591,7 +589,7 @@
           </div>
 
           <div class="districts-grid">
-            <div class="district-box active">
+            <div class="district-box active" onclick="handleLocationPresetChange('19.8135,85.8312,Puri Coast & Raghurajpur'); switchMenuTab('nearby');">
               <div class="dist-badge">District 01</div>
               <h4>Puri District</h4>
               <span class="dist-subtitle">Puri Coast • Konark • Raghurajpur • Pipili</span>
@@ -602,12 +600,11 @@
               </div>
               <div class="dist-footer-row">
                 <span><strong>8</strong> Sites</span>
-                <span><strong>4</strong> Audio Guides</span>
                 <span class="crowd-pill normal">Moderate Footfall</span>
               </div>
             </div>
 
-            <div class="district-box">
+            <div class="district-box" onclick="handleLocationPresetChange('20.2435,85.8326,Bhubaneswar Old Town'); switchMenuTab('nearby');">
               <div class="dist-badge">District 02</div>
               <h4>Khordha District</h4>
               <span class="dist-subtitle">Bhubaneswar (Ekamra Kshetra) • Dhauli • Sisupalgarh</span>
@@ -618,12 +615,11 @@
               </div>
               <div class="dist-footer-row">
                 <span><strong>7</strong> Sites</span>
-                <span><strong>5</strong> Audio Guides</span>
                 <span class="crowd-pill high">High Footfall (Core)</span>
               </div>
             </div>
 
-            <div class="district-box">
+            <div class="district-box" onclick="handleLocationPresetChange('20.4812,85.8645,Cuttack Medieval Fort'); switchMenuTab('nearby');">
               <div class="dist-badge">District 03</div>
               <h4>Cuttack District</h4>
               <span class="dist-subtitle">Silver City • Barabati Medieval Fort • Choudwar</span>
@@ -634,12 +630,11 @@
               </div>
               <div class="dist-footer-row">
                 <span><strong>5</strong> Sites</span>
-                <span><strong>3</strong> Audio Guides</span>
                 <span class="crowd-pill low">Quiet & Offbeat</span>
               </div>
             </div>
 
-            <div class="district-box">
+            <div class="district-box" onclick="handleLocationPresetChange('21.1823,83.5934,Barpali Sambalpuri Weaving Belt'); switchMenuTab('nearby');">
               <div class="dist-badge">District 04</div>
               <h4>Sambalpur & Bargarh</h4>
               <span class="dist-subtitle">Western Handloom Belt • Hirakud • Barpali</span>
@@ -650,7 +645,6 @@
               </div>
               <div class="dist-footer-row">
                 <span><strong>6</strong> Sites</span>
-                <span><strong>3</strong> Audio Guides</span>
                 <span class="crowd-pill low">Serene Trail</span>
               </div>
             </div>
@@ -660,12 +654,21 @@
       </div>
     </section>
 
-    <!-- SECTION 2: SMART AI ROUTING DE-CONGESTION -->
-    <section id="smart-rerouting" class="section-block">
+    <!-- =========================================================================
+         MENU TAB 4: SMART AI ROUTING & DE-CONGESTION
+         ========================================================================= -->
+    <section id="menu-view-reroute" class="menu-tab-view">
       <div class="container">
+        
+        <div class="section-header-box">
+          <span class="section-mini-tag"><i class="fa-solid fa-route"></i> Menu Item 04</span>
+          <h2 class="section-main-heading">Geospatial AI Footfall De-Congestion</h2>
+          <p class="section-sub-heading">Real-time crowd monitoring and intelligent offbeat diversion routes to preserve ancient heritage and save traveler time.</p>
+        </div>
+
         <div class="ai-rerouting-card">
           <div class="rerouting-text-col">
-            <span class="ai-beacon-pill"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Geospatial Rerouting Active</span>
+            <span class="ai-beacon-pill"><i class="fa-solid fa-wand-magic-sparkles"></i> Live Crowd Alert Active</span>
             <h2>Heavy Crowd Alert at Puri Grand Road & Konark Core!</h2>
             <p>
               Current footfall at Konark Sun Temple plaza is at <strong>86% peak capacity</strong> (1.5-hour queue). 
@@ -678,31 +681,34 @@
             </div>
           </div>
           <div class="rerouting-cta-col">
-            <button class="btn-accept-trail" onclick="showToast('Rerouting Trail Activated! Directing to Raghurajpur.')"><i class="fa-solid fa-route"></i> Follow Recommended Offbeat Trail</button>
+            <button class="btn-accept-trail" onclick="handleLocationPresetChange('19.8732,85.8241,Raghurajpur Heritage Craft Village'); switchMenuTab('nearby'); showToast('Offbeat Trail Activated! Directing to Raghurajpur.')"><i class="fa-solid fa-route"></i> Follow Recommended Offbeat Trail</button>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- SECTION 3: CURATED ODISHA DESTINATIONS -->
-    <section id="destinations" class="section-block bg-translucent-ruins">
+    <!-- =========================================================================
+         MENU TAB 5: ODISHA LIVING MONUMENTS & GEMS DIRECTORY
+         ========================================================================= -->
+    <section id="menu-view-destinations" class="menu-tab-view">
       <div class="container">
         
         <div class="section-header-box">
-          <span class="section-mini-tag"><i class="fa-solid fa-compass"></i> Menu Item 02</span>
+          <span class="section-mini-tag"><i class="fa-solid fa-compass"></i> Menu Item 05</span>
           <h2 class="section-main-heading">Odisha Living Heritage Directory</h2>
           <p class="section-sub-heading">Discover celebrated architectural marvels alongside secret artisan hamlets, with detailed historical dossiers and location-triggered audio stories.</p>
         </div>
 
         <div class="destination-cards-grid">
 
-          <!-- CARD 1: Raghurajpur (HIDDEN GEM) -->
+          <!-- CARD 1: Raghurajpur -->
           <div class="dest-item-card gem-card">
             <div class="dest-media-container">
-              <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=700&q=80" alt="Raghurajpur Heritage Village" class="dest-cover-img">
+              <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=700&q=80" alt="Raghurajpur Village" class="dest-cover-img">
               <span class="dest-badge-type gem"><i class="fa-solid fa-gem"></i> Hidden Gem • Artisan Village</span>
               <span class="dest-footfall-status low"><i class="fa-solid fa-circle-check"></i> Low Footfall (14% Density)</span>
-              <button class="btn-dest-audio" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+              <button class="btn-dest-audio" onclick="selectLoreTrack('raghurajpur'); switchMenuTab('audio');"><i class="fa-solid fa-headphones"></i> Audio Lore</button>
             </div>
 
             <div class="dest-info-body">
@@ -716,7 +722,7 @@
               <div class="dest-history-accordion">
                 <strong><i class="fa-solid fa-scroll"></i> Living Culture & History:</strong>
                 <p>
-                  India's first declared Heritage Crafts Village where every home is an active artisan studio. Preserves <strong>Pattachitra</strong> (5th century BC cloth-scroll painting), Tala Pattachitra (palm leaf engraving), and cow-dung papier-mâché toys. Birthplace of Odissi legend Guru Kelucharan Mohapatra.
+                  India's first declared Heritage Crafts Village where every home is an active studio. Preserves <strong>Pattachitra</strong> (5th century BC cloth-scroll painting), Tala Pattachitra (palm leaf engraving), and cow-dung papier-mâché toys.
                 </p>
               </div>
 
@@ -728,21 +734,16 @@
                 </div>
                 <button class="btn-artisan-connect" onclick="quickBookArtisan('Guru Rabindra Maharana', 500)"><i class="fa-solid fa-hands-holding-circle"></i> Connect</button>
               </div>
-
-              <div class="dest-footer-strip">
-                <div class="dest-keywords"><span>Pattachitra</span><span>Palm Leaf</span><span>Gotipua Folk</span></div>
-                <div class="dest-sos-info"><i class="fa-solid fa-phone-volume"></i> Police: 112</div>
-              </div>
             </div>
           </div>
 
-          <!-- CARD 2: Konark Sun Temple (KNOWN LANDMARK) -->
+          <!-- CARD 2: Konark Sun Temple -->
           <div class="dest-item-card known-card">
             <div class="dest-media-container">
               <img src="https://images.unsplash.com/photo-1600100397608-f010f443905e?auto=format&fit=crop&w=700&q=80" alt="Konark Sun Temple" class="dest-cover-img">
               <span class="dest-badge-type known"><i class="fa-solid fa-landmark-dome"></i> Major Landmark • UNESCO Site</span>
               <span class="dest-footfall-status high"><i class="fa-solid fa-triangle-exclamation"></i> High Footfall (88% Peak)</span>
-              <button class="btn-dest-audio" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+              <button class="btn-dest-audio" onclick="selectLoreTrack('dharmapada'); switchMenuTab('audio');"><i class="fa-solid fa-headphones"></i> Audio Lore</button>
             </div>
 
             <div class="dest-info-body">
@@ -756,7 +757,7 @@
               <div class="dest-history-accordion">
                 <strong><i class="fa-solid fa-scroll"></i> History & Architectural Marvel:</strong>
                 <p>
-                  Built in 1250 CE by King Narasimhadeva I of the Eastern Ganga Dynasty. Designed as a colossal 24-wheeled chariot of Surya pulled by 7 galloping stone steeds. The wheels function as precise sundials calculating time to the exact minute.
+                  Built in 1250 CE by King Narasimhadeva I of the Eastern Ganga Dynasty. Designed as a colossal 24-wheeled chariot of Surya pulled by 7 galloping steeds. The wheels function as accurate sundials.
                 </p>
               </div>
 
@@ -768,21 +769,16 @@
                 </div>
                 <button class="btn-artisan-connect" onclick="quickBookArtisan('Konark Stone Carvers', 600)"><i class="fa-solid fa-hands-holding-circle"></i> Connect</button>
               </div>
-
-              <div class="dest-footer-strip">
-                <div class="dest-keywords"><span>UNESCO</span><span>13th Century</span><span>Stone Sculpting</span></div>
-                <div class="dest-sos-info"><i class="fa-solid fa-phone-volume"></i> Help: 112</div>
-              </div>
             </div>
           </div>
 
-          <!-- CARD 3: Ratnagiri Buddhist Monastery (HIDDEN GEM) -->
+          <!-- CARD 3: Ratnagiri Buddhist Monastery -->
           <div class="dest-item-card gem-card">
             <div class="dest-media-container">
-              <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=700&q=80" alt="Ratnagiri Buddhist Monastery" class="dest-cover-img">
+              <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=700&q=80" alt="Ratnagiri Monastery" class="dest-cover-img">
               <span class="dest-badge-type gem"><i class="fa-solid fa-gem"></i> Hidden Gem • Diamond Triangle</span>
               <span class="dest-footfall-status low"><i class="fa-solid fa-circle-check"></i> Quiet & Serene (12% Density)</span>
-              <button class="btn-dest-audio" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+              <button class="btn-dest-audio" onclick="selectLoreTrack('dhauli'); switchMenuTab('audio');"><i class="fa-solid fa-headphones"></i> Audio Lore</button>
             </div>
 
             <div class="dest-info-body">
@@ -796,7 +792,7 @@
               <div class="dest-history-accordion">
                 <strong><i class="fa-solid fa-scroll"></i> Living Culture & History:</strong>
                 <p>
-                  A premier Buddhist academic seat between the 5th and 12th centuries CE rivaling Nalanda. Celebrated for its exquisitely carved green chlorite stone portal, giant monolithic Buddha heads, and rare Tibetan-style Vajrayana tantric iconography.
+                  A premier Buddhist academic seat between the 5th and 12th centuries CE rivaling Nalanda. Celebrated for its carved green chlorite stone portal and giant monolithic Buddha heads.
                 </p>
               </div>
 
@@ -808,11 +804,6 @@
                 </div>
                 <button class="btn-artisan-connect" onclick="quickBookArtisan('Jajpur Terracotta Guild', 450)"><i class="fa-solid fa-hands-holding-circle"></i> Connect</button>
               </div>
-
-              <div class="dest-footer-strip">
-                <div class="dest-keywords"><span>Buddhist Vihara</span><span>Vajrayana</span><span>8th Century</span></div>
-                <div class="dest-sos-info"><i class="fa-solid fa-phone-volume"></i> Help: 112</div>
-              </div>
             </div>
           </div>
 
@@ -820,27 +811,21 @@
       </div>
     </section>
 
-    <!-- SECTION 4: RURAL ARTISAN & CRAFTSMEN HUB -->
-    <section id="artisan-network" class="section-block">
+    <!-- =========================================================================
+         MENU TAB 6: RURAL MASTER ARTISAN GUILDS & FAIR-TRADE HUB
+         ========================================================================= -->
+    <section id="menu-view-artisans" class="menu-tab-view">
       <div class="container">
         
         <div class="section-header-box">
-          <span class="section-mini-tag"><i class="fa-solid fa-hands-holding-heart"></i> Menu Item 03</span>
+          <span class="section-mini-tag"><i class="fa-solid fa-hands-holding-heart"></i> Menu Item 06</span>
           <h2 class="section-main-heading">Connect Directly with Rural Master Craftsmen</h2>
-          <p class="section-sub-heading">Zero middlemen. 100% of your tips, masterclass bookings, and handcrafted purchases go straight to certified indigenous master creators.</p>
-        </div>
-
-        <div class="artisan-nav-strip">
-          <button class="artisan-filter-btn active">All Master Guilds</button>
-          <button class="artisan-filter-btn">Pattachitra & Palm Leaf</button>
-          <button class="artisan-filter-btn">Sambalpuri Ikat Handloom</button>
-          <button class="artisan-filter-btn">Tarakasi Silver Filigree</button>
-          <button class="artisan-filter-btn">Dokra Brass Casting</button>
+          <p class="section-sub-heading">Zero middlemen. 100% of your tips, masterclass bookings, and purchases go straight to certified indigenous master creators.</p>
         </div>
 
         <div class="artisan-cards-grid">
 
-          <!-- ARTISAN 1: Pattachitra Master -->
+          <!-- ARTISAN 1 -->
           <div class="artisan-profile-card">
             <div class="artisan-top-info">
               <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80" alt="Guru Rabindra Maharana" class="artisan-avatar-img">
@@ -857,7 +842,7 @@
               </div>
               <p class="artisan-craft-title">Master of Palm Leaf Engraving (Tala Pattachitra) & Natural Dyes</p>
               <p class="artisan-bio-desc">
-                Practicing the 800-year-old art using dried palmyra leaves inscribed with iron stylus (Lekhani) and stained with lamp soot and wild bean extracts.
+                Practicing the 800-year-old art using dried palmyra leaves inscribed with iron stylus (Lekhani) and stained with lamp soot.
               </p>
 
               <div class="artisan-authenticity-seal">
@@ -868,12 +853,11 @@
               <div class="artisan-buttons-group">
                 <button class="btn-book-masterclass" onclick="quickBookArtisan('Guru Rabindra Maharana', 500)"><i class="fa-solid fa-calendar-check"></i> Book Masterclass (₹500)</button>
                 <button class="btn-tip-artisan" onclick="sendDirectTip('Guru Rabindra Maharana', 100)"><i class="fa-solid fa-heart"></i> Tip ₹100</button>
-                <button class="btn-flag-report" onclick="flagGrievance('Guru Rabindra Maharana')"><i class="fa-solid fa-flag"></i></button>
               </div>
             </div>
           </div>
 
-          <!-- ARTISAN 2: Sambalpuri Ikat Weaver -->
+          <!-- ARTISAN 2 -->
           <div class="artisan-profile-card">
             <div class="artisan-top-info">
               <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Smt. Manorama Meher" class="artisan-avatar-img">
@@ -901,12 +885,11 @@
               <div class="artisan-buttons-group">
                 <button class="btn-book-masterclass" onclick="quickBookArtisan('Smt. Manorama Meher', 650)"><i class="fa-solid fa-calendar-check"></i> Book Handloom Tour (₹650)</button>
                 <button class="btn-tip-artisan" onclick="sendDirectTip('Smt. Manorama Meher', 100)"><i class="fa-solid fa-heart"></i> Tip ₹100</button>
-                <button class="btn-flag-report" onclick="flagGrievance('Smt. Manorama Meher')"><i class="fa-solid fa-flag"></i></button>
               </div>
             </div>
           </div>
 
-          <!-- ARTISAN 3: Dokra Metal Sculptor -->
+          <!-- ARTISAN 3 -->
           <div class="artisan-profile-card">
             <div class="artisan-top-info">
               <img src="https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?auto=format&fit=crop&w=600&q=80" alt="Shri Budhuram Bhatra" class="artisan-avatar-img">
@@ -934,7 +917,6 @@
               <div class="artisan-buttons-group">
                 <button class="btn-book-masterclass" onclick="quickBookArtisan('Shri Budhuram Bhatra', 700)"><i class="fa-solid fa-calendar-check"></i> Book Studio Tour (₹700)</button>
                 <button class="btn-tip-artisan" onclick="sendDirectTip('Shri Budhuram Bhatra', 100)"><i class="fa-solid fa-heart"></i> Tip ₹100</button>
-                <button class="btn-flag-report" onclick="flagGrievance('Shri Budhuram Bhatra')"><i class="fa-solid fa-flag"></i></button>
               </div>
             </div>
           </div>
@@ -943,14 +925,16 @@
       </div>
     </section>
 
-    <!-- SECTION 5: MULTILINGUAL AUDIO LORE PLAYER -->
-    <section id="audio-stories" class="section-block bg-translucent-ruins">
+    <!-- =========================================================================
+         MENU TAB 7: MULTILINGUAL SPATIAL AUDIO LORE PLAYER (REAL VOICE ENGINE)
+         ========================================================================= -->
+    <section id="menu-view-audio" class="menu-tab-view">
       <div class="container">
         
         <div class="section-header-box">
-          <span class="section-mini-tag"><i class="fa-solid fa-waveform-lines"></i> Menu Item 04</span>
-          <h2 class="section-main-heading">Multilingual Spatial Audio Stories</h2>
-          <p class="section-sub-heading">Location-triggered folklore narrated by native storytellers with authentic regional dialects and synchronized translations.</p>
+          <span class="section-mini-tag"><i class="fa-solid fa-waveform-lines"></i> Menu Item 07</span>
+          <h2 class="section-main-heading">Multilingual Spatial Audio Lore Player</h2>
+          <p class="section-sub-heading">Location-triggered folklore narrated with real AI speech synthesis, dancing soundwaves, and synchronized subtitle translations.</p>
         </div>
 
         <div class="audio-interactive-grid">
@@ -958,16 +942,16 @@
           <!-- Main Player Deck -->
           <div class="audio-main-deck">
             <div class="player-top-indicator">
-              <span class="beacon-geo-pill"><i class="fa-solid fa-satellite"></i> Geo-Triggered: Raghurajpur Heritage Lane</span>
+              <span class="beacon-geo-pill"><i class="fa-solid fa-satellite"></i> Geo-Triggered: Konark Sun Temple • Puri Coast</span>
               <div class="narrator-profile-tag">
-                <i class="fa-solid fa-sparkles"></i> Narrator: <strong>Grandmother Shanti (Elder Folk Lore)</strong>
+                <i class="fa-solid fa-sparkles"></i> Narrator: <strong>Elder Oral Tradition Guide</strong>
               </div>
             </div>
 
             <div class="player-core-layout">
-              <!-- Sized Monument Album Artwork -->
+              <!-- Sized Monument Artwork -->
               <div class="audio-cover-frame">
-                <img src="https://images.unsplash.com/photo-1600100397608-f010f443905e?auto=format&fit=crop&w=600&q=80" alt="Konark Sun Temple Stone Monument - Legend of Dharmapada">
+                <img id="loreCoverImg" src="https://images.unsplash.com/photo-1600100397608-f010f443905e?auto=format&fit=crop&w=600&q=80" alt="Konark Monument">
                 <div class="play-pulse-circle" id="masterPlayBtn" onclick="toggleAudioPlayback()">
                   <i class="fa-solid fa-play" id="playIcon"></i>
                 </div>
@@ -980,33 +964,30 @@
                 <div class="audio-selectors-row">
                   <div class="select-field-box">
                     <label><i class="fa-solid fa-language"></i> Story Language:</label>
-                    <select class="styled-audio-dropdown">
-                      <option selected>ଓଡ଼ିଆ (Odia - Authentic Folk Dialect)</option>
-                      <option>English (Rich Narrative Guide)</option>
-                      <option>हिन्दी (पारंपरिक ओड़िया गाथा)</option>
-                      <option>বাংলা (উড়িষ্যা লোককথা)</option>
-                      <option>తెలుగు (కళింగ చారిత్రక కథ)</option>
+                    <select class="styled-audio-dropdown" id="audioLangSelect" onchange="handleAudioLanguageChange()">
+                      <option value="en" selected>English (Rich Narrative Guide)</option>
+                      <option value="hi">हिन्दी (पारंपरिक ओड़िया गाथा)</option>
+                      <option value="or">ଓଡ଼ିଆ (Authentic Folk Dialect)</option>
                     </select>
                   </div>
 
                   <div class="select-field-box">
                     <label><i class="fa-solid fa-gauge-high"></i> Speed:</label>
-                    <select class="styled-audio-dropdown-sm">
-                      <option>0.8x</option>
-                      <option selected>1.0x</option>
-                      <option>1.2x</option>
+                    <select class="styled-audio-dropdown-sm" id="audioSpeedSelect">
+                      <option value="0.8">0.8x</option>
+                      <option value="1.0" selected>1.0x</option>
+                      <option value="1.2">1.2x</option>
                     </select>
                   </div>
                 </div>
 
                 <div class="soundwave-wrapper" id="soundwaveContainer">
-                  <div class="sound-bar-elem live"></div>
-                  <div class="sound-bar-elem live"></div>
-                  <div class="sound-bar-elem live"></div>
-                  <div class="sound-bar-elem live"></div>
-                  <div class="sound-bar-elem live"></div>
-                  <div class="sound-bar-elem live"></div>
-                  <div class="sound-bar-elem live"></div>
+                  <div class="sound-bar-elem"></div>
+                  <div class="sound-bar-elem"></div>
+                  <div class="sound-bar-elem"></div>
+                  <div class="sound-bar-elem"></div>
+                  <div class="sound-bar-elem"></div>
+                  <div class="sound-bar-elem"></div>
                   <div class="sound-bar-elem"></div>
                   <div class="sound-bar-elem"></div>
                   <div class="sound-bar-elem"></div>
@@ -1014,57 +995,67 @@
                 </div>
 
                 <div class="audio-scrubber-wrap">
-                  <span class="scrub-time-current">02:15</span>
+                  <span class="scrub-time-current">00:00</span>
                   <div class="scrub-track-rail">
-                    <div class="scrub-fill-progress" style="width: 48%;"></div>
+                    <div class="scrub-fill-progress" style="width: 0%;"></div>
                   </div>
-                  <span class="scrub-time-duration">05:40</span>
+                  <span class="scrub-time-duration">03:05</span>
                 </div>
               </div>
             </div>
 
-            <!-- Synchronized Transcript -->
+            <!-- Synchronized Subtitles -->
             <div class="live-transcript-card">
               <div class="transcript-header-label">
-                <i class="fa-solid fa-closed-captioning"></i> Live Synchronized Subtitles (AI Translated):
+                <i class="fa-solid fa-closed-captioning"></i> Live Synchronized Subtitles (AI Spoken):
               </div>
               <p class="transcript-dialogue">
-                "...When the 1200 master craftsmen could not fix the magnetic crown of the Sun Temple, 12-year-old Dharmapada placed the stone pinnacle and leapt into the roaring sea to save his father and brotherhood from the King's wrath..."
+                "Twelve hundred master craftsmen laboured for twelve long years under Chief Architect Bisu Maharana to build the colossal Sun Temple of Konark. Yet, none could fix the magnetic pinnacle crown upon the stone sanctum..."
               </p>
             </div>
           </div>
 
-          <!-- Playlist & Offline Pack -->
+          <!-- Playlist Deck -->
           <div class="audio-playlist-sidebar">
-            <h4 class="sidebar-heading"><i class="fa-solid fa-list-check"></i> Nearby Geo-Unlocked Stories</h4>
+            <h4 class="sidebar-heading"><i class="fa-solid fa-list-check"></i> Select Lore Story to Play:</h4>
 
-            <div class="playlist-item-card active">
+            <div class="playlist-item-card active" onclick="selectLoreTrack('dharmapada')">
+              <div class="pl-thumb-icon"><i class="fa-solid fa-volume-high"></i></div>
+              <div class="pl-info-block">
+                <h5>The Legend of Dharmapada & 1200 Konark Artisans</h5>
+                <p>Konark Sun Temple • Puri Coast</p>
+                <span class="pl-lang-tag"><i class="fa-solid fa-language"></i> English • Hindi • Odia</span>
+              </div>
+              <button class="btn-play-mini-track"><i class="fa-solid fa-play"></i></button>
+            </div>
+
+            <div class="playlist-item-card" onclick="selectLoreTrack('raghurajpur')">
               <div class="pl-thumb-icon"><i class="fa-solid fa-volume-high"></i></div>
               <div class="pl-info-block">
                 <h5>The Secret Mineral Dyes of Raghurajpur</h5>
                 <p>Raghurajpur Village • 80m away</p>
-                <span class="pl-lang-tag"><i class="fa-solid fa-language"></i> 6 Languages</span>
+                <span class="pl-lang-tag"><i class="fa-solid fa-language"></i> English • Hindi • Odia</span>
               </div>
-              <button class="btn-play-mini-track" onclick="toggleAudioPlayback()"><i class="fa-solid fa-play"></i></button>
+              <button class="btn-play-mini-track"><i class="fa-solid fa-play"></i></button>
             </div>
 
-            <div class="playlist-item-card">
+            <div class="playlist-item-card" onclick="selectLoreTrack('dhauli')">
               <div class="pl-thumb-icon"><i class="fa-solid fa-book-open"></i></div>
               <div class="pl-info-block">
                 <h5>Dhauli: The River That Turned from Blood to Peace</h5>
                 <p>Dhauli Peace Pagoda • Khordha</p>
-                <span class="pl-lang-tag"><i class="fa-solid fa-language"></i> 7 Languages</span>
+                <span class="pl-lang-tag"><i class="fa-solid fa-language"></i> English • Hindi • Odia</span>
               </div>
-              <button class="btn-play-mini-track" onclick="toggleAudioPlayback()"><i class="fa-solid fa-play"></i></button>
+              <button class="btn-play-mini-track"><i class="fa-solid fa-play"></i></button>
             </div>
 
             <div class="offline-pack-widget">
               <i class="fa-solid fa-cloud-arrow-down pack-dl-icon"></i>
               <div class="pack-dl-text">
-                <strong>Offline Odisha Audio Pack (120 MB)</strong>
-                <p>Download audio stories and maps for remote rural villages with zero internet connectivity.</p>
+                <strong>Offline Audio Pack Ready (120 MB)</strong>
+                <p>Offline stories for remote rural heritage trails.</p>
               </div>
-              <button class="btn-pack-download" onclick="showToast('Odisha Offline Pack Downloaded Successfully!')"><i class="fa-solid fa-download"></i></button>
+              <button class="btn-pack-download" onclick="showToast('Offline Audio Lore Pack Downloaded Successfully!')"><i class="fa-solid fa-download"></i></button>
             </div>
           </div>
 
@@ -1072,12 +1063,14 @@
       </div>
     </section>
 
-    <!-- SECTION 6: PAN-INDIA DIRECTORY -->
-    <section id="india-directory" class="section-block">
+    <!-- =========================================================================
+         MENU TAB 8: PAN-INDIA SCALABLE DIRECTORY
+         ========================================================================= -->
+    <section id="menu-view-india" class="menu-tab-view">
       <div class="container">
         
         <div class="section-header-box">
-          <span class="section-mini-tag"><i class="fa-solid fa-map-location-dot"></i> Menu Item 05</span>
+          <span class="section-mini-tag"><i class="fa-solid fa-map-location-dot"></i> Menu Item 08</span>
           <h2 class="section-main-heading">Pan-India Scalable Heritage Network</h2>
           <p class="section-sub-heading">Scalable architecture mapped across India's states. Explore active hubs and upcoming living heritage clusters.</p>
         </div>
@@ -1096,7 +1089,7 @@
                 <span><strong>14</strong> Guilds</span>
                 <span><strong>1,850+</strong> Artisans</span>
               </div>
-              <a href="#destinations" class="btn-state-action active" onclick="switchMenuTab('destinations')">Explore Odisha Trails <i class="fa-solid fa-arrow-right"></i></a>
+              <button class="btn-state-action active" onclick="switchMenuTab('destinations')">Explore Odisha Trails <i class="fa-solid fa-arrow-right"></i></button>
             </div>
           </div>
 
@@ -1111,7 +1104,6 @@
               <div class="state-stats-row">
                 <span><strong>45</strong> Sites</span>
                 <span><strong>22</strong> Guilds</span>
-                <span><strong>3,200+</strong> Artisans</span>
               </div>
               <button class="btn-state-action" disabled>Preview Network <i class="fa-solid fa-lock"></i></button>
             </div>
@@ -1124,11 +1116,10 @@
             </div>
             <div class="state-card-content">
               <h4>Kerala</h4>
-              <p class="state-craft-list">Aranmula Metal Mirror • Theyyam Ritual Lore • Kalaripayattu Guilds • Coir Weaving</p>
+              <p class="state-craft-list">Aranmula Metal Mirror • Theyyam Ritual Lore • Kalaripayattu Guilds</p>
               <div class="state-stats-row">
                 <span><strong>38</strong> Sites</span>
                 <span><strong>18</strong> Guilds</span>
-                <span><strong>2,100+</strong> Artisans</span>
               </div>
               <button class="btn-state-action" disabled>Preview Network <i class="fa-solid fa-lock"></i></button>
             </div>
@@ -1138,8 +1129,10 @@
       </div>
     </section>
 
-    <!-- SECTION 7: EMERGENCY & SOS SAFETY -->
-    <section id="emergency-section" class="section-block bg-translucent-ruins">
+    <!-- =========================================================================
+         MENU TAB 9: 24x7 EMERGENCY, SOS & REDRESSAL
+         ========================================================================= -->
+    <section id="menu-view-emergency" class="menu-tab-view">
       <div class="container">
         
         <div class="emergency-portal-flex">
@@ -1195,7 +1188,7 @@
 
               <div class="form-input-row">
                 <label>Description of Incident:</label>
-                <textarea class="styled-form-control" rows="3" placeholder="Provide details, shop name, or exact GPS landmark..."></textarea>
+                <textarea class="styled-form-control" rows="3" placeholder="Provide details, shop name, or exact landmark..."></textarea>
               </div>
 
               <button type="submit" class="btn-fire-report"><i class="fa-solid fa-paper-plane"></i> Submit Incident Report</button>
@@ -1226,22 +1219,12 @@
         </div>
 
         <div class="footer-block">
-          <h4>Odisha Prototype Trails</h4>
+          <h4>Platform Navigation</h4>
           <ul>
-            <li><a href="#destinations" onclick="switchMenuTab('destinations')">Raghurajpur Pattachitra Village</a></li>
-            <li><a href="#destinations" onclick="switchMenuTab('destinations')">Ratnagiri Buddhist Diamond Triangle</a></li>
-            <li><a href="#destinations" onclick="switchMenuTab('destinations')">Pipili Applique & Patchwork</a></li>
-            <li><a href="#destinations" onclick="switchMenuTab('destinations')">Cuttack Tarakasi Silver Guild</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-block">
-          <h4>Community & Artisans</h4>
-          <ul>
-            <li><a href="#artisan-network" onclick="switchMenuTab('artisans')">Artisan Guild Directory</a></li>
-            <li><a href="#audio-stories" onclick="switchMenuTab('audio')">Oral Lore Digitization</a></li>
-            <li><a href="#emergency-section" onclick="switchMenuTab('emergency')">Fair Trade Redressal</a></li>
-            <li><a href="#smart-rerouting" onclick="switchMenuTab('reroute')">Geospatial Footfall Engine</a></li>
+            <li><a href="#" onclick="switchMenuTab('nearby')">Real-Time Nearby Services</a></li>
+            <li><a href="#" onclick="switchMenuTab('destinations')">Living Monuments Directory</a></li>
+            <li><a href="#" onclick="switchMenuTab('artisans')">Rural Master Artisans</a></li>
+            <li><a href="#" onclick="switchMenuTab('audio')">Spatial Audio Lore Player</a></li>
           </ul>
         </div>
 
@@ -1250,12 +1233,6 @@
           <p class="footer-helpline-row">Emergency: <strong>112</strong></p>
           <p class="footer-helpline-row">Odisha Tourism Police: <strong>1800-208-1414</strong></p>
           <p class="footer-helpline-row">Women Helpline: <strong>1091</strong></p>
-          <div class="footer-social-links">
-            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          </div>
         </div>
 
       </div>
@@ -1264,12 +1241,11 @@
   </div>
 
   <!-- =========================================================================
-       JAVASCRIPT: FULL CLIENT CONTROLLER & BACKEND REST API CONNECTOR
+       JAVASCRIPT: CONTROLLER, DYNAMIC USER LOGIN & AUDIO ENGINE
        ========================================================================= -->
   <script>
-    // Dynamic API URL: Automatically works on Render, localhost, and any mobile phone
     const API_BASE_URL = window.location.protocol === 'file:' ? 'http://localhost:5000/api' : (window.location.origin + '/api');
-    let currentCoords = { lat: 19.8135, lng: 85.8312, label: 'Puri Marine Drive & Grand Road' };
+    let currentCoords = { lat: 19.8135, lng: 85.8312, label: 'Puri Coast & Grand Road' };
 
     function showToast(message, isError = false) {
       const toast = document.getElementById('app-toast');
@@ -1289,6 +1265,27 @@
 
       toast.classList.add('show');
       setTimeout(() => { toast.classList.remove('show'); }, 4000);
+    }
+
+    // Dynamic Tab/Menu Switcher
+    function switchMenuTab(tabKey) {
+      document.querySelectorAll('.menu-pill-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-tab') === tabKey);
+      });
+
+      document.querySelectorAll('.menu-tab-view').forEach(view => {
+        view.classList.remove('active');
+      });
+
+      const targetView = document.getElementById(`menu-view-${tabKey}`);
+      if (targetView) {
+        targetView.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      if (tabKey === 'nearby') {
+        reloadNearbyData();
+      }
     }
 
     function switchGateRole(role) {
@@ -1367,32 +1364,45 @@
       document.getElementById('navAvatarImg').src = avatarUrl;
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      showToast(`Namaste ${userName}! You are logged in to YATRAसंस्कृति.`);
-      
+      showToast(`Namaste ${userName}! Welcome to YATRAसंस्कृति.`);
       reloadNearbyData();
     }
 
+    // Dynamic Login Handler for ANY Random Person
     function handleGateLogin(e, loginType) {
       e.preventDefault();
+      let name = 'Explorer';
+      let role = 'Verified Cultural Explorer';
+      let avatar = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80';
+
       if (loginType === 'tourist-password') {
-        const id = document.getElementById('gate-signin-id').value;
-        const name = id.includes('@') ? 'Ananya Mishra' : 'Priyanka Dasgupta';
-        activatePlatformSession(name, 'Verified Cultural Explorer', 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80');
+        const inputVal = document.getElementById('gate-signin-id').value.trim();
+        if (inputVal.includes('@')) {
+          const rawName = inputVal.split('@')[0].replace(/[._-]/g, ' ');
+          name = rawName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        } else {
+          name = inputVal;
+        }
       } else if (loginType === 'tourist-otp') {
-        activatePlatformSession('Rohan Mishra', 'Verified Mobile Explorer', 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=120&q=80');
+        const phone = document.getElementById('gate-otp-phone').value.trim();
+        name = `User (${phone.slice(-4) ? '•••• ' + phone.slice(-4) : 'Mobile'})`;
+        role = 'Verified Mobile Explorer';
       } else if (loginType === 'tourist-signup') {
-        const name = document.getElementById('gate-signup-name').value;
-        activatePlatformSession(name, 'Verified Cultural Explorer', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80');
+        name = document.getElementById('gate-signup-name').value.trim() || 'New Explorer';
       } else if (loginType === 'artisan-portal') {
-        activatePlatformSession('Guru Rabindra Maharana', 'GI Master Craftsman (#OD-PATTA-204)', 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=120&q=80');
+        const artisanId = document.getElementById('gate-artisan-id').value.trim();
+        name = artisanId.includes('#') ? `Master Craftsman (${artisanId})` : artisanId;
+        role = 'GI Master Craftsman';
       }
+
+      activatePlatformSession(name, role, avatar);
     }
 
     function handleSocialGateLogin(provider) {
-      showToast(`Connecting via ${provider} secure gateway...`);
-      setTimeout(() => {
-        activatePlatformSession('Dr. Marcus Lindqvist', 'Verified Cultural Historian', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80');
-      }, 600);
+      const enteredName = prompt(`Enter your name to connect with ${provider}:`, 'Rohit Kumar');
+      if (enteredName) {
+        activatePlatformSession(enteredName.trim(), `Verified ${provider} Explorer`, 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80');
+      }
     }
 
     function handleGuestLogin() {
@@ -1420,32 +1430,7 @@
       }
     });
 
-    function switchMenuTab(tabKey) {
-      document.querySelectorAll('.menu-pill-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-tab') === tabKey);
-      });
-
-      const targetMap = {
-        'overview': 'overview-section',
-        'nearby': 'nearby-services',
-        'hierarchy': 'hierarchy-explorer',
-        'reroute': 'smart-rerouting',
-        'destinations': 'destinations',
-        'artisans': 'artisan-network',
-        'audio': 'audio-stories',
-        'india': 'india-directory',
-        'emergency': 'emergency-section'
-      };
-
-      const targetId = targetMap[tabKey];
-      if (targetId) {
-        const el = document.getElementById(targetId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    }
-
+    // Sub-tab switcher for Nearby
     function switchNearbySubTab(category) {
       document.querySelectorAll('.nst-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.nearby-results-pane').forEach(p => p.classList.remove('active'));
@@ -1460,7 +1445,8 @@
       currentCoords.lng = parseFloat(parts[1]);
       currentCoords.label = parts[2];
 
-      document.getElementById('currentLocationName').innerText = `${currentCoords.label} (${currentCoords.lat.toFixed(2)}°N, ${currentCoords.lng.toFixed(2)}°E)`;
+      const locEl = document.getElementById('currentLocationName');
+      if (locEl) locEl.innerText = `${currentCoords.label} (${currentCoords.lat.toFixed(2)}°N, ${currentCoords.lng.toFixed(2)}°E)`;
       showToast(`Location set to ${currentCoords.label}`);
       reloadNearbyData();
     }
@@ -1498,7 +1484,7 @@
       return parseFloat((R * c).toFixed(1));
     }
 
-    // Fallback data if offline
+    // Fallback Datasets
     const localFoodDataset = [
       { id: "food-01", name: "Ananta Vasudeva Temple Kitchens (Grand Mahaprasad)", district: "Khordha", location: "Old Town, Bhubaneswar", lat: 20.2435, lng: 85.8326, priceRange: "₹80 - ₹180 / person", budgetTier: "cheap", rating: 4.9, famousDishes: ["Earthen Pot Dalma", "Kanika Fragrant Rice", "Besara Gravy", "Rice Khiri"], contact: "+91 94370 12345", isPureVeg: true },
       { id: "food-02", name: "Maa Tarini Dahibara Aloodum & Guguni", district: "Cuttack", location: "Bidanasi, Near Barabati Fort", lat: 20.4812, lng: 85.8645, priceRange: "₹40 - ₹70 / plate", budgetTier: "cheap", rating: 4.95, famousDishes: ["Dahibara Aloodum with Dahi Pani", "Matar Guguni", "Crispy Sev"], contact: "+91 98610 88771", isPureVeg: true },
@@ -1509,7 +1495,7 @@
 
     const localHotelDataset = [
       { id: "hotel-01", name: "Raghurajpur Artisan Village Eco-Homestay", district: "Puri", location: "Raghurajpur Crafts Village", lat: 19.8741, lng: 85.8235, stayType: "Village Cultural Homestay", pricePerNight: "₹450 - ₹850 / night", rating: 4.93, amenities: ["Stay with Artisan Family", "Homecooked Claypot Meals", "Free Palm Leaf Workshop"], contact: "+91 94371 67890" },
-      { id: "hotel-02", name: "OTDC Panthanivas Puri (Govt. Heritage Resort)", district: "Puri", location: "Chakratirtha Sea Beach Road", lat: 19.8012, lng: 85.8398, stayType: "Govt. Tourism Lodge", pricePerNight: "₹1,200 - ₹2,400 / night", rating: 4.75, amenities: ["Sea Beachfront", "24/7 Security", "In-house Odia Kitchen", "AC/Non-AC"], contact: "1800-208-1414" },
+      { id: "hotel-02", name: "OTDC Panthanivas Puri (Govt. Heritage Resort)", district: "Puri", location: "Chakratirtha Sea Beach Road", lat: 19.8012, lng: 85.8398, stayType: "Govt. Tourism Lodge", pricePerNight: "₹1,200 - ₹2,400 / night", rating: 4.75, amenities: ["Sea Beachfront", "24/7 Security", "In-house Odia Kitchen"], contact: "1800-208-1414" },
       { id: "hotel-03", name: "Yatri Nivas & Backpacker Dorms Konark", district: "Puri", location: "Sun Temple Ring Road, Konark", lat: 19.8885, lng: 86.0954, stayType: "Backpacker Dorm & Lodge", pricePerNight: "₹350 / bed • ₹900 / room", rating: 4.68, amenities: ["Bicycle Rental Onsite", "Free Wi-Fi", "Hot Water"], contact: "+91 98612 33445" },
       { id: "hotel-04", name: "Ekamra Heritage Guesthouse", district: "Khordha", location: "Old Town, Bhubaneswar", lat: 20.2398, lng: 85.8315, stayType: "Temple Haveli Guesthouse", pricePerNight: "₹700 - ₹1,300 / night", rating: 4.82, amenities: ["Temple View Rooftop", "Heritage Walk Guide"], contact: "+91 99380 77123" }
     ];
@@ -1521,7 +1507,7 @@
     ];
 
     async function reloadNearbyData() {
-      const radius = parseFloat(document.getElementById('radiusSelect').value) || 25;
+      const radius = parseFloat(document.getElementById('radiusSelect')?.value) || 25;
       
       let nearbyFood = [];
       let nearbyHotels = [];
@@ -1535,7 +1521,7 @@
           nearbyHotels = json.nearbyHotels || [];
           nearbyTransport = json.nearbyTransport || [];
         } else {
-          throw new Error('API Error');
+          throw new Error('API');
         }
       } catch (err) {
         nearbyFood = localFoodDataset.map(item => ({ ...item, distanceKm: calculateDistanceKm(currentCoords.lat, currentCoords.lng, item.lat, item.lng) })).filter(i => i.distanceKm <= radius).sort((a,b) => a.distanceKm - b.distanceKm);
@@ -1543,71 +1529,71 @@
         nearbyTransport = localTransportDataset.map(item => ({ ...item, distanceKm: calculateDistanceKm(currentCoords.lat, currentCoords.lng, item.lat, item.lng) })).filter(i => i.distanceKm <= radius).sort((a,b) => a.distanceKm - b.distanceKm);
       }
 
-      document.getElementById('count-food').innerText = nearbyFood.length;
-      document.getElementById('count-hotels').innerText = nearbyHotels.length;
-      document.getElementById('count-transport').innerText = nearbyTransport.length;
+      if (document.getElementById('count-food')) document.getElementById('count-food').innerText = nearbyFood.length;
+      if (document.getElementById('count-hotels')) document.getElementById('count-hotels').innerText = nearbyHotels.length;
+      if (document.getElementById('count-transport')) document.getElementById('count-transport').innerText = nearbyTransport.length;
 
       const foodContainer = document.getElementById('foodCardsGrid');
-      foodContainer.innerHTML = nearbyFood.map(f => `
-        <div class="nearby-service-card card-food">
-          <div class="nsc-top">
-            <span class="nsc-dist-badge"><i class="fa-solid fa-location-arrow"></i> ${f.distanceKm || '1.2'} km away</span>
-            <span class="nsc-price-pill ${f.budgetTier === 'cheap' ? 'cheap' : 'value'}">${f.priceRange}</span>
+      if (foodContainer) {
+        foodContainer.innerHTML = nearbyFood.map(f => `
+          <div class="nearby-service-card card-food">
+            <div class="nsc-top">
+              <span class="nsc-dist-badge"><i class="fa-solid fa-location-arrow"></i> ${f.distanceKm || '1.2'} km away</span>
+              <span class="nsc-price-pill ${f.budgetTier === 'cheap' ? 'cheap' : 'value'}">${f.priceRange}</span>
+            </div>
+            <h4 class="nsc-title">${f.name}</h4>
+            <p class="nsc-loc"><i class="fa-solid fa-location-dot"></i> ${f.location || f.district}</p>
+            <div class="nsc-dishes-box">
+              <strong><i class="fa-solid fa-fire-burner"></i> Signature Dishes:</strong>
+              <span>${(f.famousDishes || []).join(' • ')}</span>
+            </div>
+            <div class="nsc-footer">
+              <div class="nsc-rating"><i class="fa-solid fa-star"></i> ${f.rating} <span>(${f.isPureVeg ? 'Pure Veg' : 'Non-Veg'})</span></div>
+              <a href="tel:${f.contact || '112'}" class="btn-call-service"><i class="fa-solid fa-phone"></i> Call Order</a>
+            </div>
           </div>
-          <h4 class="nsc-title">${f.name}</h4>
-          <p class="nsc-loc"><i class="fa-solid fa-location-dot"></i> ${f.location || f.district}</p>
-          <div class="nsc-dishes-box">
-            <strong><i class="fa-solid fa-fire-burner"></i> Signature Dishes:</strong>
-            <span>${(f.famousDishes || []).join(' • ')}</span>
-          </div>
-          <div class="nsc-footer">
-            <div class="nsc-rating"><i class="fa-solid fa-star"></i> ${f.rating} <span>(${f.isPureVeg ? 'Pure Veg' : 'Non-Veg'})</span></div>
-            <a href="tel:${f.contact || '112'}" class="btn-call-service"><i class="fa-solid fa-phone"></i> Call Order</a>
-          </div>
-        </div>
-      `).join('');
+        `).join('');
+      }
 
       const hotelContainer = document.getElementById('hotelCardsGrid');
-      hotelContainer.innerHTML = nearbyHotels.map(h => `
-        <div class="nearby-service-card card-hotel">
-          <div class="nsc-top">
-            <span class="nsc-dist-badge"><i class="fa-solid fa-location-arrow"></i> ${h.distanceKm || '2.4'} km away</span>
-            <span class="nsc-price-pill cheap">${h.pricePerNight}</span>
+      if (hotelContainer) {
+        hotelContainer.innerHTML = nearbyHotels.map(h => `
+          <div class="nearby-service-card card-hotel">
+            <div class="nsc-top">
+              <span class="nsc-dist-badge"><i class="fa-solid fa-location-arrow"></i> ${h.distanceKm || '2.4'} km away</span>
+              <span class="nsc-price-pill cheap">${h.pricePerNight}</span>
+            </div>
+            <h4 class="nsc-title">${h.name}</h4>
+            <p class="nsc-loc"><i class="fa-solid fa-bed"></i> ${h.stayType} • ${h.location}</p>
+            <div class="nsc-amenities-box">
+              <strong><i class="fa-solid fa-circle-check"></i> Amenities:</strong>
+              <span>${(h.amenities || []).join(' • ')}</span>
+            </div>
+            <div class="nsc-footer">
+              <div class="nsc-rating"><i class="fa-solid fa-star"></i> ${h.rating} <span>Verified Stay</span></div>
+              <button class="btn-call-service" onclick="showToast('Connecting to ${h.name} Booking Desk (${h.contact})...')"><i class="fa-solid fa-calendar-check"></i> Book Stay</button>
+            </div>
           </div>
-          <h4 class="nsc-title">${h.name}</h4>
-          <p class="nsc-loc"><i class="fa-solid fa-bed"></i> ${h.stayType} • ${h.location}</p>
-          <div class="nsc-amenities-box">
-            <strong><i class="fa-solid fa-circle-check"></i> Amenities:</strong>
-            <span>${(h.amenities || []).join(' • ')}</span>
-          </div>
-          <div class="nsc-footer">
-            <div class="nsc-rating"><i class="fa-solid fa-star"></i> ${h.rating} <span>Verified Stay</span></div>
-            <button class="btn-call-service" onclick="showToast('Connecting to ${h.name} Booking Desk (${h.contact})...')"><i class="fa-solid fa-calendar-check"></i> Book Stay</button>
-          </div>
-        </div>
-      `).join('');
+        `).join('');
+      }
 
       const transportContainer = document.getElementById('transportCardsGrid');
-      transportContainer.innerHTML = nearbyTransport.map(t => `
-        <div class="nearby-service-card card-transport">
-          <div class="nsc-top">
-            <span class="nsc-dist-badge"><i class="fa-solid fa-location-arrow"></i> ${t.distanceKm || '0.8'} km away</span>
-            <span class="nsc-price-pill value">${typeof t.rateCard === 'string' ? t.rateCard : (t.rateCard?.fullDay || '₹350/day')}</span>
+      if (transportContainer) {
+        transportContainer.innerHTML = nearbyTransport.map(t => `
+          <div class="nearby-service-card card-transport">
+            <div class="nsc-top">
+              <span class="nsc-dist-badge"><i class="fa-solid fa-location-arrow"></i> ${t.distanceKm || '0.8'} km away</span>
+              <span class="nsc-price-pill value">${typeof t.rateCard === 'string' ? t.rateCard : (t.rateCard?.fullDay || '₹350/day')}</span>
+            </div>
+            <h4 class="nsc-title">${t.name}</h4>
+            <p class="nsc-loc"><i class="fa-solid fa-van-shuttle"></i> ${t.vehicleType} • ${t.location}</p>
+            <div class="nsc-footer">
+              <div class="nsc-rating"><i class="fa-solid fa-shield-halved"></i> <span>${t.available || 'Ready'}</span></div>
+              <a href="tel:${t.contact || '18002081414'}" class="btn-call-service"><i class="fa-solid fa-phone"></i> Call Driver</a>
+            </div>
           </div>
-          <h4 class="nsc-title">${t.name}</h4>
-          <p class="nsc-loc"><i class="fa-solid fa-van-shuttle"></i> ${t.vehicleType} • ${t.location}</p>
-          <div class="nsc-footer">
-            <div class="nsc-rating"><i class="fa-solid fa-shield-halved"></i> <span>${t.available || 'Ready'}</span></div>
-            <a href="tel:${t.contact || '18002081414'}" class="btn-call-service"><i class="fa-solid fa-phone"></i> Call Driver</a>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function switchFilter(btn, filterType) {
-      document.querySelectorAll('.filter-chips-wrap .chip-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      showToast(`Filter applied: ${btn.innerText.trim()}`);
+        `).join('');
+      }
     }
 
     function quickBookArtisan(artisanName, fee) {
@@ -1618,22 +1604,152 @@
       showToast(`Transferred ₹${amount} direct micro-tip to ${artisanName}'s guild!`);
     }
 
-    function flagGrievance(artisanName) {
-      showToast(`Grievance submitted for compliance audit with ${artisanName}.`);
+    // =========================================================================
+    // AUDIO LORE AI VOICE SYNTHESIS & PLAYBACK CONTROLLER
+    // =========================================================================
+    const loreStories = {
+      'dharmapada': {
+        title: 'The Legend of Dharmapada & the 1200 Stone Artisans of Konark',
+        location: 'Konark Sun Temple • Puri Coast',
+        duration: 185,
+        transcript: {
+          'en': "Twelve hundred master craftsmen laboured for twelve long years under Chief Architect Bisu Maharana to build the colossal Sun Temple of Konark. Yet, none could fix the magnetic pinnacle crown upon the stone sanctum. King Narasimhadeva declared that if the crown was not fixed by sunrise, all artisans would be beheaded. In the final hour, Bisu Maharana's twelve-year-old son, Dharmapada, arrived and anchored the magnetic crown. To save his father and brothers from the King's wrath, the twelve-year-old child leapt from the pinnacle into the sea, immortalizing his sacrifice.",
+          'hi': "बारह सौ शिल्पकारों ने बारह वर्षों तक कोणार्क सूर्य मंदिर का निर्माण किया, परंतु शिखर पर चुंबकीय कलश स्थापित नहीं हो पा रहा था। तभी बिसु महाराणा के बारह वर्षीय पुत्र धर्मपद ने रात के अंधेरे में शिखर पर चढ़कर कलश स्थापित कर दिया। अपने पिता और शिल्पकारों के प्राण बचाने के लिए उस बालक ने समुद्र में छलांग लगाकर बलिदान दे दिया।",
+          'or': "ବାରଶହ ବଢ଼େଇ ବାର ବର୍ଷ ଧରି କୋଣାର୍କ ସୂର୍ଯ୍ୟ ମନ୍ଦିର ନିର୍ମାଣ କରିଥିଲେ। ଶେଷରେ ବିଶୁ ମହାରଣାଙ୍କ ବାର ବର୍ଷର ପୁଅ ଧର୍ମପଦ ମନ୍ଦିର ଚୂଳ ସ୍ଥାପନ କରି ବାରଶହ ବଢ଼େଇଙ୍କ ଜୀବନ ବଞ୍ଚାଇବା ପାଇଁ ସମୁଦ୍ରକୁ ଡେଇଁ ପ୍ରାଣ ଆହୁତି ଦେଇଥିଲା।"
+        }
+      },
+      'raghurajpur': {
+        title: 'The Secret Mineral Dyes of Raghurajpur',
+        location: 'Raghurajpur Heritage Lane • 80m away',
+        duration: 140,
+        transcript: {
+          'en': "In Raghurajpur, colors are harvested directly from the earth. White is ground from sea conch shells, black is gathered from castor oil soot, red from Hingula stone, and yellow from Haritala minerals. Bound with wood-apple resin, these scroll paintings survive centuries without fading.",
+          'hi': "रघुराजपुर में रंग शंख, दीये की कालिख, हिंगुल पत्थरों और हरिताल से प्राकृतिक रूप से तैयार किए जाते हैं, जो सदियों तक सुरक्षित रहते हैं।",
+          'or': "ରଘୁରାଜପୁରରେ ଶଙ୍ଖ, ହିଙ୍ଗୁଳ ଏବଂ ହରିତାଳରୁ ପ୍ରାକୃତିକ ରଙ୍ଗ ତିଆରି କରାଯାଏ।"
+        }
+      },
+      'dhauli': {
+        title: 'Dhauli: The River That Turned from Blood to Peace',
+        location: 'Dhauli Peace Pagoda • Khordha',
+        duration: 160,
+        transcript: {
+          'en': "In 261 BCE, the bloody Kalinga War turned the Daya River red. Witnessing the devastation upon Dhauli hill, Emperor Ashoka discarded violence, embraced Buddha's teachings of peace, and carved eternal rock edicts across Asia.",
+          'hi': "261 ईसा पूर्व में कलिंग युद्ध के बाद दया नदी के तट पर सम्राट अशोक का हृदय परिवर्तन हुआ और उन्होंने बौद्ध धर्म अपनाकर विश्व शांति का संदेश दिया।",
+          'or': "କଳିଙ୍ଗ ଯୁଦ୍ଧ ପରେ ଧଉଳି ପାହାଡ଼ ଉପରେ ସମ୍ରାଟ ଅଶୋକଙ୍କ ହୃଦୟ ପରିବର୍ତ୍ତନ ହୋଇ ସେ ଅହିଂସା ଓ ବୌଦ୍ଧ ଧର୍ମ ଗ୍ରହଣ କରିଥିଲେ।"
+        }
+      }
+    };
+
+    let currentStoryKey = 'dharmapada';
+    let isPlaying = false;
+    let lorePlaybackTimer = null;
+    let currentSeconds = 0;
+
+    function formatTime(secs) {
+      const m = Math.floor(secs / 60).toString().padStart(2, '0');
+      const s = (secs % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
     }
 
     function toggleAudioPlayback() {
       const playIcon = document.getElementById('playIcon');
-      const isPlaying = playIcon.classList.contains('fa-pause');
+      const soundBars = document.querySelectorAll('.sound-bar-elem');
+      const lang = document.getElementById('audioLangSelect')?.value || 'en';
+      const speed = parseFloat(document.getElementById('audioSpeedSelect')?.value) || 1.0;
+
       if (isPlaying) {
+        isPlaying = false;
         playIcon.className = 'fa-solid fa-play';
+        soundBars.forEach(b => b.classList.remove('live'));
+        if (window.speechSynthesis) window.speechSynthesis.pause();
+        clearInterval(lorePlaybackTimer);
         showToast('Audio story paused.');
       } else {
+        isPlaying = true;
         playIcon.className = 'fa-solid fa-pause';
-        showToast('Playing: The Legend of Dharmapada & 1200 Konark Artisans');
+        soundBars.forEach(b => b.classList.add('live'));
+
+        const story = loreStories[currentStoryKey];
+        const spokenText = story.transcript[lang] || story.transcript['en'];
+
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const utter = new SpeechSynthesisUtterance(spokenText);
+          utter.rate = speed;
+          utter.pitch = 0.95;
+          utter.lang = lang === 'hi' ? 'hi-IN' : (lang === 'or' ? 'hi-IN' : 'en-IN');
+
+          utter.onend = () => {
+            isPlaying = false;
+            playIcon.className = 'fa-solid fa-play';
+            soundBars.forEach(b => b.classList.remove('live'));
+            clearInterval(lorePlaybackTimer);
+            currentSeconds = 0;
+            updateScrubberUi(0, story.duration);
+          };
+
+          window.speechSynthesis.speak(utter);
+        }
+
+        clearInterval(lorePlaybackTimer);
+        lorePlaybackTimer = setInterval(() => {
+          if (currentSeconds < story.duration) {
+            currentSeconds++;
+            updateScrubberUi(currentSeconds, story.duration);
+          } else {
+            clearInterval(lorePlaybackTimer);
+          }
+        }, 1000);
+
+        showToast(`Playing: ${story.title}`);
       }
     }
 
+    function updateScrubberUi(current, total) {
+      const curTimeElem = document.querySelector('.scrub-time-current');
+      const durTimeElem = document.querySelector('.scrub-time-duration');
+      const progressFill = document.querySelector('.scrub-fill-progress');
+
+      if (curTimeElem) curTimeElem.innerText = formatTime(current);
+      if (durTimeElem) durTimeElem.innerText = formatTime(total);
+      if (progressFill) progressFill.style.width = `${(current / total) * 100}%`;
+    }
+
+    function selectLoreTrack(storyKey) {
+      currentStoryKey = storyKey;
+      const story = loreStories[storyKey];
+      
+      document.querySelector('.track-headline').innerText = story.title;
+      document.querySelector('.beacon-geo-pill').innerHTML = `<i class="fa-solid fa-satellite"></i> Geo-Triggered: ${story.location}`;
+      
+      const lang = document.getElementById('audioLangSelect')?.value || 'en';
+      document.querySelector('.transcript-dialogue').innerText = `"${story.transcript[lang] || story.transcript['en']}"`;
+
+      document.querySelectorAll('.playlist-item-card').forEach(c => c.classList.remove('active'));
+      const activeCard = Array.from(document.querySelectorAll('.playlist-item-card')).find(c => c.innerHTML.includes(story.title.split('&')[0].trim()));
+      if (activeCard) activeCard.classList.add('active');
+
+      currentSeconds = 0;
+      updateScrubberUi(0, story.duration);
+
+      if (isPlaying) {
+        window.speechSynthesis.cancel();
+        isPlaying = false;
+      }
+      toggleAudioPlayback();
+    }
+
+    function handleAudioLanguageChange() {
+      const story = loreStories[currentStoryKey];
+      const lang = document.getElementById('audioLangSelect')?.value || 'en';
+      document.querySelector('.transcript-dialogue').innerText = `"${story.transcript[lang] || story.transcript['en']}"`;
+      if (isPlaying) {
+        toggleAudioPlayback();
+        toggleAudioPlayback();
+      }
+    }
+
+    // Auto Session Restorer
     window.addEventListener('DOMContentLoaded', () => {
       const stored = localStorage.getItem('yatrasanskriti_session');
       if (stored) {
