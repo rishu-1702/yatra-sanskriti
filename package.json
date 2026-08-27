@@ -1,7 +1,7 @@
 {
   "name": "yatra-sanskriti",
   "version": "2.0.0",
-  "description": "AI Smart Tourism & Living Heritage Platform with Real-Time Nearby Services",
+  "description": "AI Smart Tourism & Living Heritage Platform with Real-Time Nearby Services and Excel Database Support",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -13,8 +13,12 @@
     "odisha",
     "geospatial",
     "artisan-guilds",
-    "audio-lore"
+    "audio-lore",
+    "excel-database"
   ],
   "author": "YATRAसंस्कृति Team",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
 }
