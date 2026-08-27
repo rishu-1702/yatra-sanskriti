@@ -9,11 +9,14 @@
     "cuisineType": "Authentic Temple Cuisine / Sattvic Odia",
     "priceRange": "₹80 - ₹180 / person",
     "budgetTier": "cheap",
-    "famousDishes": ["Earthen Pot Dalma", "Kanika Fragrant Rice", "Besara Gravy", "Rice Khiri", "Potala Rasa"],
+    "famousDishes": ["Earthen Pot Dalma", "Kanika Fragrant Sweet Rice", "Besara (Mustard Veg Gravy)", "Khiri (Rice Pudding)", "Potala Rasa"],
     "rating": 4.9,
+    "reviewsCount": 1820,
     "timing": "11:30 AM - 4:00 PM (Fresh Noon Mahaprasad)",
     "contact": "+91 94370 12345",
-    "isPureVeg": true
+    "isPureVeg": true,
+    "hygieneScore": "4.8/5 (Cooked daily in pure earthen pots)",
+    "tips": "Arrive by 12:30 PM to get hot earthen handi meals straight from the traditional woodfire hearth."
   },
   {
     "id": "food-02",
@@ -25,27 +28,33 @@
     "cuisineType": "Legendary Cuttacki Street Food",
     "priceRange": "₹40 - ₹70 / plate",
     "budgetTier": "cheap",
-    "famousDishes": ["Dahibara Aloodum with Dahi Pani", "Spicy Matar Guguni", "Crispy Sev Garnish"],
+    "famousDishes": ["Dahibara Aloodum with Roasted Cumin-Chilli Dahi Pani", "Spicy Matar Guguni", "Crispy Sev Garnish"],
     "rating": 4.95,
+    "reviewsCount": 2450,
     "timing": "7:00 AM - 12:00 PM & 4:30 PM - 9:30 PM",
     "contact": "+91 98610 88771",
-    "isPureVeg": true
+    "isPureVeg": true,
+    "hygieneScore": "4.7/5",
+    "tips": "Always ask for the complimentary refreshing cold dahi pani (buttermilk soup) bowl at the end!"
   },
   {
     "id": "food-03",
-    "name": "Bapuji Chhena Poda & Sweets Hub",
+    "name": "Bapuji Chhena Poda & Heritage Sweets",
     "district": "Puri",
-    "location": "Puri Marine Drive Junction",
+    "location": "Nayagarh Highway & Puri Marine Drive Junction",
     "lat": 19.8135,
     "lng": 85.8312,
     "cuisineType": "Traditional Odia Baked Confectionery",
-    "priceRange": "₹60 - ₹150 / box",
+    "priceRange": "₹60 - ₹150 / box (250g)",
     "budgetTier": "cheap",
     "famousDishes": ["Sal-Leaf Baked Caramel Chhena Poda", "Rasabali", "Chhena Gaja", "Hot Malpua with Rabdi"],
     "rating": 4.92,
+    "reviewsCount": 980,
     "timing": "6:30 AM - 10:00 PM",
     "contact": "+91 97780 45612",
-    "isPureVeg": true
+    "isPureVeg": true,
+    "hygieneScore": "4.9/5",
+    "tips": "Slow-baked for 4 hours wrapped in Sal leaves using local cow milk cottage cheese."
   },
   {
     "id": "food-04",
@@ -57,11 +66,14 @@
     "cuisineType": "Hyper-Local Rural Odia Thali",
     "priceRange": "₹90 - ₹140 (Unlimited Village Thali)",
     "budgetTier": "cheap",
-    "famousDishes": ["Badi Chura with Green Chillies", "Saga Bhaja (Fried Greens)", "Pakhala Bhata Cooler", "Chhena Jhili"],
+    "famousDishes": ["Badi Chura with Green Chillies & Mustard Oil", "Saga Bhaja (Fried Greens)", "Pakhala Bhata Cooler", "Chhena Jhili"],
     "rating": 4.88,
+    "reviewsCount": 420,
     "timing": "12:00 PM - 3:30 PM",
     "contact": "+91 99371 90234",
-    "isPureVeg": true
+    "isPureVeg": true,
+    "hygieneScore": "4.8/5 (Cooked by local artisan women SHG)",
+    "tips": "Served traditionally on fresh banana leaves; 100% of proceeds support the village women weavers guild."
   },
   {
     "id": "food-05",
@@ -73,10 +85,32 @@
     "cuisineType": "Crisp Heritage Khaja & Temple Sweets",
     "priceRange": "₹50 - ₹120 / packet",
     "budgetTier": "cheap",
-    "famousDishes": ["Crisp Layered Feni Khaja", "Ghee Gaja", "Kora Khai"],
+    "famousDishes": ["Crisp Layered Feni Khaja", "Ghee Gaja", "Kora Khai (Caramelized Paddy Puffs)"],
     "rating": 4.85,
+    "reviewsCount": 1640,
     "timing": "7:00 AM - 11:00 PM",
     "contact": "+91 94372 88190",
-    "isPureVeg": true
+    "isPureVeg": true,
+    "hygieneScore": "4.7/5",
+    "tips": "Freshly fried batches dipped in light sugar glaze. Stays crisp for over 15 days without refrigeration."
+  },
+  {
+    "id": "food-06",
+    "name": "Odisha Hotel — Authentic Odia Kitchen",
+    "district": "Khordha",
+    "location": "Saheed Nagar / Master Canteen, Bhubaneswar",
+    "lat": 20.2961,
+    "lng": 85.8245,
+    "cuisineType": "Traditional Odia Homestyle & Seafood",
+    "priceRange": "₹150 - ₹350 / person",
+    "budgetTier": "best-value",
+    "famousDishes": ["Chilika Crab Curry", "Chuna Machha Besara (Small Fish Mustard)", "Mutton Kassa", "Dahi Baigana", "Dalma Thali"],
+    "rating": 4.78,
+    "reviewsCount": 3100,
+    "timing": "11:30 AM - 10:30 PM",
+    "contact": "+91 674 254 8920",
+    "isPureVeg": false,
+    "hygieneScore": "4.9/5",
+    "tips": "Famous for clay-pot cooked dishes served in bell-metal (Kansa) traditional utensils."
   }
 ]
