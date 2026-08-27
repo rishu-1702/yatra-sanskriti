@@ -10,8 +10,11 @@
     "pricePerNight": "₹450 - ₹850 / night",
     "budgetTier": "cheap",
     "rating": 4.93,
-    "amenities": ["Stay with Pattachitra Artisan Family", "Homecooked Claypot Organic Meals", "Free Morning Palm-Leaf Workshop", "Clean Attached Bathroom"],
-    "contact": "+91 94371 67890"
+    "reviewsCount": 210,
+    "amenities": ["Stay with Pattachitra Artisan Family", "Homecooked Claypot Organic Meals", "Free Morning Palm-Leaf Workshop", "Clean Attached Bathroom", "Purified Water"],
+    "contact": "+91 94371 67890",
+    "bookingStatus": "Instant Confirmation",
+    "highlights": "Live amidst traditional mud-painted verandas, wake up to Odissi flute riyaz and bird songs."
   },
   {
     "id": "hotel-02",
@@ -24,8 +27,11 @@
     "pricePerNight": "₹1,200 - ₹2,400 / night",
     "budgetTier": "budget-moderate",
     "rating": 4.75,
-    "amenities": ["Beachfront Sea View", "24/7 Security", "In-house Odia Mahaprasad Restaurant", "AC / Non-AC Rooms", "Free Parking"],
-    "contact": "1800-208-1414"
+    "reviewsCount": 1420,
+    "amenities": ["Beachfront Sea View", "24/7 Security", "In-house Odia Mahaprasad Restaurant", "Verified Tour Desk", "AC / Non-AC Rooms", "Free Parking"],
+    "contact": "1800-208-1414",
+    "bookingStatus": "Govt Verified",
+    "highlights": "Odisha Tourism official property with trusted government tariffs and reliable amenities."
   },
   {
     "id": "hotel-03",
@@ -38,11 +44,31 @@
     "pricePerNight": "₹350 / dorm bed • ₹900 / private room",
     "budgetTier": "cheap",
     "rating": 4.68,
-    "amenities": ["Bicycle Rentals Onsite", "Hot Water", "Free Wi-Fi", "Locker Facility", "Filter Coffee Cafe"],
-    "contact": "+91 98612 33445"
+    "reviewsCount": 780,
+    "amenities": ["Bicycle Rentals Onsite", "Hot Water", "Free Wi-Fi", "Locker Facility", "Cafe with Filter Coffee & Poda Pitha"],
+    "contact": "+91 98612 33445",
+    "bookingStatus": "Instant Confirmation",
+    "highlights": "Perfect for solo explorers and backpackers visiting sunrise at Chandrabhaga beach."
   },
   {
     "id": "hotel-04",
+    "name": "Ratnagiri Buddhist Vihara Eco-Resort",
+    "district": "Jajpur",
+    "location": "Pushpagiri Valley, Near Monastic Ruins, Ratnagiri",
+    "lat": 20.6402,
+    "lng": 86.3355,
+    "stayType": "Heritage Eco-Retreat",
+    "pricePerNight": "₹800 - ₹1,500 / night",
+    "budgetTier": "budget-moderate",
+    "rating": 4.88,
+    "reviewsCount": 195,
+    "amenities": ["Meditation Garden", "Heritage Guide Assistance", "Solar Heated Water", "Organic Local Village Meals", "Doctor on Call"],
+    "contact": "+91 94378 11200",
+    "bookingStatus": "Available",
+    "highlights": "Tranquil green sanctuary next to the ancient Mahavihara ruins with breathtaking night stargazing."
+  },
+  {
+    "id": "hotel-05",
     "name": "Ekamra Heritage Guesthouse",
     "district": "Khordha",
     "location": "Near Bindu Sagar Lake & Lingaraj Temple, Old Town, Bhubaneswar",
@@ -52,7 +78,10 @@
     "pricePerNight": "₹700 - ₹1,300 / night",
     "budgetTier": "cheap",
     "rating": 4.82,
-    "amenities": ["Rooftop Temple View Terrace", "Walking Heritage Tour Guide", "Filtered Water Dispenser", "AC Available"],
-    "contact": "+91 99380 77123"
+    "reviewsCount": 540,
+    "amenities": ["Rooftop Temple View Terrace", "Walking Heritage Tour Guide", "Filtered Water Dispenser", "Clean Linens", "AC Available"],
+    "contact": "+91 99380 77123",
+    "bookingStatus": "Available",
+    "highlights": "Listen to morning temple bells and walk to 10th-century stone temple architectural complexes."
   }
 ]
