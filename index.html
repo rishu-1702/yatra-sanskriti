@@ -40,12 +40,12 @@
   </div>
 
   <!-- =========================================================================
-       GATEWAY: INITIAL AUTHENTICATION SCREEN (ANY USER CAN SIGN IN)
+       GATEWAY 1: UNIVERSAL AUTHENTICATION SCREEN (ANY USER CAN SIGN IN)
        ========================================================================= -->
   <main id="login-gate-screen" class="gate-screen-container">
     <div class="login-gate-card">
       
-      <!-- Left Column: Heritage Emblem & Key Features -->
+      <!-- Left Column: Sacred Ancient Art & Highlights -->
       <div class="gate-visual-col">
         <div class="gate-visual-content">
           <div class="gate-brand-emblem">
@@ -62,7 +62,7 @@
             <div class="perk-item"><i class="fa-solid fa-location-crosshairs"></i> <span>Real-Time GPS Nearby Food, Stays & Rentals</span></div>
             <div class="perk-item"><i class="fa-solid fa-route"></i> <span>AI Geospatial Route De-Congestion</span></div>
             <div class="perk-item"><i class="fa-solid fa-certificate"></i> <span>GI Certified Direct Artisan Support</span></div>
-            <div class="perk-item"><i class="fa-solid fa-headphones-simple"></i> <span>Interactive Multilingual Spatial Audio Lore</span></div>
+            <div class="perk-item"><i class="fa-solid fa-headphones-simple"></i> <span>Interactive Spatial Audio Lore Player</span></div>
             <div class="perk-item"><i class="fa-solid fa-shield-halved"></i> <span>24x7 Tourist Police & Digital Safety</span></div>
           </div>
 
@@ -102,7 +102,7 @@
             <label><i class="fa-solid fa-user"></i> Name, Email, or Mobile ID</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-at"></i>
-              <input type="text" id="gate-signin-id" placeholder="Enter your name or email..." required>
+              <input type="text" id="gate-signin-id" placeholder="Enter your name, email, or mobile..." required>
             </div>
           </div>
 
@@ -135,7 +135,7 @@
             <label><i class="fa-solid fa-mobile-screen"></i> Mobile Number (+91)</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-phone"></i>
-              <input type="tel" id="gate-otp-phone" placeholder="Enter 10-digit number" required>
+              <input type="tel" id="gate-otp-phone" placeholder="Enter 10-digit mobile number..." required>
               <button type="button" class="btn-otp-action" onclick="showToast('OTP Code [202694] sent to your mobile!')">Send OTP</button>
             </div>
           </div>
@@ -163,7 +163,7 @@
             <label><i class="fa-solid fa-user"></i> Full Name</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-user-pen"></i>
-              <input type="text" id="gate-signup-name" placeholder="Your full name" required>
+              <input type="text" id="gate-signup-name" placeholder="Enter your full name..." required>
             </div>
           </div>
           <div class="form-group">
@@ -199,7 +199,7 @@
             <label><i class="fa-solid fa-fingerprint"></i> Artisan Name or GI Tag ID</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-id-badge"></i>
-              <input type="text" id="gate-artisan-id" placeholder="e.g. Guru Rabindra or #OD-PATTA-204" required>
+              <input type="text" id="gate-artisan-id" placeholder="Artisan name or GI ID (e.g. Guru Rabindra)" required>
             </div>
           </div>
 
@@ -230,7 +230,7 @@
 
 
   <!-- =========================================================================
-       MAIN PLATFORM APPLICATION (REDESIGNED MODULAR MENU FORMAT)
+       MAIN PLATFORM APPLICATION (MODULAR DASHBOARD & MENU FORMAT)
        ========================================================================= -->
   <div id="main-platform-app" class="main-app-container" style="display: none;">
     
@@ -268,7 +268,7 @@
           </div>
         </a>
 
-        <!-- User Profile & Language Bar -->
+        <!-- User Profile & Action Bar -->
         <div class="nav-action-btns">
           <div class="lang-dropdown-pill">
             <i class="fa-solid fa-language"></i>
@@ -278,7 +278,6 @@
               <option value="en">English</option>
               <option value="bn">বাংলা (Bengali)</option>
               <option value="te">తెలుగు (Telugu)</option>
-              <option value="sa">संस्कृतम् (Sanskrit)</option>
             </select>
           </div>
 
@@ -316,7 +315,7 @@
     </header>
 
     <!-- =========================================================================
-         REDESIGNED PLATFORM MENU COMMAND BAR (Modular Menu Format)
+         MODULAR PLATFORM MENU STRIP (COMMAND BAR)
          ========================================================================= -->
     <nav class="platform-menu-strip">
       <div class="container menu-strip-flex">
@@ -354,7 +353,7 @@
     </nav>
 
     <!-- =========================================================================
-         MENU TAB 1: PORTAL HERO & UNIVERSAL SEARCH HUB
+         TAB 1: PORTAL & SEARCH HUB
          ========================================================================= -->
     <section id="menu-view-overview" class="menu-tab-view active">
       <div class="container hero-container">
@@ -401,7 +400,7 @@
               </select>
             </div>
 
-            <button class="btn-search-fire" onclick="switchMenuTab('nearby'); showToast('Filtered results updated based on your search query!')">
+            <button class="btn-search-fire" onclick="switchMenuTab('nearby'); showToast('Searching nearby heritage services...')">
               <i class="fa-solid fa-wand-magic-sparkles"></i> Explore Trail
             </button>
           </div>
@@ -422,7 +421,7 @@
             </div>
             <div class="q-card" onclick="switchMenuTab('audio')">
               <i class="fa-solid fa-headphones"></i>
-              <div><strong>Spatial Audio Lore</strong><span>AI Multilingual Voice Stories</span></div>
+              <div><strong>Spatial Audio Lore</strong><span>AI Voice Folklore Stories</span></div>
             </div>
           </div>
         </div>
@@ -454,7 +453,7 @@
     </section>
 
     <!-- =========================================================================
-         MENU TAB 2: REAL-TIME NEARBY SERVICES EXPLORER (LIVE GPS & API)
+         TAB 2: REAL-TIME NEARBY SERVICES (LIVE GPS & API)
          ========================================================================= -->
     <section id="menu-view-nearby" class="menu-tab-view">
       <div class="container">
@@ -507,7 +506,7 @@
             </div>
           </div>
 
-          <!-- Sub-Tabs for Services (Food / Hotels / Transport / Monuments) -->
+          <!-- Sub-Tabs for Services -->
           <div class="nearby-service-tabs">
             <button class="nst-btn active" id="tab-btn-food" onclick="switchNearbySubTab('food')">
               <i class="fa-solid fa-utensils"></i> Cheap & Best Authentic Food (<span id="count-food">5</span>)
@@ -540,7 +539,7 @@
     </section>
 
     <!-- =========================================================================
-         MENU TAB 3: STATE & DISTRICT MATRIX EXPLORER
+         TAB 3: STATE & DISTRICT MATRIX
          ========================================================================= -->
     <section id="menu-view-hierarchy" class="menu-tab-view">
       <div class="container">
@@ -655,7 +654,7 @@
     </section>
 
     <!-- =========================================================================
-         MENU TAB 4: SMART AI ROUTING & DE-CONGESTION
+         TAB 4: AI ROUTE DE-CONGESTION
          ========================================================================= -->
     <section id="menu-view-reroute" class="menu-tab-view">
       <div class="container">
@@ -689,7 +688,7 @@
     </section>
 
     <!-- =========================================================================
-         MENU TAB 5: ODISHA LIVING MONUMENTS & GEMS DIRECTORY
+         TAB 5: LIVING MONUMENTS DIRECTORY
          ========================================================================= -->
     <section id="menu-view-destinations" class="menu-tab-view">
       <div class="container">
@@ -702,7 +701,7 @@
 
         <div class="destination-cards-grid">
 
-          <!-- CARD 1: Raghurajpur -->
+          <!-- CARD 1 -->
           <div class="dest-item-card gem-card">
             <div class="dest-media-container">
               <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=700&q=80" alt="Raghurajpur Village" class="dest-cover-img">
@@ -722,7 +721,7 @@
               <div class="dest-history-accordion">
                 <strong><i class="fa-solid fa-scroll"></i> Living Culture & History:</strong>
                 <p>
-                  India's first declared Heritage Crafts Village where every home is an active studio. Preserves <strong>Pattachitra</strong> (5th century BC cloth-scroll painting), Tala Pattachitra (palm leaf engraving), and cow-dung papier-mâché toys.
+                  India's first declared Heritage Crafts Village where every home is an active studio. Preserves <strong>Pattachitra</strong> cloth-scroll painting and palm-leaf engraving.
                 </p>
               </div>
 
@@ -737,7 +736,7 @@
             </div>
           </div>
 
-          <!-- CARD 2: Konark Sun Temple -->
+          <!-- CARD 2 -->
           <div class="dest-item-card known-card">
             <div class="dest-media-container">
               <img src="https://images.unsplash.com/photo-1600100397608-f010f443905e?auto=format&fit=crop&w=700&q=80" alt="Konark Sun Temple" class="dest-cover-img">
@@ -757,7 +756,7 @@
               <div class="dest-history-accordion">
                 <strong><i class="fa-solid fa-scroll"></i> History & Architectural Marvel:</strong>
                 <p>
-                  Built in 1250 CE by King Narasimhadeva I of the Eastern Ganga Dynasty. Designed as a colossal 24-wheeled chariot of Surya pulled by 7 galloping steeds. The wheels function as accurate sundials.
+                  Built in 1250 CE by King Narasimhadeva I of the Eastern Ganga Dynasty. Designed as a colossal 24-wheeled chariot of Surya functioning as accurate sundials.
                 </p>
               </div>
 
@@ -772,7 +771,7 @@
             </div>
           </div>
 
-          <!-- CARD 3: Ratnagiri Buddhist Monastery -->
+          <!-- CARD 3 -->
           <div class="dest-item-card gem-card">
             <div class="dest-media-container">
               <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=700&q=80" alt="Ratnagiri Monastery" class="dest-cover-img">
@@ -792,7 +791,7 @@
               <div class="dest-history-accordion">
                 <strong><i class="fa-solid fa-scroll"></i> Living Culture & History:</strong>
                 <p>
-                  A premier Buddhist academic seat between the 5th and 12th centuries CE rivaling Nalanda. Celebrated for its carved green chlorite stone portal and giant monolithic Buddha heads.
+                  A premier Buddhist academic seat between the 5th and 12th centuries CE rivaling Nalanda. Celebrated for its carved green chlorite stone portal and Buddhist stupas.
                 </p>
               </div>
 
@@ -812,7 +811,7 @@
     </section>
 
     <!-- =========================================================================
-         MENU TAB 6: RURAL MASTER ARTISAN GUILDS & FAIR-TRADE HUB
+         TAB 6: RURAL MASTER ARTISAN GUILDS
          ========================================================================= -->
     <section id="menu-view-artisans" class="menu-tab-view">
       <div class="container">
@@ -906,7 +905,7 @@
               </div>
               <p class="artisan-craft-title">Ancient 4,000-Year Lost-Wax (Cire Perdue) Dokra Brass Casting</p>
               <p class="artisan-bio-desc">
-                Preserving prehistoric metal-casting methods using beeswax, river clay, and recycled brass to sculpt indigenous tribal deities.
+                Preserving prehistoric metal-casting methods using beeswax, river clay, and recycled brass to sculpt indigenous tribal art.
               </p>
 
               <div class="artisan-authenticity-seal">
@@ -926,7 +925,7 @@
     </section>
 
     <!-- =========================================================================
-         MENU TAB 7: MULTILINGUAL SPATIAL AUDIO LORE PLAYER (REAL VOICE ENGINE)
+         TAB 7: SPATIAL AUDIO LORE PLAYER (REAL AI SPEECH NARRATOR)
          ========================================================================= -->
     <section id="menu-view-audio" class="menu-tab-view">
       <div class="container">
@@ -949,7 +948,6 @@
             </div>
 
             <div class="player-core-layout">
-              <!-- Sized Monument Artwork -->
               <div class="audio-cover-frame">
                 <img id="loreCoverImg" src="https://images.unsplash.com/photo-1600100397608-f010f443905e?auto=format&fit=crop&w=600&q=80" alt="Konark Monument">
                 <div class="play-pulse-circle" id="masterPlayBtn" onclick="toggleAudioPlayback()">
@@ -1064,7 +1062,7 @@
     </section>
 
     <!-- =========================================================================
-         MENU TAB 8: PAN-INDIA SCALABLE DIRECTORY
+         TAB 8: PAN-INDIA DIRECTORY
          ========================================================================= -->
     <section id="menu-view-india" class="menu-tab-view">
       <div class="container">
@@ -1130,7 +1128,7 @@
     </section>
 
     <!-- =========================================================================
-         MENU TAB 9: 24x7 EMERGENCY, SOS & REDRESSAL
+         TAB 9: 24x7 EMERGENCY & SOS
          ========================================================================= -->
     <section id="menu-view-emergency" class="menu-tab-view">
       <div class="container">
@@ -1241,7 +1239,7 @@
   </div>
 
   <!-- =========================================================================
-       JAVASCRIPT: CONTROLLER, DYNAMIC USER LOGIN & AUDIO ENGINE
+       JAVASCRIPT: UNIVERSAL CONTROLLER, DYNAMIC USER LOGIN & AUDIO ENGINE
        ========================================================================= -->
   <script>
     const API_BASE_URL = window.location.protocol === 'file:' ? 'http://localhost:5000/api' : (window.location.origin + '/api');
@@ -1252,6 +1250,7 @@
       const toastMsg = document.getElementById('toast-msg');
       const toastIcon = document.getElementById('toast-icon');
 
+      if (!toast) return;
       toastMsg.innerText = message;
       if (isError) {
         toast.style.borderColor = 'var(--crimson-sos)';
@@ -1352,56 +1351,101 @@
     }
 
     function activatePlatformSession(userName, userRole, avatarUrl) {
-      const user = { name: userName, role: userRole, avatar: avatarUrl, authenticated: true };
-      localStorage.setItem('yatrasanskriti_session', JSON.stringify(user));
+      const user = {
+        name: userName || 'Cultural Explorer',
+        role: userRole || 'Verified Cultural Explorer',
+        avatar: avatarUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80',
+        authenticated: true,
+        loginTime: new Date().toISOString()
+      };
+
+      try {
+        localStorage.setItem('yatrasanskriti_session', JSON.stringify(user));
+      } catch (e) {}
 
       document.getElementById('login-gate-screen').style.display = 'none';
       document.getElementById('main-platform-app').style.display = 'block';
 
-      document.getElementById('navUserName').innerText = `Namaste, ${userName.split(' ')[0]}`;
-      document.getElementById('dropdownUserName').innerText = userName;
-      document.getElementById('dropdownUserRole').innerHTML = `<i class="fa-solid fa-certificate"></i> ${userRole}`;
-      document.getElementById('navAvatarImg').src = avatarUrl;
+      const firstName = user.name.split(' ')[0];
+      document.getElementById('navUserName').innerText = `Namaste, ${firstName}`;
+      document.getElementById('dropdownUserName').innerText = user.name;
+      document.getElementById('dropdownUserRole').innerHTML = `<i class="fa-solid fa-certificate"></i> ${user.role}`;
+      document.getElementById('navAvatarImg').src = user.avatar;
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      showToast(`Namaste ${userName}! Welcome to YATRAसंस्कृति.`);
+      showToast(`Namaste ${user.name}! Welcome to YATRAसंस्कृति.`);
       reloadNearbyData();
     }
 
     // Dynamic Login Handler for ANY Random Person
-    function handleGateLogin(e, loginType) {
+    async function handleGateLogin(e, loginType) {
       e.preventDefault();
-      let name = 'Explorer';
-      let role = 'Verified Cultural Explorer';
-      let avatar = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80';
+      
+      let userName = 'Explorer';
+      let userRole = 'Verified Cultural Explorer';
+      let userAvatar = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80';
+      let payload = { authMethod: loginType };
 
       if (loginType === 'tourist-password') {
         const inputVal = document.getElementById('gate-signin-id').value.trim();
         if (inputVal.includes('@')) {
-          const rawName = inputVal.split('@')[0].replace(/[._-]/g, ' ');
-          name = rawName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+          const raw = inputVal.split('@')[0].replace(/[._-]/g, ' ');
+          userName = raw.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
         } else {
-          name = inputVal;
+          userName = inputVal;
         }
-      } else if (loginType === 'tourist-otp') {
+        payload.identifier = inputVal;
+        payload.name = userName;
+        payload.role = 'Verified Cultural Explorer';
+      } 
+      else if (loginType === 'tourist-otp') {
         const phone = document.getElementById('gate-otp-phone').value.trim();
-        name = `User (${phone.slice(-4) ? '•••• ' + phone.slice(-4) : 'Mobile'})`;
-        role = 'Verified Mobile Explorer';
-      } else if (loginType === 'tourist-signup') {
-        name = document.getElementById('gate-signup-name').value.trim() || 'New Explorer';
-      } else if (loginType === 'artisan-portal') {
+        userName = phone ? `Explorer (${phone.slice(-4) ? '•••• ' + phone.slice(-4) : phone})` : 'Mobile Explorer';
+        userRole = 'Verified Mobile Explorer';
+        payload.phone = phone;
+        payload.name = userName;
+        payload.role = userRole;
+      } 
+      else if (loginType === 'tourist-signup') {
+        userName = document.getElementById('gate-signup-name').value.trim() || 'New Explorer';
+        const email = document.getElementById('gate-signup-email').value.trim();
+        payload.name = userName;
+        payload.email = email;
+        payload.role = 'Verified Cultural Explorer';
+      } 
+      else if (loginType === 'artisan-portal') {
         const artisanId = document.getElementById('gate-artisan-id').value.trim();
-        name = artisanId.includes('#') ? `Master Craftsman (${artisanId})` : artisanId;
-        role = 'GI Master Craftsman';
+        userName = artisanId.includes('#') ? `Master Craftsman (${artisanId})` : artisanId;
+        userRole = `GI Master Craftsman (${artisanId})`;
+        userAvatar = 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=120&q=80';
+        payload.name = userName;
+        payload.identifier = artisanId;
+        payload.role = userRole;
       }
 
-      activatePlatformSession(name, role, avatar);
+      showToast('Saving to database & logging in...');
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (response.ok) {
+          const resJson = await response.json();
+          if (resJson.user && resJson.user.name) {
+            userName = resJson.user.name;
+          }
+        }
+      } catch (err) {}
+
+      activatePlatformSession(userName, userRole, userAvatar);
     }
 
     function handleSocialGateLogin(provider) {
-      const enteredName = prompt(`Enter your name to connect with ${provider}:`, 'Rohit Kumar');
-      if (enteredName) {
-        activatePlatformSession(enteredName.trim(), `Verified ${provider} Explorer`, 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80');
+      const enteredName = prompt(`Enter your name to sign in with ${provider}:`, 'Priya Sharma');
+      if (enteredName && enteredName.trim()) {
+        activatePlatformSession(enteredName.trim(), `Verified ${provider} Explorer`, 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80');
       }
     }
 
@@ -1413,9 +1457,10 @@
       localStorage.removeItem('yatrasanskriti_session');
       document.getElementById('main-platform-app').style.display = 'none';
       document.getElementById('login-gate-screen').style.display = 'flex';
-      document.getElementById('profileDropdownCard').classList.remove('active');
+      const drop = document.getElementById('profileDropdownCard');
+      if (drop) drop.classList.remove('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      showToast('You have signed out. Shubh Yatra!');
+      showToast('Signed out. Shubh Yatra!');
     }
 
     function toggleProfileDropdown() {
@@ -1430,7 +1475,6 @@
       }
     });
 
-    // Sub-tab switcher for Nearby
     function switchNearbySubTab(category) {
       document.querySelectorAll('.nst-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.nearby-results-pane').forEach(p => p.classList.remove('active'));
@@ -1749,17 +1793,17 @@
       }
     }
 
-    // Auto Session Restorer
+    // Auto Session Restorer for Mobile & Desktop
     window.addEventListener('DOMContentLoaded', () => {
-      const stored = localStorage.getItem('yatrasanskriti_session');
-      if (stored) {
-        try {
+      try {
+        const stored = localStorage.getItem('yatrasanskriti_session');
+        if (stored) {
           const user = JSON.parse(stored);
-          if (user.authenticated) {
+          if (user && user.authenticated) {
             activatePlatformSession(user.name, user.role, user.avatar);
           }
-        } catch (e) {}
-      }
+        }
+      } catch (e) {}
     });
   </script>
 
