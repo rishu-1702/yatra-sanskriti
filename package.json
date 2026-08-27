@@ -1,24 +1,13 @@
 {
   "name": "yatra-sanskriti",
-  "version": "2.0.0",
-  "description": "AI Smart Tourism & Living Heritage Platform with Real-Time Nearby Services and Excel Database Support",
+  "version": "3.0.0",
+  "description": "AI Smart Tourism & Living Heritage Platform with MongoDB Cloud Database",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js"
+    "start": "node server.js"
   },
-  "keywords": [
-    "smart-tourism",
-    "living-heritage",
-    "odisha",
-    "geospatial",
-    "artisan-guilds",
-    "audio-lore",
-    "excel-database"
-  ],
-  "author": "YATRAसंस्कृति Team",
-  "license": "MIT",
   "dependencies": {
+    "mongodb": "^6.3.0",
     "xlsx": "^0.18.5"
   }
 }
