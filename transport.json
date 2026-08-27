@@ -6,15 +6,17 @@
     "location": "Puri Railway Station & Sea Beach Road Hub",
     "lat": 19.8142,
     "lng": 85.8391,
-    "vehicleType": "Self-Drive Scooty (Honda Activa) / Cruiser Bikes",
+    "vehicleType": "Self-Drive Scooty (Honda Activa) / Cruiser Bikes (Royal Enfield)",
     "rateCard": {
       "hourly": "₹60 / hour (Min 3 hrs)",
-      "fullDay": "₹350 - ₹450 / day (Unlimited km within Odisha)"
+      "fullDay": "₹350 - ₹450 / day (Unlimited km within Odisha)",
+      "deposit": "₹500 refundable deposit with Indian Govt ID"
     },
     "rating": 4.88,
+    "reviewsCount": 890,
     "available": "24 Vehicles Ready",
     "contact": "+91 94373 55112",
-    "highlights": "Best way to explore the 35km scenic coastal highway."
+    "highlights": "Best way to explore the 35km scenic Puri-Konark Marine Drive coastal forest highway."
   },
   {
     "id": "transport-02",
@@ -25,29 +27,51 @@
     "lng": 85.8198,
     "vehicleType": "Green Battery-Operated E-Rickshaw / Toto",
     "rateCard": {
-      "perRide": "₹20 - ₹30 per seat",
-      "fullTourCharter": "₹250 for 3-Hour Village Artisan Studio Hop"
+      "perRide": "₹20 - ₹30 per seat from Highway stop",
+      "fullTourCharter": "₹250 for 3-Hour Village Artisan Studio Hop",
+      "fullDay": "₹600 full day"
     },
     "rating": 4.95,
+    "reviewsCount": 410,
     "available": "18 Totos Ready",
     "contact": "+91 98614 77209",
-    "highlights": "Zero-emission silent eco-rickshaws with trained local guides."
+    "highlights": "Zero-emission silent eco-rickshaws operated by local youths trained in oral folklore guidance."
   },
   {
     "id": "transport-03",
     "name": "Ekamra Mo Auto & Self-Drive Car Rentals",
     "district": "Khordha",
-    "location": "Biju Patnaik Airport & Master Canteen, Bhubaneswar",
+    "location": "Biju Patnaik International Airport & Master Canteen, Bhubaneswar",
     "lat": 20.2528,
     "lng": 85.8178,
     "vehicleType": "Metered CNG Auto-Rickshaws & Hatchback Cars",
     "rateCard": {
       "autoHourly": "₹120 / hr (Metered)",
-      "hatchbackSelfDrive": "₹1,100 / day"
+      "hatchbackSelfDrive": "₹1,100 / day",
+      "cabWithChauffeur": "₹1,800 / 8 hrs / 80 km package"
     },
     "rating": 4.79,
+    "reviewsCount": 1350,
     "available": "35 Vehicles Ready",
     "contact": "+91 674 291 4455",
-    "highlights": "Verified GPS-tracked cabs and autos with fixed government rates."
+    "highlights": "Verified GPS-tracked cabs and autos with fixed transparent government tourist rate cards."
+  },
+  {
+    "id": "transport-04",
+    "name": "Chilika Lake Heritage Boatmen Guild",
+    "district": "Puri",
+    "location": "Satapada Jetty (Chilika Lagoon), Puri",
+    "lat": 19.6745,
+    "lng": 85.4389,
+    "vehicleType": "OTDC Registered Motorized & Row Boats",
+    "rateCard": {
+      "irrawaddyDolphinTrip": "₹1,200 per boat (1-8 persons, 2 hrs)",
+      "rajhansIslandTrip": "₹2,100 per boat (3.5 hrs tour)"
+    },
+    "rating": 4.82,
+    "reviewsCount": 920,
+    "available": "40 Boats Ready",
+    "contact": "1800-208-1414",
+    "highlights": "Official government boatmen guild equipped with mandatory safety lifejackets."
   }
 ]
