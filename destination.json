@@ -11,7 +11,8 @@
     "crowdLevel": "low",
     "averageWaitMins": 0,
     "description": "India's first declared Heritage Crafts Village where every home is an active artisan studio. Preserves 5th-century Pattachitra cloth scroll painting and palm-leaf engraving.",
-    "ticketPrice": "Free Entry"
+    "ticketPrice": "Free Entry (Donations to Artisan Guild encouraged)",
+    "nearestTransit": "Chandanpur Bus Stop (1.8 km) / Puri Railway (12 km)"
   },
   {
     "id": "dest-konark",
@@ -24,8 +25,9 @@
     "footfallStatus": "High Peak Density (88% Capacity)",
     "crowdLevel": "high",
     "averageWaitMins": 75,
-    "description": "UNESCO World Heritage Site built in 1250 CE. Colossal 24-wheeled sun chariot calculating time to the exact minute.",
-    "ticketPrice": "₹40 (Indian Citizens) / ₹600 (Foreign Nationals)"
+    "description": "UNESCO World Heritage Site built in 1250 CE by King Narasimhadeva I. A colossal 24-wheeled chariot of Surya calculating solar time accurately.",
+    "ticketPrice": "₹40 (Indian Citizens) / ₹600 (Foreign Nationals)",
+    "nearestTransit": "Konark Bus Stand (0.5 km) / Puri (35 km)"
   },
   {
     "id": "dest-ratnagiri",
@@ -38,7 +40,23 @@
     "footfallStatus": "Serene & Quiet (12% Capacity)",
     "crowdLevel": "low",
     "averageWaitMins": 0,
-    "description": "Premier Buddhist academic monastic seat (5th-12th century CE) celebrated for its carved chlorite portal and Tantric Vajrayana stupas.",
-    "ticketPrice": "₹25 (ASI Protected)"
+    "description": "Premier Buddhist academic monastic seat (5th-12th century CE) celebrated for its green chlorite carved portal and Tantric Vajrayana stupas.",
+    "ticketPrice": "₹25 (ASI Protected)",
+    "nearestTransit": "Cuttack Railway (70 km) / Jajpur Keonjhar Road (45 km)"
+  },
+  {
+    "id": "dest-dhauli",
+    "name": "Dhauli Peace Pagoda & Ashokan Rock Edicts",
+    "district": "Khordha",
+    "lat": 20.1925,
+    "lng": 85.8394,
+    "category": "Known Landmark",
+    "isGem": false,
+    "footfallStatus": "Moderate (48% Capacity)",
+    "crowdLevel": "normal",
+    "averageWaitMins": 15,
+    "description": "Site of the Great Kalinga War (261 BCE) on the banks of River Daya, where Emperor Ashoka renounced violence and embraced Buddhism.",
+    "ticketPrice": "Free Entry",
+    "nearestTransit": "Bhubaneswar City (8 km)"
   }
 ]
