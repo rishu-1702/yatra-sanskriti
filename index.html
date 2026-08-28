@@ -40,7 +40,7 @@
   </div>
 
   <!-- =========================================================================
-       GATEWAY 1: UNIVERSAL AUTHENTICATION SCREEN (ANY USER CAN SIGN IN)
+       GATEWAY 1: UNIVERSAL AUTHENTICATION SCREEN
        ========================================================================= -->
   <main id="login-gate-screen" class="gate-screen-container">
     <div class="login-gate-card">
@@ -56,14 +56,14 @@
             <span class="brand-en">YATRA</span><span class="brand-hi">संस्कृति</span>
             <span class="ai-pill-tag">AI</span>
           </div>
-          <p class="gate-tagline">Living Heritage • AI Trip Planner • Rural Artisan Guilds</p>
+          <p class="gate-tagline">Living Heritage • AI Trip Planner • Google Maps Live GPS</p>
 
           <div class="gate-perks-box">
             <div class="perk-item"><i class="fa-solid fa-wand-magic-sparkles"></i> <span>Live AI Smart Trip & Itinerary Planner</span></div>
-            <div class="perk-item"><i class="fa-solid fa-location-crosshairs"></i> <span>Real-Time GPS Nearby Food, Stays & Rentals</span></div>
-            <div class="perk-item"><i class="fa-solid fa-route"></i> <span>AI Geospatial Route De-Congestion</span></div>
-            <div class="perk-item"><i class="fa-solid fa-certificate"></i> <span>GI Certified Direct Artisan Support</span></div>
-            <div class="perk-item"><i class="fa-solid fa-headphones-simple"></i> <span>Interactive Spatial Audio Lore Player</span></div>
+            <div class="perk-item"><i class="fa-solid fa-gem"></i> <span>Hidden Gems with Live Crowd Meters & Exact Maps Routes</span></div>
+            <div class="perk-item"><i class="fa-solid fa-map-location-dot"></i> <span>Live Google Maps Nearby Food & Stays</span></div>
+            <div class="perk-item"><i class="fa-solid fa-route"></i> <span>AI De-Congestion with Google Maps Navigation</span></div>
+            <div class="perk-item"><i class="fa-solid fa-earth-asia"></i> <span>Interactive Pan-India Network Explorer</span></div>
             <div class="perk-item"><i class="fa-solid fa-shield-halved"></i> <span>24x7 Tourist Police & Digital Safety</span></div>
           </div>
 
@@ -77,7 +77,7 @@
       <div class="gate-form-col">
         <div class="gate-form-header">
           <h2>Namaste & Welcome</h2>
-          <p>Sign in to access AI trip planning, live location services, budget stays & audio lore.</p>
+          <p>Sign in to access AI trip planning, hidden gems, live Google Maps services & audio lore.</p>
         </div>
 
         <!-- Role Selector Tabs -->
@@ -235,11 +235,11 @@
        ========================================================================= -->
   <div id="main-platform-app" class="main-app-container" style="display: none;">
     
-    <!-- Top 24x7 Safety & Live Network Ribbon -->
+    <!-- Top 24x7 Safety Ribbon -->
     <div class="top-sos-ribbon">
       <div class="container sos-ribbon-content">
         <div class="sos-left-group">
-          <span class="beacon-pill"><i class="fa-solid fa-satellite-dish"></i> MongoDB Atlas & AI Engine Live</span>
+          <span class="beacon-pill"><i class="fa-solid fa-satellite-dish"></i> MongoDB Atlas & Google Maps Live</span>
           <span class="sos-helpline-text">
             <i class="fa-solid fa-shield-halved"></i> 24x7 National Helpline: <strong>112</strong> | Odisha Tourist Police: <strong>1800-208-1414</strong>
           </span>
@@ -265,7 +265,7 @@
               <span class="brand-en">YATRA</span><span class="brand-hi">संस्कृति</span>
               <span class="ai-pill-tag">AI</span>
             </div>
-            <span class="brand-subtext">AI Trip Planner • Living Heritage • Rural Artisan Guilds</span>
+            <span class="brand-subtext">AI Trip Planner • Google Maps Live • Rural Artisan Guilds</span>
           </div>
         </a>
 
@@ -297,8 +297,9 @@
               </div>
               <ul class="dropdown-links">
                 <li><a href="#" onclick="switchMenuTab('planner')"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Smart Trip Planner</a></li>
-                <li><a href="#" onclick="switchMenuTab('nearby')"><i class="fa-solid fa-utensils"></i> Nearby Food & Stays</a></li>
-                <li><a href="#" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-bookmark"></i> Saved Offbeat Trails</a></li>
+                <li><a href="#" onclick="switchMenuTab('nearby')"><i class="fa-solid fa-map-location-dot"></i> Google Maps Nearby Services</a></li>
+                <li><a href="#" onclick="switchMenuTab('destinations')"><i class="fa-solid fa-gem"></i> Hidden Gems & Live Crowd</a></li>
+                <li><a href="#" onclick="switchMenuTab('reroute')"><i class="fa-solid fa-route"></i> AI De-Congestion Routes</a></li>
                 <li><a href="#" onclick="switchMenuTab('audio')"><i class="fa-solid fa-headphones"></i> Audio Lore Player</a></li>
                 <li><a href="#" onclick="switchMenuTab('artisans')"><i class="fa-solid fa-receipt"></i> Artisan Micro-Tip Receipts</a></li>
                 <li class="divider-item"></li>
@@ -330,7 +331,7 @@
             <i class="fa-solid fa-house"></i> 1. Portal & Search
           </button>
           <button class="menu-pill-btn menu-pill-nearby" data-tab="nearby" onclick="switchMenuTab('nearby')">
-            <i class="fa-solid fa-location-crosshairs"></i> 2. Nearby Services (Live GPS)
+            <i class="fa-solid fa-location-crosshairs"></i> 2. Nearby Services (Google Maps)
           </button>
           <button class="menu-pill-btn" data-tab="hierarchy" onclick="switchMenuTab('hierarchy')">
             <i class="fa-solid fa-sitemap"></i> 3. State & Districts
@@ -339,7 +340,7 @@
             <i class="fa-solid fa-route"></i> 4. AI De-Congestion
           </button>
           <button class="menu-pill-btn" data-tab="destinations" onclick="switchMenuTab('destinations')">
-            <i class="fa-solid fa-gopuram"></i> 5. Living Monuments
+            <i class="fa-solid fa-gem"></i> 5. Hidden Gems
           </button>
           <button class="menu-pill-btn" data-tab="artisans" onclick="switchMenuTab('artisans')">
             <i class="fa-solid fa-hands-holding-circle"></i> 6. Artisan Guilds
@@ -348,7 +349,7 @@
             <i class="fa-solid fa-headphones"></i> 7. Audio Lore Player
           </button>
           <button class="menu-pill-btn" data-tab="india" onclick="switchMenuTab('india')">
-            <i class="fa-solid fa-map-location-dot"></i> 8. Pan-India Network
+            <i class="fa-solid fa-earth-asia"></i> 8. Pan-India Network
           </button>
           <button class="menu-pill-btn" data-tab="emergency" onclick="switchMenuTab('emergency')">
             <i class="fa-solid fa-shield-heart"></i> 9. 24x7 Safety & SOS
@@ -522,16 +523,16 @@
               <div><strong>AI Trip Planner</strong><span>Personalized Itineraries</span></div>
             </div>
             <div class="q-card" onclick="switchMenuTab('nearby')">
-              <i class="fa-solid fa-utensils"></i>
-              <div><strong>Nearby Services</strong><span>Cheap Food, Stays & Scooty</span></div>
+              <i class="fa-solid fa-map-location-dot"></i>
+              <div><strong>Google Maps Radar</strong><span>Live GPS Food & Stays</span></div>
             </div>
             <div class="q-card" onclick="switchMenuTab('destinations')">
-              <i class="fa-solid fa-gopuram"></i>
-              <div><strong>Living Monuments</strong><span>Hidden Gems & UNESCO Sites</span></div>
+              <i class="fa-solid fa-gem"></i>
+              <div><strong>Hidden Gems</strong><span>Live Crowd & Exact Routes</span></div>
             </div>
-            <div class="q-card" onclick="switchMenuTab('audio')">
-              <i class="fa-solid fa-headphones"></i>
-              <div><strong>Spatial Audio Lore</strong><span>AI Voice Folklore Stories</span></div>
+            <div class="q-card" onclick="switchMenuTab('india')">
+              <i class="fa-solid fa-earth-asia"></i>
+              <div><strong>Pan-India Network</strong><span>Explore All States</span></div>
             </div>
           </div>
         </div>
@@ -540,7 +541,7 @@
         <div class="hero-metrics-strip">
           <div class="metric-item">
             <strong class="metric-value">30+</strong>
-            <span class="metric-title"><i class="fa-solid fa-gopuram"></i> Documented Heritage Sites</span>
+            <span class="metric-title"><i class="fa-solid fa-gem"></i> Documented Hidden Gems</span>
           </div>
           <div class="metric-divider"></div>
           <div class="metric-item">
@@ -563,7 +564,7 @@
     </section>
 
     <!-- =========================================================================
-         TAB 2: REAL-TIME NEARBY SERVICES (LIVE GPS & API)
+         TAB 2: REAL-TIME NEARBY SERVICES (GOOGLE MAPS LIVE GPS)
          ========================================================================= -->
     <section id="menu-view-nearby" class="menu-tab-view">
       <div class="container">
@@ -571,9 +572,9 @@
         <div class="nearby-control-box">
           <div class="nearby-header-row">
             <div>
-              <span class="section-mini-tag"><i class="fa-solid fa-satellite-dish"></i> Menu Item 02 • Geospatial Backend Live Feed</span>
+              <span class="section-mini-tag"><i class="fa-solid fa-satellite-dish"></i> Menu Item 02 • Google Maps Live GPS Radar</span>
               <h2 class="section-main-heading">Real-Time Nearby Services Explorer</h2>
-              <p class="section-sub-heading">Find authentic & cheap local food, budget homestays, and vehicle rentals dynamically calculated from your live GPS coordinates.</p>
+              <p class="section-sub-heading">Find authentic & cheap local food, budget homestays, and vehicle rentals with live interactive Google Maps directions.</p>
             </div>
             
             <!-- Live GPS Trigger Button -->
@@ -587,7 +588,7 @@
             </div>
           </div>
 
-          <!-- Quick Location Switcher & Radius Filter Bar -->
+          <!-- Location Selector & Radius Filter -->
           <div class="location-filter-bar">
             <div class="filter-group">
               <label><i class="fa-solid fa-map-pin"></i> Select Heritage Center:</label>
@@ -611,8 +612,23 @@
             </div>
 
             <div class="filter-group">
-              <label><i class="fa-solid fa-network-wired"></i> Backend API:</label>
+              <label><i class="fa-solid fa-network-wired"></i> Google Maps & DB:</label>
               <span class="backend-status-pill" id="backendApiStatus"><i class="fa-solid fa-check"></i> Live Connected</span>
+            </div>
+          </div>
+
+          <!-- GOOGLE MAPS EMBED RADAR -->
+          <div class="google-map-container-box">
+            <div class="map-header-bar">
+              <div class="map-live-tag">
+                <i class="fa-solid fa-map-location-dot"></i> <span>Live Google Maps Proximity Radar: <strong id="mapLocationLabel">Puri Coast, Odisha</strong></span>
+              </div>
+              <a id="btnOpenFullGmaps" href="https://maps.google.com/?q=19.8135,85.8312" target="_blank" class="btn-gmaps-external">
+                <i class="fa-brands fa-google"></i> Open in Google Maps App <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+            <div class="gmaps-iframe-wrapper">
+              <iframe id="gmaps-live-frame" src="https://maps.google.com/maps?q=19.8135,85.8312&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
           </div>
 
@@ -668,25 +684,25 @@
               <span>30 Sites • 14 Craft Guilds</span>
             </div>
           </button>
-          <button class="state-tab-card">
+          <button class="state-tab-card" onclick="switchMenuTab('india'); openStateDossier('rajasthan');">
             <span class="state-emoji">🏰</span>
             <div class="state-tab-text">
               <strong>Rajasthan</strong>
-              <span class="state-badge-status">Prototype Ready</span>
+              <span class="state-badge-status">Explore in Network</span>
             </div>
           </button>
-          <button class="state-tab-card">
+          <button class="state-tab-card" onclick="switchMenuTab('india'); openStateDossier('kerala');">
             <span class="state-emoji">🌴</span>
             <div class="state-tab-text">
               <strong>Kerala</strong>
-              <span class="state-badge-status">Network Mapped</span>
+              <span class="state-badge-status">Explore in Network</span>
             </div>
           </button>
-          <button class="state-tab-card">
+          <button class="state-tab-card" onclick="switchMenuTab('india'); openStateDossier('tamilnadu');">
             <span class="state-emoji">🛕</span>
             <div class="state-tab-text">
               <strong>Tamil Nadu</strong>
-              <span class="state-badge-status">Network Mapped</span>
+              <span class="state-badge-status">Explore in Network</span>
             </div>
           </button>
         </div>
@@ -764,15 +780,15 @@
     </section>
 
     <!-- =========================================================================
-         TAB 4: AI ROUTE DE-CONGESTION
+         TAB 4: AI ROUTE DE-CONGESTION (WITH GOOGLE MAPS NAVIGATION)
          ========================================================================= -->
     <section id="menu-view-reroute" class="menu-tab-view">
       <div class="container">
         
         <div class="section-header-box">
-          <span class="section-mini-tag"><i class="fa-solid fa-route"></i> Menu Item 04</span>
+          <span class="section-mini-tag"><i class="fa-solid fa-route"></i> Menu Item 04 • Google Maps Rerouting</span>
           <h2 class="section-main-heading">Geospatial AI Footfall De-Congestion</h2>
-          <p class="section-sub-heading">Real-time crowd monitoring and intelligent offbeat diversion routes to preserve ancient heritage and save traveler time.</p>
+          <p class="section-sub-heading">Real-time crowd monitoring and intelligent offbeat diversion routes with live Google Maps navigation directions.</p>
         </div>
 
         <div class="ai-rerouting-card">
@@ -789,8 +805,24 @@
               <div class="r-stat-box"><i class="fa-solid fa-hand-holding-dollar"></i> Direct Local Artisan Impact: <strong>100%</strong></div>
             </div>
           </div>
+          
           <div class="rerouting-cta-col">
-            <button class="btn-accept-trail" onclick="handleLocationPresetChange('19.8732,85.8241,Raghurajpur Heritage Craft Village'); switchMenuTab('nearby'); showToast('Offbeat Trail Activated! Directing to Raghurajpur.')"><i class="fa-solid fa-route"></i> Follow Recommended Offbeat Trail</button>
+            <a href="https://www.google.com/maps/dir/Konark+Sun+Temple,+Odisha/Raghurajpur+Heritage+Village,+Odisha" target="_blank" class="btn-accept-trail">
+              <i class="fa-brands fa-google"></i> Open Detour in Google Maps <i class="fa-solid fa-location-arrow"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- LIVE GOOGLE MAPS DETOUR ROUTE EMBED -->
+        <div class="reroute-map-wrapper">
+          <div class="reroute-map-header">
+            <span><i class="fa-solid fa-traffic-light"></i> Live Traffic De-Congestion Route: Konark Plaza ➔ Raghurajpur Heritage Hamlet</span>
+            <a href="https://www.google.com/maps/dir/Konark+Sun+Temple,+Odisha/Raghurajpur+Heritage+Village,+Odisha" target="_blank" class="btn-gmaps-reroute">
+              <i class="fa-solid fa-diamond-turn-right"></i> Start Navigation
+            </a>
+          </div>
+          <div class="gmaps-iframe-wrapper">
+            <iframe id="gmaps-reroute-frame" src="https://maps.google.com/maps?saddr=Konark+Sun+Temple&daddr=Raghurajpur+Odisha&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
           </div>
         </div>
 
@@ -798,25 +830,25 @@
     </section>
 
     <!-- =========================================================================
-         TAB 5: LIVING MONUMENTS DIRECTORY
+         TAB 5: ⭐ HIDDEN GEMS (WITH EXACT GOOGLE MAPS ROUTES & LIVE CROWD)
          ========================================================================= -->
     <section id="menu-view-destinations" class="menu-tab-view">
       <div class="container">
         
         <div class="section-header-box">
-          <span class="section-mini-tag"><i class="fa-solid fa-compass"></i> Menu Item 05</span>
-          <h2 class="section-main-heading">Odisha Living Heritage Directory</h2>
-          <p class="section-sub-heading">Discover celebrated architectural marvels alongside secret artisan hamlets, with detailed historical dossiers and location-triggered audio stories.</p>
+          <span class="section-mini-tag"><i class="fa-solid fa-gem"></i> Menu Item 05 • Living Heritage & Secret Trails</span>
+          <h2 class="section-main-heading">Odisha Hidden Gems Directory</h2>
+          <p class="section-sub-heading">Explore offbeat artisan villages, quiet ancient stone sanctuaries, and UNESCO monuments with real-time crowd meters and exact Google Maps turn-by-turn routes.</p>
         </div>
 
         <div class="destination-cards-grid">
 
-          <!-- CARD 1 -->
+          <!-- GEM CARD 1: Raghurajpur -->
           <div class="dest-item-card gem-card">
             <div class="dest-media-container">
               <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=700&q=80" alt="Raghurajpur Village" class="dest-cover-img">
               <span class="dest-badge-type gem"><i class="fa-solid fa-gem"></i> Hidden Gem • Artisan Village</span>
-              <span class="dest-footfall-status low"><i class="fa-solid fa-circle-check"></i> Low Footfall (14% Density)</span>
+              <span class="dest-footfall-status low"><i class="fa-solid fa-circle-check"></i> 14% Footfall (Very Low)</span>
               <button class="btn-dest-audio" onclick="selectLoreTrack('raghurajpur'); switchMenuTab('audio');"><i class="fa-solid fa-headphones"></i> Audio Lore</button>
             </div>
 
@@ -828,10 +860,21 @@
 
               <h3 class="dest-place-name">Raghurajpur Pattachitra Heritage Village</h3>
               
+              <!-- Live Crowd Density Meter -->
+              <div class="crowd-density-bar-container">
+                <div class="crowd-bar-head">
+                  <span><i class="fa-solid fa-users"></i> Live Crowd Density:</span>
+                  <strong class="crowd-text-low">14% Low Rush (Peaceful & Serene)</strong>
+                </div>
+                <div class="crowd-meter-track">
+                  <div class="crowd-meter-fill low" style="width: 14%;"></div>
+                </div>
+              </div>
+
               <div class="dest-history-accordion">
                 <strong><i class="fa-solid fa-scroll"></i> Living Culture & History:</strong>
                 <p>
-                  India's first declared Heritage Crafts Village where every home is an active studio. Preserves <strong>Pattachitra</strong> cloth-scroll painting and palm-leaf engraving.
+                  India's first declared Heritage Crafts Village where all 140 households are active living art studios preserving Tala Pattachitra (palm-leaf engraving) and mineral colors.
                 </p>
               </div>
 
@@ -843,50 +886,22 @@
                 </div>
                 <button class="btn-artisan-connect" onclick="quickBookArtisan('Guru Rabindra Maharana', 500)"><i class="fa-solid fa-hands-holding-circle"></i> Connect</button>
               </div>
-            </div>
-          </div>
 
-          <!-- CARD 2 -->
-          <div class="dest-item-card known-card">
-            <div class="dest-media-container">
-              <img src="https://images.unsplash.com/photo-1600100397608-f010f443905e?auto=format&fit=crop&w=700&q=80" alt="Konark Sun Temple" class="dest-cover-img">
-              <span class="dest-badge-type known"><i class="fa-solid fa-landmark-dome"></i> Major Landmark • UNESCO Site</span>
-              <span class="dest-footfall-status high"><i class="fa-solid fa-triangle-exclamation"></i> High Footfall (88% Peak)</span>
-              <button class="btn-dest-audio" onclick="selectLoreTrack('dharmapada'); switchMenuTab('audio');"><i class="fa-solid fa-headphones"></i> Audio Lore</button>
-            </div>
-
-            <div class="dest-info-body">
-              <div class="dest-header-flex">
-                <span class="dest-geo-info"><i class="fa-solid fa-location-dot"></i> Puri District • Marine Drive</span>
-                <div class="dest-stars"><i class="fa-solid fa-star"></i> 4.88 <span>(12,450 reviews)</span></div>
-              </div>
-
-              <h3 class="dest-place-name">Konark Sun Temple (The Black Pagoda)</h3>
-              
-              <div class="dest-history-accordion">
-                <strong><i class="fa-solid fa-scroll"></i> History & Architectural Marvel:</strong>
-                <p>
-                  Built in 1250 CE by King Narasimhadeva I of the Eastern Ganga Dynasty. Designed as a colossal 24-wheeled chariot of Surya functioning as accurate sundials.
-                </p>
-              </div>
-
-              <div class="connected-artisan-strip">
-                <div class="artisan-badge-icon"><i class="fa-solid fa-hammer"></i></div>
-                <div class="artisan-badge-text">
-                  <strong>Connected Craft Guild:</strong>
-                  <span>Konark Stone Carvers Guild (Descendants of 1200 Temple Sculptors)</span>
-                </div>
-                <button class="btn-artisan-connect" onclick="quickBookArtisan('Konark Stone Carvers', 600)"><i class="fa-solid fa-hands-holding-circle"></i> Connect</button>
+              <!-- Exact Google Maps Route Action -->
+              <div class="dest-route-footer">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=19.8732,85.8241" target="_blank" class="btn-gmaps-dest-route">
+                  <i class="fa-brands fa-google"></i> Exact Route in Google Maps <i class="fa-solid fa-diamond-turn-right"></i>
+                </a>
               </div>
             </div>
           </div>
 
-          <!-- CARD 3 -->
+          <!-- GEM CARD 2: Ratnagiri Buddhist Monasteries -->
           <div class="dest-item-card gem-card">
             <div class="dest-media-container">
               <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=700&q=80" alt="Ratnagiri Monastery" class="dest-cover-img">
               <span class="dest-badge-type gem"><i class="fa-solid fa-gem"></i> Hidden Gem • Diamond Triangle</span>
-              <span class="dest-footfall-status low"><i class="fa-solid fa-circle-check"></i> Quiet & Serene (12% Density)</span>
+              <span class="dest-footfall-status low"><i class="fa-solid fa-circle-check"></i> 12% Footfall (Quiet)</span>
               <button class="btn-dest-audio" onclick="selectLoreTrack('dhauli'); switchMenuTab('audio');"><i class="fa-solid fa-headphones"></i> Audio Lore</button>
             </div>
 
@@ -898,10 +913,21 @@
 
               <h3 class="dest-place-name">Ratnagiri & Lalitgiri Buddhist Viharas</h3>
               
+              <!-- Live Crowd Density Meter -->
+              <div class="crowd-density-bar-container">
+                <div class="crowd-bar-head">
+                  <span><i class="fa-solid fa-users"></i> Live Crowd Density:</span>
+                  <strong class="crowd-text-low">12% Minimal Footfall (Super Quiet)</strong>
+                </div>
+                <div class="crowd-meter-track">
+                  <div class="crowd-meter-fill low" style="width: 12%;"></div>
+                </div>
+              </div>
+
               <div class="dest-history-accordion">
                 <strong><i class="fa-solid fa-scroll"></i> Living Culture & History:</strong>
                 <p>
-                  A premier Buddhist academic seat between the 5th and 12th centuries CE rivaling Nalanda. Celebrated for its carved green chlorite stone portal and Buddhist stupas.
+                  A premier Mahayana & Tantric Buddhist university between 5th and 12th century CE. Famous for its carved chlorite stone portals, monumental Buddha stupas, and monastery cells.
                 </p>
               </div>
 
@@ -912,6 +938,119 @@
                   <span>Jajpur Traditional Terracotta & Stone Inscription Guild</span>
                 </div>
                 <button class="btn-artisan-connect" onclick="quickBookArtisan('Jajpur Terracotta Guild', 450)"><i class="fa-solid fa-hands-holding-circle"></i> Connect</button>
+              </div>
+
+              <!-- Exact Google Maps Route Action -->
+              <div class="dest-route-footer">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=20.6415,86.3362" target="_blank" class="btn-gmaps-dest-route">
+                  <i class="fa-brands fa-google"></i> Exact Route in Google Maps <i class="fa-solid fa-diamond-turn-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- GEM CARD 3: Konark Sun Temple -->
+          <div class="dest-item-card known-card">
+            <div class="dest-media-container">
+              <img src="https://images.unsplash.com/photo-1600100397608-f010f443905e?auto=format&fit=crop&w=700&q=80" alt="Konark Sun Temple" class="dest-cover-img">
+              <span class="dest-badge-type known"><i class="fa-solid fa-landmark-dome"></i> UNESCO World Heritage Site</span>
+              <span class="dest-footfall-status high"><i class="fa-solid fa-triangle-exclamation"></i> 88% Footfall (Heavy Rush)</span>
+              <button class="btn-dest-audio" onclick="selectLoreTrack('dharmapada'); switchMenuTab('audio');"><i class="fa-solid fa-headphones"></i> Audio Lore</button>
+            </div>
+
+            <div class="dest-info-body">
+              <div class="dest-header-flex">
+                <span class="dest-geo-info"><i class="fa-solid fa-location-dot"></i> Puri District • Marine Drive</span>
+                <div class="dest-stars"><i class="fa-solid fa-star"></i> 4.88 <span>(12,450 reviews)</span></div>
+              </div>
+
+              <h3 class="dest-place-name">Konark Sun Temple (Black Pagoda)</h3>
+              
+              <!-- Live Crowd Density Meter -->
+              <div class="crowd-density-bar-container">
+                <div class="crowd-bar-head">
+                  <span><i class="fa-solid fa-users"></i> Live Crowd Density:</span>
+                  <strong class="crowd-text-high">88% Peak Crowd (Expect 1.5 hr Queue)</strong>
+                </div>
+                <div class="crowd-meter-track">
+                  <div class="crowd-meter-fill high" style="width: 88%;"></div>
+                </div>
+              </div>
+
+              <div class="dest-history-accordion">
+                <strong><i class="fa-solid fa-scroll"></i> History & Architectural Marvel:</strong>
+                <p>
+                  Built in 1250 CE by King Narasimhadeva I of the Eastern Ganga Dynasty. Designed as a colossal 24-wheeled chariot of Surya functioning as accurate solar sundials.
+                </p>
+              </div>
+
+              <div class="connected-artisan-strip">
+                <div class="artisan-badge-icon"><i class="fa-solid fa-hammer"></i></div>
+                <div class="artisan-badge-text">
+                  <strong>Connected Craft Guild:</strong>
+                  <span>Konark Stone Carvers Guild (Descendants of 1200 Temple Sculptors)</span>
+                </div>
+                <button class="btn-artisan-connect" onclick="quickBookArtisan('Konark Stone Carvers', 600)"><i class="fa-solid fa-hands-holding-circle"></i> Connect</button>
+              </div>
+
+              <!-- Exact Google Maps Route Action -->
+              <div class="dest-route-footer">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=19.8876,86.0945" target="_blank" class="btn-gmaps-dest-route">
+                  <i class="fa-brands fa-google"></i> Exact Route in Google Maps <i class="fa-solid fa-diamond-turn-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- GEM CARD 4: Chausath Yogini Temple, Hirapur -->
+          <div class="dest-item-card gem-card">
+            <div class="dest-media-container">
+              <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=700&q=80" alt="Chausath Yogini Temple" class="dest-cover-img">
+              <span class="dest-badge-type gem"><i class="fa-solid fa-gem"></i> Hidden Gem • 9th Century Tantric Shrine</span>
+              <span class="dest-footfall-status low"><i class="fa-solid fa-circle-check"></i> 18% Footfall (Serene)</span>
+              <button class="btn-dest-audio" onclick="selectLoreTrack('dhauli'); switchMenuTab('audio');"><i class="fa-solid fa-headphones"></i> Audio Lore</button>
+            </div>
+
+            <div class="dest-info-body">
+              <div class="dest-header-flex">
+                <span class="dest-geo-info"><i class="fa-solid fa-location-dot"></i> Khordha District • 15 km from Bhubaneswar</span>
+                <div class="dest-stars"><i class="fa-solid fa-star"></i> 4.95 <span>(310 reviews)</span></div>
+              </div>
+
+              <h3 class="dest-place-name">Chausath Yogini Circular Temple (Hirapur)</h3>
+              
+              <!-- Live Crowd Density Meter -->
+              <div class="crowd-density-bar-container">
+                <div class="crowd-bar-head">
+                  <span><i class="fa-solid fa-users"></i> Live Crowd Density:</span>
+                  <strong class="crowd-text-low">18% Low Crowd (Serene & Meditative)</strong>
+                </div>
+                <div class="crowd-meter-track">
+                  <div class="crowd-meter-fill low" style="width: 18%;"></div>
+                </div>
+              </div>
+
+              <div class="dest-history-accordion">
+                <strong><i class="fa-solid fa-scroll"></i> Living Culture & History:</strong>
+                <p>
+                  One of only four hypaethral (roofless) circular Yogini temples in India. Houses 64 exquisitely carved black chlorite statues of Yoginis standing on animal vehicles.
+                </p>
+              </div>
+
+              <div class="connected-artisan-strip">
+                <div class="artisan-badge-icon"><i class="fa-solid fa-gem"></i></div>
+                <div class="artisan-badge-text">
+                  <strong>Connected Craft Guild:</strong>
+                  <span>Hirapur Terracotta & Bell Metal Sculptors</span>
+                </div>
+                <button class="btn-artisan-connect" onclick="quickBookArtisan('Hirapur Sculptors', 400)"><i class="fa-solid fa-hands-holding-circle"></i> Connect</button>
+              </div>
+
+              <!-- Exact Google Maps Route Action -->
+              <div class="dest-route-footer">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=20.2198,85.8672" target="_blank" class="btn-gmaps-dest-route">
+                  <i class="fa-brands fa-google"></i> Exact Route in Google Maps <i class="fa-solid fa-diamond-turn-right"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -1172,65 +1311,119 @@
     </section>
 
     <!-- =========================================================================
-         TAB 8: PAN-INDIA DIRECTORY
+         TAB 8: ⭐ PAN-INDIA NETWORK (IN-PLACE EXPLORER - NO REDIRECT)
          ========================================================================= -->
     <section id="menu-view-india" class="menu-tab-view">
       <div class="container">
         
         <div class="section-header-box">
-          <span class="section-mini-tag"><i class="fa-solid fa-map-location-dot"></i> Menu Item 08</span>
+          <span class="section-mini-tag"><i class="fa-solid fa-earth-asia"></i> Menu Item 08 • Pan-India Living Network</span>
           <h2 class="section-main-heading">Pan-India Scalable Heritage Network</h2>
-          <p class="section-sub-heading">Scalable architecture mapped across India's states. Explore active hubs and upcoming living heritage clusters.</p>
+          <p class="section-sub-heading">Click on any state below to view its documented living craft clusters, hidden ruins, and direct Google Maps routes right here on this page without redirecting.</p>
         </div>
 
         <div class="india-grid-container">
-          <div class="india-state-box active-prototype">
+          
+          <!-- STATE 1: Odisha -->
+          <div class="india-state-box active-prototype" id="state-card-odisha" onclick="openStateDossier('odisha')">
             <div class="state-cover-box">
               <img src="https://images.unsplash.com/photo-1600100397608-f010f443905e?auto=format&fit=crop&w=500&q=80" alt="Odisha">
-              <span class="state-status-pill active"><i class="fa-solid fa-check-circle"></i> Active Prototype</span>
+              <span class="state-status-pill active"><i class="fa-solid fa-circle-check"></i> Active Prototype</span>
             </div>
             <div class="state-card-content">
               <h4>Odisha (Utkala)</h4>
-              <p class="state-craft-list">Pattachitra • Konark Sun Temple • Sambalpuri Ikat • Tarakasi Filigree</p>
+              <p class="state-craft-list">Pattachitra Scrolls • Sambalpuri Ikat • Tarakasi Silver Filigree • Dokra Casting</p>
               <div class="state-stats-row">
-                <span><strong>30</strong> Sites</span>
+                <span><strong>30</strong> Hidden Sites</span>
                 <span><strong>14</strong> Guilds</span>
                 <span><strong>1,850+</strong> Artisans</span>
               </div>
-              <button class="btn-state-action active" onclick="switchMenuTab('destinations')">Explore Odisha Trails <i class="fa-solid fa-arrow-right"></i></button>
+              <button class="btn-state-action active" onclick="openStateDossier('odisha'); event.stopPropagation();">
+                <i class="fa-solid fa-eye"></i> View State Dossier
+              </button>
             </div>
           </div>
 
-          <div class="india-state-box">
+          <!-- STATE 2: Rajasthan -->
+          <div class="india-state-box" id="state-card-rajasthan" onclick="openStateDossier('rajasthan')">
             <div class="state-cover-box">
               <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=500&q=80" alt="Rajasthan">
-              <span class="state-status-pill upcoming"><i class="fa-solid fa-clock"></i> Expanding Next</span>
+              <span class="state-status-pill preview"><i class="fa-solid fa-sparkles"></i> Prototype Mapped</span>
             </div>
             <div class="state-card-content">
-              <h4>Rajasthan</h4>
-              <p class="state-craft-list">Shekhawati Frescoes • Bagru Block Print • Blue Pottery • Camel Herders Lore</p>
+              <h4>Rajasthan (Marwar & Shekhawati)</h4>
+              <p class="state-craft-list">Shekhawati Open Havelis • Bagru Natural Dyes • Blue Pottery • Camel Herders Lore</p>
               <div class="state-stats-row">
                 <span><strong>45</strong> Sites</span>
                 <span><strong>22</strong> Guilds</span>
+                <span><strong>2,400+</strong> Artisans</span>
               </div>
-              <button class="btn-state-action" disabled>Preview Network <i class="fa-solid fa-lock"></i></button>
+              <button class="btn-state-action" onclick="openStateDossier('rajasthan'); event.stopPropagation();">
+                <i class="fa-solid fa-eye"></i> View State Dossier
+              </button>
             </div>
           </div>
 
-          <div class="india-state-box">
+          <!-- STATE 3: Kerala -->
+          <div class="india-state-box" id="state-card-kerala" onclick="openStateDossier('kerala')">
             <div class="state-cover-box">
               <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=500&q=80" alt="Kerala">
-              <span class="state-status-pill upcoming"><i class="fa-solid fa-clock"></i> Expanding Next</span>
+              <span class="state-status-pill preview"><i class="fa-solid fa-sparkles"></i> Prototype Mapped</span>
             </div>
             <div class="state-card-content">
-              <h4>Kerala</h4>
-              <p class="state-craft-list">Aranmula Metal Mirror • Theyyam Ritual Lore • Kalaripayattu Guilds</p>
+              <h4>Kerala (Malabar & Travancore)</h4>
+              <p class="state-craft-list">Aranmula Metal Mirror • Theyyam Ritual Lore • Kalaripayattu Guilds • Coir Villages</p>
               <div class="state-stats-row">
                 <span><strong>38</strong> Sites</span>
                 <span><strong>18</strong> Guilds</span>
+                <span><strong>1,600+</strong> Artisans</span>
               </div>
-              <button class="btn-state-action" disabled>Preview Network <i class="fa-solid fa-lock"></i></button>
+              <button class="btn-state-action" onclick="openStateDossier('kerala'); event.stopPropagation();">
+                <i class="fa-solid fa-eye"></i> View State Dossier
+              </button>
             </div>
+          </div>
+
+          <!-- STATE 4: Tamil Nadu -->
+          <div class="india-state-box" id="state-card-tamilnadu" onclick="openStateDossier('tamilnadu')">
+            <div class="state-cover-box">
+              <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=500&q=80" alt="Tamil Nadu">
+              <span class="state-status-pill preview"><i class="fa-solid fa-sparkles"></i> Prototype Mapped</span>
+            </div>
+            <div class="state-card-content">
+              <h4>Tamil Nadu (Chola Belt & Chettinad)</h4>
+              <p class="state-craft-list">Thanjavur Art Plates • Swamimalai Bronze Casting • Chettinad Mansions • Kanchipuram Weaving</p>
+              <div class="state-stats-row">
+                <span><strong>52</strong> Sites</span>
+                <span><strong>26</strong> Guilds</span>
+                <span><strong>3,100+</strong> Artisans</span>
+              </div>
+              <button class="btn-state-action" onclick="openStateDossier('tamilnadu'); event.stopPropagation();">
+                <i class="fa-solid fa-eye"></i> View State Dossier
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- =================================================================
+             IN-PLACE INTERACTIVE STATE DOSSIER PANEL (NO REDIRECT!)
+             ================================================================= -->
+        <div id="stateDossierPanel" class="state-dossier-panel">
+          <div class="dossier-header-bar">
+            <div>
+              <span class="dossier-tag"><i class="fa-solid fa-landmark"></i> Interactive State Living Heritage File</span>
+              <h3 id="dossierStateTitle">Odisha Living Heritage & Crafts Network</h3>
+            </div>
+            <button class="btn-close-dossier" onclick="closeStateDossier()"><i class="fa-solid fa-xmark"></i> Close Dossier</button>
+          </div>
+
+          <p id="dossierStateDesc" class="dossier-desc-text">
+            Odisha preserves unbroken 2,000-year traditions of Pattachitra cloth scrolls, maritime Bali Jatra folklore, and the Konark stone carver guilds.
+          </p>
+
+          <div class="dossier-highlights-grid" id="dossierHighlightsContainer">
+            <!-- Dynamic State Highlights Injected Here -->
           </div>
         </div>
 
@@ -1330,10 +1523,10 @@
           <h4>Platform Navigation</h4>
           <ul>
             <li><a href="#" onclick="switchMenuTab('planner')">⭐ AI Smart Trip Planner</a></li>
-            <li><a href="#" onclick="switchMenuTab('nearby')">Real-Time Nearby Services</a></li>
-            <li><a href="#" onclick="switchMenuTab('destinations')">Living Monuments Directory</a></li>
-            <li><a href="#" onclick="switchMenuTab('artisans')">Rural Master Artisans</a></li>
-            <li><a href="#" onclick="switchMenuTab('audio')">Spatial Audio Lore Player</a></li>
+            <li><a href="#" onclick="switchMenuTab('nearby')">Google Maps Nearby Radar</a></li>
+            <li><a href="#" onclick="switchMenuTab('destinations')">Hidden Gems & Live Crowd</a></li>
+            <li><a href="#" onclick="switchMenuTab('reroute')">AI De-Congestion Navigation</a></li>
+            <li><a href="#" onclick="switchMenuTab('india')">Pan-India Living Network</a></li>
           </ul>
         </div>
 
@@ -1350,7 +1543,7 @@
   </div>
 
   <!-- =========================================================================
-       JAVASCRIPT: AI TRIP PLANNER, REAL-TIME API & DYNAMIC LOGIN CONTROLLER
+       JAVASCRIPT: PAN-INDIA IN-PLACE DOSSIER, GOOGLE MAPS & AI PLANNER
        ========================================================================= -->
   <script>
     const API_BASE_URL = window.location.protocol === 'file:' ? 'http://localhost:5000/api' : (window.location.origin + '/api');
@@ -1377,7 +1570,6 @@
       setTimeout(() => { toast.classList.remove('show'); }, 4000);
     }
 
-    // Dynamic Tab/Menu Switcher
     function switchMenuTab(tabKey) {
       document.querySelectorAll('.menu-pill-btn').forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('data-tab') === tabKey);
@@ -1395,7 +1587,107 @@
 
       if (tabKey === 'nearby') {
         reloadNearbyData();
+        updateGoogleMapEmbed();
       }
+
+      if (tabKey === 'india') {
+        openStateDossier('odisha');
+      }
+    }
+
+    function updateGoogleMapEmbed() {
+      const mapFrame = document.getElementById('gmaps-live-frame');
+      const mapBtn = document.getElementById('btnOpenFullGmaps');
+      const mapLabel = document.getElementById('mapLocationLabel');
+
+      if (mapFrame) {
+        mapFrame.src = `https://maps.google.com/maps?q=${currentCoords.lat},${currentCoords.lng}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+      }
+      if (mapBtn) {
+        mapBtn.href = `https://maps.google.com/?q=${currentCoords.lat},${currentCoords.lng}`;
+      }
+      if (mapLabel) {
+        mapLabel.innerText = currentCoords.label;
+      }
+    }
+
+    // =========================================================================
+    // IN-PLACE PAN-INDIA NETWORK DOSSIER HANDLER (NO REDIRECT!)
+    // =========================================================================
+    const stateDossiersData = {
+      'odisha': {
+        title: "Odisha (Utkala) — Active Prototype Network",
+        desc: "Preserving 2,000-year living traditions of Pattachitra palm-leaf scrolls, medieval chariot architecture, and direct GI craft guilds.",
+        highlights: [
+          { name: "Raghurajpur Heritage Village", craft: "Pattachitra & Cowdung Toys", coord: "19.8732,85.8241", status: "14% Low Crowd", icon: "paintbrush" },
+          { name: "Konark Sun Temple & Sculptors", craft: "Chisel Stone Carving", coord: "19.8876,86.0945", status: "88% Peak Rush", icon: "hammer" },
+          { name: "Barpali & Bargarh Weaving Belt", craft: "Bandhakala (Ikat) Silk", coord: "21.1823,83.5934", status: "10% Quiet Trail", icon: "vest-patches" },
+          { name: "Cuttack Tarakasi Silver Hub", craft: "Fine Silver Filigree", coord: "20.4812,85.8645", status: "22% Serene", icon: "ring" }
+        ]
+      },
+      'rajasthan': {
+        title: "Rajasthan (Marwar & Shekhawati) — Network Mapped",
+        desc: "Explore open-air painted havelis in Shekhawati, mud block printing in Bagru, and desert camel folklore with zero tourist middlemen.",
+        highlights: [
+          { name: "Shekhawati Fresco Mansions (Mandawa)", craft: "Vegetable Wall Frescoes", coord: "28.0544,75.1438", status: "25% Moderate Footfall", icon: "building-columns" },
+          { name: "Bagru Master Dyers Hub", craft: "Chippa Wooden Block Print", coord: "26.8123,75.5412", status: "15% Low Footfall", icon: "palette" },
+          { name: "Kumbhalgarh Medieval Wall", craft: "Rajput Stone Masonry", coord: "25.1528,73.5872", status: "40% Steady", icon: "shield-halved" },
+          { name: "Pokhran Terracotta Potter Enclave", craft: "Red Sand Pottery", coord: "26.9214,71.9174", status: "8% Offbeat", icon: "fire" }
+        ]
+      },
+      'kerala': {
+        title: "Kerala (Malabar & Backwaters) — Network Mapped",
+        desc: "From the secret metallurgy of Aranmula mirrors to nighttime sacred Theyyam rituals and 3,000-year Kalaripayattu martial guilds.",
+        highlights: [
+          { name: "Aranmula Heritage Craft Hamlet", craft: "Secret Alloy Metal Mirrors (Kannadi)", coord: "9.3364,76.6854", status: "18% Low Crowd", icon: "ring" },
+          { name: "Kannur Sacred Theyyam Groves", craft: "Ritual Face Paint & Oral Folklore", coord: "11.8745,75.3704", status: "30% Season Peak", icon: "masks-theater" },
+          { name: "Chendamangalam Weaving Guild", craft: "Fine Handloom Kasavu Sarees", coord: "10.1582,76.2234", status: "12% Serene", icon: "shirt" },
+          { name: "Mannar Bell Metal Cluster", craft: "Lost-Wax Temple Bronze Lamps", coord: "9.3145,76.5312", status: "14% Quiet", icon: "bell" }
+        ]
+      },
+      'tamilnadu': {
+        title: "Tamil Nadu (Chola Heartlands & Chettinad) — Network Mapped",
+        desc: "Discover Chola lost-wax bronze casting in Swamimalai, Chettinad Athangudi handmade tiles, and Thanjavur gold foil paintings.",
+        highlights: [
+          { name: "Swamimalai Bronze Casting Sthapatis", craft: "Chola Lost-Wax Bronze Icons", coord: "10.9567,79.3245", status: "20% Low Rush", icon: "hands-holding-circle" },
+          { name: "Athangudi Handmade Tile Village", craft: "Natural Mineral Pattern Tiles", coord: "10.1456,78.7892", status: "11% Quiet", icon: "cubes" },
+          { name: "Thanjavur Royal Guild Enclave", craft: "Gold Leaf Inlay Paintings", coord: "10.7870,79.1378", status: "45% Moderate", icon: "gem" },
+          { name: "Kanchipuram Master Silk Co-ops", craft: "Pure Mulberry Zari Weaves", coord: "12.8342,79.7036", status: "50% Core Hub", icon: "vest" }
+        ]
+      }
+    };
+
+    function openStateDossier(stateKey) {
+      const data = stateDossiersData[stateKey] || stateDossiersData['odisha'];
+      const panel = document.getElementById('stateDossierPanel');
+      
+      document.getElementById('dossierStateTitle').innerText = data.title;
+      document.getElementById('dossierStateDesc').innerText = data.desc;
+
+      const container = document.getElementById('dossierHighlightsContainer');
+      container.innerHTML = data.highlights.map(h => `
+        <div class="dossier-card">
+          <div class="dossier-card-top">
+            <span class="d-icon"><i class="fa-solid fa-${h.icon}"></i></span>
+            <span class="d-status-pill">${h.status}</span>
+          </div>
+          <h4>${h.name}</h4>
+          <p class="d-craft"><i class="fa-solid fa-certificate"></i> ${h.craft}</p>
+          <div class="d-actions-row">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=${h.coord}" target="_blank" class="btn-dossier-map">
+              <i class="fa-brands fa-google"></i> Exact Route in Maps <i class="fa-solid fa-diamond-turn-right"></i>
+            </a>
+          </div>
+        </div>
+      `).join('');
+
+      panel.classList.add('active');
+      panel.scrollIntoView({ behavior: 'smooth' });
+      showToast(`Showing Living Heritage Dossier for ${data.title.split('—')[0]}!`);
+    }
+
+    function closeStateDossier() {
+      document.getElementById('stateDossierPanel').classList.remove('active');
     }
 
     function switchGateRole(role) {
@@ -1486,12 +1778,11 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
       showToast(`Namaste ${user.name}! Welcome to YATRAसंस्कृति.`);
       
-      // Auto-load AI Trip Plan & Nearby Services
       handleGenerateAiTrip(new Event('submit'));
       reloadNearbyData();
+      updateGoogleMapEmbed();
     }
 
-    // Dynamic Login Handler for ANY Random Person
     async function handleGateLogin(e, loginType) {
       e.preventDefault();
       
@@ -1590,7 +1881,7 @@
     });
 
     // =========================================================================
-    // ⭐ LIVE AI SMART TRIP PLANNER LOGIC
+    // ⭐ LIVE AI SMART TRIP PLANNER
     // =========================================================================
     async function handleGenerateAiTrip(e) {
       if (e && e.preventDefault) e.preventDefault();
@@ -1616,7 +1907,6 @@
       } catch (err) {}
 
       if (!planData) {
-        // High-Quality Client-Side Fallback Itinerary
         planData = {
           tripTitle: `Puri, Konark & Raghurajpur Living Heritage Trail (${days} Days)`,
           region: "Puri Coast • Konark • Raghurajpur • Pipili",
@@ -1742,7 +2032,7 @@
               <h5 class="slot-heading">${d.morning.place}</h5>
               <p class="slot-desc">${d.morning.description}</p>
               <div class="slot-highlight-box">
-                <strong><i class="fa-solid fa-van-shuttle"></i> Recommended Transit:</strong>
+                <strong><i class="fa-solid fa-van-shuttle"></i> Transit:</strong>
                 <span>${d.morning.transport || 'Local E-Rickshaw / Toto'}</span>
               </div>
             </div>
@@ -1765,14 +2055,14 @@
           <!-- Food & Stay Recommendations -->
           <div class="day-services-quad">
             <div class="service-sub-box">
-              <h5><i class="fa-solid fa-utensils"></i> Authentic Food & Eatery:</h5>
+              <h5><i class="fa-solid fa-utensils"></i> Authentic Food:</h5>
               <strong style="font-size: 0.8rem; color: var(--text-dark);">${d.food.recommendation}</strong>
               <p style="margin: 0.25rem 0;">${(d.food.dishes || []).join(' • ')}</p>
               <span style="font-size: 0.72rem; color: var(--green-emerald); font-weight: 700;">Est: ${d.food.costEstimate}</span>
             </div>
 
             <div class="service-sub-box">
-              <h5><i class="fa-solid fa-hotel"></i> Recommended Homestay / Hotel:</h5>
+              <h5><i class="fa-solid fa-hotel"></i> Homestay / Hotel:</h5>
               <strong style="font-size: 0.8rem; color: var(--text-dark);">${d.hotel.name}</strong>
               <p style="margin: 0.25rem 0;">${d.hotel.type} (${d.hotel.rate})</p>
               <span style="font-size: 0.72rem; color: var(--terracotta); font-weight: 700;">Contact: ${d.hotel.contact}</span>
@@ -1824,8 +2114,9 @@
 
       const locEl = document.getElementById('currentLocationName');
       if (locEl) locEl.innerText = `${currentCoords.label} (${currentCoords.lat.toFixed(2)}°N, ${currentCoords.lng.toFixed(2)}°E)`;
-      showToast(`Location set to ${currentCoords.label}`);
+      showToast(`Google Maps Location set to ${currentCoords.label}`);
       reloadNearbyData();
+      updateGoogleMapEmbed();
     }
 
     function fetchLiveGpsLocation() {
@@ -1835,14 +2126,16 @@
           (pos) => {
             currentCoords.lat = pos.coords.latitude;
             currentCoords.lng = pos.coords.longitude;
-            currentCoords.label = 'Live GPS Coordinates';
+            currentCoords.label = 'My Live GPS Coordinates';
             document.getElementById('currentLocationName').innerText = `Live GPS: ${currentCoords.lat.toFixed(4)}°N, ${currentCoords.lng.toFixed(4)}°E`;
-            showToast('GPS Locked! Calculating nearby services within radius...');
+            showToast('GPS Locked! Updating Google Maps Radar...');
             reloadNearbyData();
+            updateGoogleMapEmbed();
           },
           (err) => {
             showToast('GPS permission unavailable. Using selected heritage center.', true);
             reloadNearbyData();
+            updateGoogleMapEmbed();
           },
           { timeout: 8000 }
         );
@@ -1861,7 +2154,7 @@
       return parseFloat((R * c).toFixed(1));
     }
 
-    // Fallback Datasets
+    // Fallback Datasets with Google Maps Navigation Links
     const localFoodDataset = [
       { id: "food-01", name: "Ananta Vasudeva Temple Kitchens (Grand Mahaprasad)", district: "Khordha", location: "Old Town, Bhubaneswar", lat: 20.2435, lng: 85.8326, priceRange: "₹80 - ₹180 / person", budgetTier: "cheap", rating: 4.9, famousDishes: ["Earthen Pot Dalma", "Kanika Fragrant Rice", "Besara Gravy", "Rice Khiri"], contact: "+91 94370 12345", isPureVeg: true },
       { id: "food-02", name: "Maa Tarini Dahibara Aloodum & Guguni", district: "Cuttack", location: "Bidanasi, Near Barabati Fort", lat: 20.4812, lng: 85.8645, priceRange: "₹40 - ₹70 / plate", budgetTier: "cheap", rating: 4.95, famousDishes: ["Dahibara Aloodum with Dahi Pani", "Matar Guguni", "Crispy Sev"], contact: "+91 98610 88771", isPureVeg: true },
@@ -1925,8 +2218,10 @@
               <span>${(f.famousDishes || []).join(' • ')}</span>
             </div>
             <div class="nsc-footer">
-              <div class="nsc-rating"><i class="fa-solid fa-star"></i> ${f.rating} <span>(${f.isPureVeg ? 'Pure Veg' : 'Non-Veg'})</span></div>
-              <a href="tel:${f.contact || '112'}" class="btn-call-service"><i class="fa-solid fa-phone"></i> Call Order</a>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=${f.lat},${f.lng}" target="_blank" class="btn-gmaps-direct">
+                <i class="fa-solid fa-diamond-turn-right"></i> Maps Route
+              </a>
+              <a href="tel:${f.contact || '112'}" class="btn-call-service"><i class="fa-solid fa-phone"></i> Call</a>
             </div>
           </div>
         `).join('');
@@ -1947,8 +2242,10 @@
               <span>${(h.amenities || []).join(' • ')}</span>
             </div>
             <div class="nsc-footer">
-              <div class="nsc-rating"><i class="fa-solid fa-star"></i> ${h.rating} <span>Verified Stay</span></div>
-              <button class="btn-call-service" onclick="showToast('Connecting to ${h.name} Booking Desk (${h.contact})...')"><i class="fa-solid fa-calendar-check"></i> Book Stay</button>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=${h.lat},${h.lng}" target="_blank" class="btn-gmaps-direct">
+                <i class="fa-solid fa-diamond-turn-right"></i> Maps Route
+              </a>
+              <button class="btn-call-service" onclick="showToast('Connecting to ${h.name} Booking Desk (${h.contact})...')"><i class="fa-solid fa-calendar-check"></i> Book</button>
             </div>
           </div>
         `).join('');
@@ -1965,8 +2262,10 @@
             <h4 class="nsc-title">${t.name}</h4>
             <p class="nsc-loc"><i class="fa-solid fa-van-shuttle"></i> ${t.vehicleType} • ${t.location}</p>
             <div class="nsc-footer">
-              <div class="nsc-rating"><i class="fa-solid fa-shield-halved"></i> <span>${t.available || 'Ready'}</span></div>
-              <a href="tel:${t.contact || '18002081414'}" class="btn-call-service"><i class="fa-solid fa-phone"></i> Call Driver</a>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=${t.lat},${t.lng}" target="_blank" class="btn-gmaps-direct">
+                <i class="fa-solid fa-diamond-turn-right"></i> Maps Route
+              </a>
+              <a href="tel:${t.contact || '18002081414'}" class="btn-call-service"><i class="fa-solid fa-phone"></i> Call</a>
             </div>
           </div>
         `).join('');
@@ -2126,7 +2425,6 @@
       }
     }
 
-    // Auto Session Restorer for Mobile & Desktop
     window.addEventListener('DOMContentLoaded', () => {
       try {
         const stored = localStorage.getItem('yatrasanskriti_session');
