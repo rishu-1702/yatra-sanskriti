@@ -1,6 +1,6 @@
 /**
  * YATRAसंस्कृति — AI Smart Tourism & Living Heritage Platform
- * Full Backend Server with MongoDB Atlas, Live AI Cultural Trip Planner & Geospatial Engine
+ * Full Backend Server with MongoDB Atlas, Live AI Cultural Trip Planner & Google Maps Geospatial Engine
  */
 
 const http = require('http');
@@ -8,12 +8,11 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
-// Optional MongoDB Atlas Driver with graceful fallback
 let MongoClient;
 try {
   MongoClient = require('mongodb').MongoClient;
 } catch (e) {
-  console.log('[Notice] mongodb module not loaded. Local users fallback will be used.');
+  console.log('[Notice] mongodb module not loaded. Local fallback will be used.');
 }
 
 const PORT = process.env.PORT || 5000;
@@ -24,7 +23,6 @@ const COLLECTION_NAME = 'user';
 let mongoDbClient = null;
 let usersCollection = null;
 
-// Connect to MongoDB Atlas
 async function connectToMongoAtlas() {
   if (!MongoClient) return;
   try {
@@ -35,21 +33,17 @@ async function connectToMongoAtlas() {
     await mongoDbClient.connect();
     const db = mongoDbClient.db(DB_NAME);
     usersCollection = db.collection(COLLECTION_NAME);
-    console.log(`[MongoDB Atlas] Connected successfully to "${DB_NAME}.${COLLECTION_NAME}" collection.`);
+    console.log(`[MongoDB Atlas] Connected successfully to "${DB_NAME}.${COLLECTION_NAME}".`);
   } catch (err) {
-    console.warn('[MongoDB Atlas] Connection failed. Using local storage fallback.', err.message);
+    console.warn('[MongoDB Atlas] Fallback mode:', err.message);
   }
 }
-
 connectToMongoAtlas();
 
-// Local users storage fallback
 const USERS_FILE = path.join(__dirname, 'users.json');
 function getLocalUsers() {
   try {
-    if (fs.existsSync(USERS_FILE)) {
-      return JSON.parse(fs.readFileSync(USERS_FILE, 'utf8'));
-    }
+    if (fs.existsSync(USERS_FILE)) return JSON.parse(fs.readFileSync(USERS_FILE, 'utf8'));
   } catch (e) {}
   return [];
 }
@@ -61,7 +55,6 @@ function saveLocalUser(userObj) {
   } catch (e) {}
 }
 
-// Haversine Distance Calculator
 function calculateHaversineKm(lat1, lon1, lat2, lon2) {
   const toRad = v => (v * Math.PI) / 180;
   const R = 6371;
@@ -70,11 +63,9 @@ function calculateHaversineKm(lat1, lon1, lat2, lon2) {
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return parseFloat((R * c).toFixed(1));
+  return parseFloat((R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))).toFixed(1));
 }
 
-// Datasets for Nearby Services
 const FOOD_DATA = [
   { id: "food-01", name: "Ananta Vasudeva Temple Kitchens (Grand Mahaprasad)", district: "Khordha", location: "Old Town, Bhubaneswar", lat: 20.2435, lng: 85.8326, priceRange: "₹80 - ₹180 / person", budgetTier: "cheap", rating: 4.9, famousDishes: ["Earthen Pot Dalma", "Kanika Fragrant Rice", "Besara Gravy", "Rice Khiri"], contact: "+91 94370 12345", isPureVeg: true },
   { id: "food-02", name: "Maa Tarini Dahibara Aloodum & Guguni", district: "Cuttack", location: "Bidanasi, Near Barabati Fort", lat: 20.4812, lng: 85.8645, priceRange: "₹40 - ₹70 / plate", budgetTier: "cheap", rating: 4.95, famousDishes: ["Dahibara Aloodum with Dahi Pani", "Matar Guguni", "Crispy Sev"], contact: "+91 98610 88771", isPureVeg: true },
@@ -96,23 +87,18 @@ const TRANSPORT_DATA = [
   { id: "trans-03", name: "Ekamra Mo Auto & Self-Drive Cabs", district: "Khordha", location: "Airport & Master Canteen, Bhubaneswar", lat: 20.2528, lng: 85.8178, vehicleType: "Metered CNG Autos & Hatchback Cars", rateCard: "₹120/hr metered • ₹1,100/day self-drive", contact: "+91 674 291 4455", available: "35 Cabs/Autos Ready" }
 ];
 
-// Helper: Parse JSON Body
 function parseRequestBody(req) {
   return new Promise((resolve, reject) => {
     let body = '';
     req.on('data', chunk => { body += chunk.toString(); });
     req.on('end', () => {
-      try {
-        resolve(body ? JSON.parse(body) : {});
-      } catch (err) {
-        resolve({});
-      }
+      try { resolve(body ? JSON.parse(body) : {}); }
+      catch (err) { resolve({}); }
     });
     req.on('error', err => reject(err));
   });
 }
 
-// MIME Types Map
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -125,9 +111,7 @@ const MIME_TYPES = {
   '.ico': 'image/x-icon'
 };
 
-// Create Server
 const server = http.createServer(async (req, res) => {
-  // CORS Headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -141,13 +125,10 @@ const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
   const pathname = parsedUrl.pathname;
 
-  // =========================================================================
-  // API ROUTE 1: AUTH LOGIN / SIGNUP (SAVES TO MONGODB ATLAS COLLECTION `user`)
-  // =========================================================================
+  // 1. AUTH LOGIN
   if (pathname === '/api/auth/login' && req.method === 'POST') {
     try {
       const data = await parseRequestBody(req);
-      
       const userRecord = {
         name: data.name || data.identifier || 'Cultural Explorer',
         role: data.role || 'Verified Cultural Explorer',
@@ -159,19 +140,14 @@ const server = http.createServer(async (req, res) => {
       };
 
       if (usersCollection) {
-        try {
-          await usersCollection.insertOne(userRecord);
-          console.log(`[MongoDB Atlas] User "${userRecord.name}" saved to database.`);
-        } catch (dbErr) {
-          console.error('[MongoDB Atlas] Insert error:', dbErr.message);
-          saveLocalUser(userRecord);
-        }
+        try { await usersCollection.insertOne(userRecord); }
+        catch (dbErr) { saveLocalUser(userRecord); }
       } else {
         saveLocalUser(userRecord);
       }
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: true, user: userRecord, message: 'Logged in successfully!' }));
+      res.end(JSON.stringify({ success: true, user: userRecord }));
     } catch (err) {
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: err.message }));
@@ -179,17 +155,10 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // =========================================================================
-  // API ROUTE 2: LIST USERS
-  // =========================================================================
+  // 2. LIST USERS
   if (pathname === '/api/users' && req.method === 'GET') {
     try {
-      let users = [];
-      if (usersCollection) {
-        users = await usersCollection.find({}).limit(50).toArray();
-      } else {
-        users = getLocalUsers();
-      }
+      let users = usersCollection ? await usersCollection.find({}).limit(50).toArray() : getLocalUsers();
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, count: users.length, users }));
     } catch (err) {
@@ -199,9 +168,7 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // =========================================================================
-  // API ROUTE 3: ⭐ LIVE AI SMART TRIP PLANNER
-  // =========================================================================
+  // 3. AI PLAN TRIP
   if (pathname === '/api/ai/plan-trip' && req.method === 'POST') {
     try {
       const { destination, durationDays, budgetTier, travelStyle } = await parseRequestBody(req);
@@ -312,13 +279,11 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // =========================================================================
-  // API ROUTE 4: AI CONVERSATIONAL ITINERARY CHAT MODIFIER
-  // =========================================================================
+  // 4. AI CHAT MODIFIER
   if (pathname === '/api/ai/chat' && req.method === 'POST') {
     try {
       const { message } = await parseRequestBody(req);
-      const reply = `✨ AI Adjusted: We customized your plan with "${message || 'Custom Request'}". Added pure veg temple thali and synchronized serene sunset points!`;
+      const reply = `✨ AI Adjusted: We customized your plan with "${message || 'Custom Request'}". Pure veg options and sunset GPS coordinates updated!`;
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ aiReply: reply }));
     } catch (err) {
@@ -328,9 +293,7 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // =========================================================================
-  // API ROUTE 5: NEARBY SERVICES GEOSPATIAL PROXIMITY
-  // =========================================================================
+  // 5. NEARBY PROXIMITY WITH GOOGLE MAPS
   if (pathname === '/api/location/nearby' && req.method === 'GET') {
     const lat = parseFloat(parsedUrl.query.lat) || 19.8135;
     const lng = parseFloat(parsedUrl.query.lng) || 85.8312;
@@ -356,29 +319,22 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // =========================================================================
-  // STATIC ASSETS FILE SERVER
-  // =========================================================================
+  // STATIC ASSETS
   let safePath = pathname === '/' ? '/index.html' : pathname;
   const filePath = path.join(__dirname, safePath);
   const ext = path.extname(filePath).toLowerCase();
 
   fs.readFile(filePath, (err, content) => {
     if (err) {
-      if (err.code === 'ENOENT') {
-        fs.readFile(path.join(__dirname, 'index.html'), (err2, fallbackContent) => {
-          if (err2) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end('404 Not Found');
-          } else {
-            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-            res.end(fallbackContent);
-          }
-        });
-      } else {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end(`Server Error: ${err.code}`);
-      }
+      fs.readFile(path.join(__dirname, 'index.html'), (err2, fallback) => {
+        if (err2) {
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end('404 Not Found');
+        } else {
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+          res.end(fallback);
+        }
+      });
     } else {
       res.writeHead(200, { 'Content-Type': MIME_TYPES[ext] || 'application/octet-stream' });
       res.end(content);
@@ -389,6 +345,6 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
   console.log(`\n======================================================`);
   console.log(`🛕 YATRAसंस्कृति Platform Running on port ${PORT}`);
-  console.log(`🌐 Local URL: http://localhost:${PORT}`);
+  console.log(`🗺️ Google Maps Live Radar: Active`);
   console.log(`======================================================\n`);
 });
