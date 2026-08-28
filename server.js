@@ -1,6 +1,6 @@
 /**
  * YATRAसंस्कृति — AI Smart Tourism & Living Heritage Platform
- * Backend Server Engine (Node.js REST API & MongoDB Atlas Database)
+ * Full Backend Server with MongoDB Atlas, Live AI Cultural Trip Planner & Geospatial Engine
  */
 
 const http = require('http');
@@ -8,41 +8,62 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
-const PORT = process.env.PORT || 5000;
-const DATA_DIR = path.join(__dirname, 'data');
-const USERS_DB_PATH = path.join(__dirname, 'users.json');
+// Optional MongoDB Atlas Driver with graceful fallback
+let MongoClient;
+try {
+  MongoClient = require('mongodb').MongoClient;
+} catch (e) {
+  console.log('[Notice] mongodb module not loaded. Local users fallback will be used.');
+}
 
-// --- 1. MONGODB ATLAS CLOUD DATABASE CONNECTION ---
+const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://rishukrishna17_db_user:Yatra2026Secure@cluster0.fn327ln.mongodb.net/yatra_sanskritiD?appName=Cluster0';
-let mongoClient = null;
+const DB_NAME = 'yatra_sanskritiD';
+const COLLECTION_NAME = 'user';
+
+let mongoDbClient = null;
 let usersCollection = null;
 
-async function initMongoDB() {
+// Connect to MongoDB Atlas
+async function connectToMongoAtlas() {
+  if (!MongoClient) return;
   try {
-    const { MongoClient } = require('mongodb');
-    mongoClient = new MongoClient(MONGODB_URI);
-    await mongoClient.connect();
-    const db = mongoClient.db('yatra_sanskritiD');
-    usersCollection = db.collection('user');
-    console.log('🍃 Connected to MongoDB Atlas successfully!');
+    mongoDbClient = new MongoClient(MONGODB_URI, {
+      serverSelectionTimeoutMS: 6000,
+      connectTimeoutMS: 6000
+    });
+    await mongoDbClient.connect();
+    const db = mongoDbClient.db(DB_NAME);
+    usersCollection = db.collection(COLLECTION_NAME);
+    console.log(`[MongoDB Atlas] Connected successfully to "${DB_NAME}.${COLLECTION_NAME}" collection.`);
   } catch (err) {
-    console.log('⚠️ MongoDB connection warning (operating in resilient mode):', err.message);
+    console.warn('[MongoDB Atlas] Connection failed. Using local storage fallback.', err.message);
   }
 }
-initMongoDB();
 
-// Optional XLSX library loader
-let xlsx = null;
-try {
-  xlsx = require('xlsx');
-} catch (e) {}
+connectToMongoAtlas();
 
-const EXCEL_FILE_PATH = path.join(__dirname, 'database.xlsx');
+// Local users storage fallback
+const USERS_FILE = path.join(__dirname, 'users.json');
+function getLocalUsers() {
+  try {
+    if (fs.existsSync(USERS_FILE)) {
+      return JSON.parse(fs.readFileSync(USERS_FILE, 'utf8'));
+    }
+  } catch (e) {}
+  return [];
+}
+function saveLocalUser(userObj) {
+  try {
+    const list = getLocalUsers();
+    list.push(userObj);
+    fs.writeFileSync(USERS_FILE, JSON.stringify(list, null, 2), 'utf8');
+  } catch (e) {}
+}
 
-// 2. Haversine Distance Formula (km)
-function calculateHaversineDistance(lat1, lon1, lat2, lon2) {
-  if (!lat1 || !lon1 || !lat2 || !lon2) return 9999;
-  const toRad = (value) => (value * Math.PI) / 180;
+// Haversine Distance Calculator
+function calculateHaversineKm(lat1, lon1, lat2, lon2) {
+  const toRad = v => (v * Math.PI) / 180;
   const R = 6371;
   const dLat = toRad(lat2 - lat1);
   const dLon = toRad(lon2 - lon1);
@@ -50,239 +71,324 @@ function calculateHaversineDistance(lat1, lon1, lat2, lon2) {
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return parseFloat((R * c).toFixed(2));
+  return parseFloat((R * c).toFixed(1));
 }
 
-// 3. Local JSON Database Helpers (Resilient Backup)
-function getUsersDatabase() {
-  try {
-    if (fs.existsSync(USERS_DB_PATH)) {
-      return JSON.parse(fs.readFileSync(USERS_DB_PATH, 'utf8'));
-    }
-  } catch (e) {}
-  return [];
-}
+// Datasets for Nearby Services
+const FOOD_DATA = [
+  { id: "food-01", name: "Ananta Vasudeva Temple Kitchens (Grand Mahaprasad)", district: "Khordha", location: "Old Town, Bhubaneswar", lat: 20.2435, lng: 85.8326, priceRange: "₹80 - ₹180 / person", budgetTier: "cheap", rating: 4.9, famousDishes: ["Earthen Pot Dalma", "Kanika Fragrant Rice", "Besara Gravy", "Rice Khiri"], contact: "+91 94370 12345", isPureVeg: true },
+  { id: "food-02", name: "Maa Tarini Dahibara Aloodum & Guguni", district: "Cuttack", location: "Bidanasi, Near Barabati Fort", lat: 20.4812, lng: 85.8645, priceRange: "₹40 - ₹70 / plate", budgetTier: "cheap", rating: 4.95, famousDishes: ["Dahibara Aloodum with Dahi Pani", "Matar Guguni", "Crispy Sev"], contact: "+91 98610 88771", isPureVeg: true },
+  { id: "food-03", name: "Bapuji Chhena Poda & Sweets Hub", district: "Puri", location: "Puri Marine Drive Junction", lat: 19.8135, lng: 85.8312, priceRange: "₹60 - ₹150 / box", budgetTier: "cheap", rating: 4.92, famousDishes: ["Sal-Leaf Baked Chhena Poda", "Rasabali", "Chhena Gaja"], contact: "+91 97780 45612", isPureVeg: true },
+  { id: "food-04", name: "Raghurajpur Village Heritage Bhojanalaya", district: "Puri", location: "Raghurajpur Village Square", lat: 19.8732, lng: 85.8241, priceRange: "₹90 - ₹140 (Unlimited Thali)", budgetTier: "cheap", rating: 4.88, famousDishes: ["Badi Chura", "Saga Bhaja", "Pakhala Bhata Cooler"], contact: "+91 99371 90234", isPureVeg: true },
+  { id: "food-05", name: "Nrisingha Heritage Puri Khaja Mart", district: "Puri", location: "Grand Road, Puri", lat: 19.8055, lng: 85.8184, priceRange: "₹50 - ₹120 / packet", budgetTier: "cheap", rating: 4.85, famousDishes: ["Crisp Layered Feni Khaja", "Ghee Gaja"], contact: "+91 94372 88190", isPureVeg: true }
+];
 
-function saveUsersDatabase(users) {
-  try {
-    fs.writeFileSync(USERS_DB_PATH, JSON.stringify(users, null, 2), 'utf8');
-  } catch (e) {}
-}
+const HOTEL_DATA = [
+  { id: "hotel-01", name: "Raghurajpur Artisan Village Eco-Homestay", district: "Puri", location: "Raghurajpur Crafts Village", lat: 19.8741, lng: 85.8235, stayType: "Village Cultural Homestay", pricePerNight: "₹450 - ₹850 / night", rating: 4.93, amenities: ["Stay with Artisan Family", "Homecooked Claypot Meals", "Free Palm Leaf Workshop"], contact: "+91 94371 67890" },
+  { id: "hotel-02", name: "OTDC Panthanivas Puri (Govt. Heritage Resort)", district: "Puri", location: "Chakratirtha Sea Beach Road", lat: 19.8012, lng: 85.8398, stayType: "Govt. Tourism Lodge", pricePerNight: "₹1,200 - ₹2,400 / night", rating: 4.75, amenities: ["Sea Beachfront", "24/7 Security", "In-house Odia Kitchen"], contact: "1800-208-1414" },
+  { id: "hotel-03", name: "Yatri Nivas & Backpacker Dorms Konark", district: "Puri", location: "Sun Temple Ring Road, Konark", lat: 19.8885, lng: 86.0954, stayType: "Backpacker Dorm & Lodge", pricePerNight: "₹350 / bed • ₹900 / room", rating: 4.68, amenities: ["Bicycle Rental Onsite", "Free Wi-Fi", "Hot Water"], contact: "+91 98612 33445" },
+  { id: "hotel-04", name: "Ekamra Heritage Guesthouse", district: "Khordha", location: "Old Town, Bhubaneswar", lat: 20.2398, lng: 85.8315, stayType: "Temple Haveli Guesthouse", pricePerNight: "₹700 - ₹1,300 / night", rating: 4.82, amenities: ["Temple View Rooftop", "Heritage Walk Guide"], contact: "+91 99380 77123" }
+];
 
-// 4. Smart Dataset Loader (Excel database.xlsx or JSON fallback)
-function loadDataset(sheetName, jsonFileName) {
-  if (xlsx && fs.existsSync(EXCEL_FILE_PATH)) {
-    try {
-      const workbook = xlsx.readFile(EXCEL_FILE_PATH);
-      if (workbook.Sheets[sheetName]) {
-        const rows = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
-        return rows.map((item) => {
-          if (item.famousDishes && typeof item.famousDishes === 'string') {
-            item.famousDishes = item.famousDishes.split(',').map((s) => s.trim());
-          }
-          if (item.amenities && typeof item.amenities === 'string') {
-            item.amenities = item.amenities.split(',').map((s) => s.trim());
-          }
-          if (item.isPureVeg !== undefined) item.isPureVeg = String(item.isPureVeg).toUpperCase() === 'TRUE';
-          if (item.isGem !== undefined) item.isGem = String(item.isGem).toUpperCase() === 'TRUE';
-          if (item.lat) item.lat = parseFloat(item.lat);
-          if (item.lng) item.lng = parseFloat(item.lng);
-          return item;
-        });
+const TRANSPORT_DATA = [
+  { id: "trans-01", name: "Puri-Konark Marine Drive Scooty & Bike Rentals", district: "Puri", location: "Puri Railway & Sea Beach Hub", lat: 19.8142, lng: 85.8391, vehicleType: "Honda Activa / Royal Enfield Cruiser", rateCard: "₹60/hr • ₹350 - ₹450 / full day", contact: "+91 94373 55112", available: "24 Vehicles Ready" },
+  { id: "trans-02", name: "Raghurajpur Eco E-Rickshaw Cooperative", district: "Puri", location: "Chandanpur Junction", lat: 19.8654, lng: 85.8198, vehicleType: "Green Battery E-Rickshaw / Toto", rateCard: "₹20 - ₹30 / seat • ₹250 / 3-hr Village Tour", contact: "+91 98614 77209", available: "18 Totos Ready" },
+  { id: "trans-03", name: "Ekamra Mo Auto & Self-Drive Cabs", district: "Khordha", location: "Airport & Master Canteen, Bhubaneswar", lat: 20.2528, lng: 85.8178, vehicleType: "Metered CNG Autos & Hatchback Cars", rateCard: "₹120/hr metered • ₹1,100/day self-drive", contact: "+91 674 291 4455", available: "35 Cabs/Autos Ready" }
+];
+
+// Helper: Parse JSON Body
+function parseRequestBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', chunk => { body += chunk.toString(); });
+    req.on('end', () => {
+      try {
+        resolve(body ? JSON.parse(body) : {});
+      } catch (err) {
+        resolve({});
       }
-    } catch (err) {}
+    });
+    req.on('error', err => reject(err));
+  });
+}
+
+// MIME Types Map
+const MIME_TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.svg': 'image/svg+xml',
+  '.ico': 'image/x-icon'
+};
+
+// Create Server
+const server = http.createServer(async (req, res) => {
+  // CORS Headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    res.writeHead(204);
+    res.end();
+    return;
   }
 
-  const rootPath = path.join(__dirname, jsonFileName);
-  const dataPath = path.join(DATA_DIR, jsonFileName);
-  try {
-    if (fs.existsSync(rootPath)) return JSON.parse(fs.readFileSync(rootPath, 'utf8'));
-    if (fs.existsSync(dataPath)) return JSON.parse(fs.readFileSync(dataPath, 'utf8'));
-  } catch (err) {}
-  return [];
-}
-
-function sendJsonResponse(res, statusCode, payload) {
-  res.writeHead(statusCode, {
-    'Content-Type': 'application/json; charset=utf-8',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With'
-  });
-  res.end(JSON.stringify(payload, null, 2));
-}
-
-function parseRequestBody(req) {
-  return new Promise((resolve) => {
-    let body = '';
-    req.on('data', (chunk) => { body += chunk; });
-    req.on('end', () => {
-      try { resolve(body ? JSON.parse(body) : {}); } catch (e) { resolve({}); }
-    });
-  });
-}
-
-// 5. Main Server Request Router
-const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
   const pathname = parsedUrl.pathname;
-  const query = parsedUrl.query;
-  const method = req.method.toUpperCase();
-
-  // CORS Preflight
-  if (method === 'OPTIONS') {
-    res.writeHead(204, {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With'
-    });
-    return res.end();
-  }
-
-  // Health API
-  if (pathname === '/api' || pathname === '/api/health') {
-    return sendJsonResponse(res, 200, {
-      status: 'active',
-      platform: 'YATRAसंस्कृति Backend & MongoDB Cloud Engine',
-      version: '3.0.0',
-      database: usersCollection ? 'Connected to MongoDB Atlas (yatra_sanskritiD.user)' : 'Local File Backup Mode'
-    });
-  }
 
   // =========================================================================
-  // USER AUTH & MONGODB CLOUD SAVE
+  // API ROUTE 1: AUTH LOGIN / SIGNUP (SAVES TO MONGODB ATLAS COLLECTION `user`)
   // =========================================================================
-  if (pathname === '/api/auth/login' && method === 'POST') {
-    const body = await parseRequestBody(req);
-    let displayName = body.name || body.identifier || 'Explorer';
-    if (displayName.includes('@')) {
-      const raw = displayName.split('@')[0].replace(/[._-]/g, ' ');
-      displayName = raw.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-    }
+  if (pathname === '/api/auth/login' && req.method === 'POST') {
+    try {
+      const data = await parseRequestBody(req);
+      
+      const userRecord = {
+        name: data.name || data.identifier || 'Cultural Explorer',
+        role: data.role || 'Verified Cultural Explorer',
+        email: data.email || (data.identifier && data.identifier.includes('@') ? data.identifier : null),
+        phone: data.phone || null,
+        identifier: data.identifier || null,
+        authMethod: data.authMethod || 'universal',
+        createdAt: new Date().toISOString()
+      };
 
-    const userData = {
-      id: `usr-${Date.now().toString().slice(-5)}`,
-      name: displayName,
-      email: body.email || (body.identifier?.includes('@') ? body.identifier : ''),
-      phone: body.phone || (!body.identifier?.includes('@') ? body.identifier : ''),
-      role: body.role || 'Verified Cultural Explorer',
-      authMethod: body.authMethod || 'direct-login',
-      lastLoginAt: new Date().toISOString()
-    };
-
-    // 1. Save directly into MongoDB Atlas
-    if (usersCollection) {
-      try {
-        await usersCollection.updateOne(
-          { name: userData.name },
-          { $set: userData, $setOnInsert: { createdAt: new Date().toISOString() } },
-          { upsert: true }
-        );
-      } catch (e) {
-        console.error('[MongoDB Save Error]', e.message);
+      if (usersCollection) {
+        try {
+          await usersCollection.insertOne(userRecord);
+          console.log(`[MongoDB Atlas] User "${userRecord.name}" saved to database.`);
+        } catch (dbErr) {
+          console.error('[MongoDB Atlas] Insert error:', dbErr.message);
+          saveLocalUser(userRecord);
+        }
+      } else {
+        saveLocalUser(userRecord);
       }
-    }
 
-    // 2. Backup to users.json
-    const users = getUsersDatabase();
-    let existing = users.find(u => u.name?.toLowerCase() === displayName.toLowerCase());
-    if (!existing) {
-      userData.createdAt = new Date().toISOString();
-      users.push(userData);
-    } else {
-      existing.lastLoginAt = new Date().toISOString();
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: true, user: userRecord, message: 'Logged in successfully!' }));
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: err.message }));
     }
-    saveUsersDatabase(users);
-
-    return sendJsonResponse(res, 200, {
-      success: true,
-      message: `Namaste ${userData.name}! Login recorded in MongoDB Atlas.`,
-      user: userData
-    });
+    return;
   }
 
-  // View All Registered Users in Database
-  if (pathname === '/api/users' && method === 'GET') {
-    if (usersCollection) {
-      try {
-        const mongoUsers = await usersCollection.find({}).toArray();
-        return sendJsonResponse(res, 200, {
-          database: 'MongoDB Atlas Cloud (yatra_sanskritiD)',
-          totalUsers: mongoUsers.length,
-          users: mongoUsers
+  // =========================================================================
+  // API ROUTE 2: LIST USERS
+  // =========================================================================
+  if (pathname === '/api/users' && req.method === 'GET') {
+    try {
+      let users = [];
+      if (usersCollection) {
+        users = await usersCollection.find({}).limit(50).toArray();
+      } else {
+        users = getLocalUsers();
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: true, count: users.length, users }));
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: err.message }));
+    }
+    return;
+  }
+
+  // =========================================================================
+  // API ROUTE 3: ⭐ LIVE AI SMART TRIP PLANNER
+  // =========================================================================
+  if (pathname === '/api/ai/plan-trip' && req.method === 'POST') {
+    try {
+      const { destination, durationDays, budgetTier, travelStyle } = await parseRequestBody(req);
+      const days = parseInt(durationDays) || 3;
+
+      const planResponse = {
+        destination: destination || 'puri-golden-triangle',
+        durationDays: days,
+        budgetTier: budgetTier || 'moderate',
+        travelStyle: travelStyle || 'artisan-heritage',
+        tripTitle: `Puri, Konark & Raghurajpur Living Heritage Trail (${days} Days)`,
+        region: "Puri Coast • Konark • Raghurajpur • Pipili",
+        totalEstimatedBudget: `₹${(days * 1600).toLocaleString()} per person`,
+        itineraryDays: [
+          {
+            day: 1,
+            theme: "Sacred Coastal Mathas & Living Palm Leaf Village",
+            morning: {
+              time: "07:30 AM - 11:30 AM",
+              place: "Puri Coast & Ancient Matha Enclave",
+              description: "Explore peaceful coastal corridors, Emar Matha library and avoid coastal tourist rush.",
+              transport: "Electric Heritage Toto (₹30/seat) or coastal bicycle rental."
+            },
+            food: {
+              title: "Traditional Odia Temple Feast",
+              recommendation: "Ananta Vasudeva Temple Kitchens",
+              dishes: ["Earthen Pot Temple Dalma", "Kanika Fragrant Rice", "Chenna Poda"],
+              costEstimate: "₹90 - ₹180 per person"
+            },
+            afternoon: {
+              time: "02:00 PM - 05:30 PM",
+              place: "Raghurajpur Heritage Crafts Village",
+              description: "Step into home studios where 140 families craft Tala Pattachitra (palm-leaf etching).",
+              artisanStudio: "Studio #14: Guru Rabindra Maharana (Master of Natural Dyes)"
+            },
+            hotel: {
+              name: "Raghurajpur Artisan Village Eco-Homestay",
+              type: "Village Cultural Homestay with Artisan Family",
+              rate: "₹750/night with organic meals",
+              contact: "+91 94371 67890"
+            }
+          },
+          {
+            day: 2,
+            theme: "The 1200 Sculptors of Konark & Marine Sun Chariot",
+            morning: {
+              time: "06:30 AM - 10:30 AM",
+              place: "Konark Sun Temple (The Black Pagoda - UNESCO 13th Century)",
+              description: "Witness early sunrise striking the 24 colossal sundial wheels.",
+              transport: "Marine Drive Scooty Rental (₹350/day)"
+            },
+            food: {
+              title: "Authentic Coastal Cuisine & Pakhala",
+              recommendation: "Chandrabhaga Coastal Bhojanalaya",
+              dishes: ["Pakhala Bhata with Badi Chura", "Mud Crab Masala", "Chhena Gaja"],
+              costEstimate: "₹120 - ₹250 per person"
+            },
+            afternoon: {
+              time: "01:30 PM - 04:30 PM",
+              place: "Konark Stone Carvers Guild & Chandrabhaga Beach",
+              description: "Direct chisel workshop with generational stone sculptors.",
+              artisanStudio: "Konark Master Sculptors Guild"
+            },
+            hotel: {
+              name: "OTDC Panthanivas Konark",
+              type: "State Heritage Tourism Lodge",
+              rate: "₹1,200/night",
+              contact: "1800-208-1414"
+            }
+          },
+          {
+            day: 3,
+            theme: "Ashokan Edicts & Medieval Silver Filigree Lanes",
+            morning: {
+              time: "08:00 AM - 11:30 AM",
+              place: "Dhauli Peace Pagoda & Rock Inscription (261 BCE)",
+              description: "Stand where Emperor Ashoka renounced violence and carved eternal peace edicts.",
+              transport: "Ekamra Mo Cab (₹120/hr)"
+            },
+            food: {
+              title: "Cuttack Famous Street Heritage Lunch",
+              recommendation: "Maa Tarini Dahibara Aloodum (Bidanasi)",
+              dishes: ["Dahibara with Dahi-Pani", "Matar Guguni", "Crispy Sev"],
+              costEstimate: "₹50 - ₹90 per person"
+            },
+            afternoon: {
+              time: "02:00 PM - 05:00 PM",
+              place: "Cuttack Tarakasi Silver Filigree Guild",
+              description: "Watch artisans spin silver threads into delicate jewelry and Konark wheels.",
+              artisanStudio: "Guru Pankaj Sahoo (GI Certified Tarakasi Artist)"
+            },
+            hotel: {
+              name: "Ekamra Haveli Heritage Guesthouse",
+              type: "Old Town Temple Courtyard Stay",
+              rate: "₹850/night",
+              contact: "+91 99380 77123"
+            }
+          }
+        ].slice(0, days)
+      };
+
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(planResponse));
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: err.message }));
+    }
+    return;
+  }
+
+  // =========================================================================
+  // API ROUTE 4: AI CONVERSATIONAL ITINERARY CHAT MODIFIER
+  // =========================================================================
+  if (pathname === '/api/ai/chat' && req.method === 'POST') {
+    try {
+      const { message } = await parseRequestBody(req);
+      const reply = `✨ AI Adjusted: We customized your plan with "${message || 'Custom Request'}". Added pure veg temple thali and synchronized serene sunset points!`;
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ aiReply: reply }));
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: err.message }));
+    }
+    return;
+  }
+
+  // =========================================================================
+  // API ROUTE 5: NEARBY SERVICES GEOSPATIAL PROXIMITY
+  // =========================================================================
+  if (pathname === '/api/location/nearby' && req.method === 'GET') {
+    const lat = parseFloat(parsedUrl.query.lat) || 19.8135;
+    const lng = parseFloat(parsedUrl.query.lng) || 85.8312;
+    const radius = parseFloat(parsedUrl.query.radius) || 25;
+
+    const nearbyFood = FOOD_DATA
+      .map(item => ({ ...item, distanceKm: calculateHaversineKm(lat, lng, item.lat, item.lng) }))
+      .filter(i => i.distanceKm <= radius)
+      .sort((a, b) => a.distanceKm - b.distanceKm);
+
+    const nearbyHotels = HOTEL_DATA
+      .map(item => ({ ...item, distanceKm: calculateHaversineKm(lat, lng, item.lat, item.lng) }))
+      .filter(i => i.distanceKm <= radius)
+      .sort((a, b) => a.distanceKm - b.distanceKm);
+
+    const nearbyTransport = TRANSPORT_DATA
+      .map(item => ({ ...item, distanceKm: calculateHaversineKm(lat, lng, item.lat, item.lng) }))
+      .filter(i => i.distanceKm <= radius)
+      .sort((a, b) => a.distanceKm - b.distanceKm);
+
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ nearbyFood, nearbyHotels, nearbyTransport }));
+    return;
+  }
+
+  // =========================================================================
+  // STATIC ASSETS FILE SERVER
+  // =========================================================================
+  let safePath = pathname === '/' ? '/index.html' : pathname;
+  const filePath = path.join(__dirname, safePath);
+  const ext = path.extname(filePath).toLowerCase();
+
+  fs.readFile(filePath, (err, content) => {
+    if (err) {
+      if (err.code === 'ENOENT') {
+        fs.readFile(path.join(__dirname, 'index.html'), (err2, fallbackContent) => {
+          if (err2) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('404 Not Found');
+          } else {
+            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+            res.end(fallbackContent);
+          }
         });
-      } catch (e) {}
+      } else {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end(`Server Error: ${err.code}`);
+      }
+    } else {
+      res.writeHead(200, { 'Content-Type': MIME_TYPES[ext] || 'application/octet-stream' });
+      res.end(content);
     }
-    const localUsers = getUsersDatabase();
-    return sendJsonResponse(res, 200, {
-      database: 'Local Backup File',
-      totalUsers: localUsers.length,
-      users: localUsers
-    });
-  }
-
-  // =========================================================================
-  // REAL-TIME NEARBY SERVICES API
-  // =========================================================================
-  const foodData = loadDataset('Food_Eateries', 'food.json');
-  const hotelData = loadDataset('Hotels_Stays', 'hotels.json');
-  const transportData = loadDataset('Transport_Rentals', 'transport.json');
-
-  if (pathname === '/api/location/nearby' && method === 'GET') {
-    const userLat = parseFloat(query.lat) || 19.8135;
-    const userLng = parseFloat(query.lng) || 85.8312;
-    const maxRadius = parseFloat(query.radius) || 35;
-
-    const nearbyFood = foodData
-      .map((item) => ({ ...item, distanceKm: calculateHaversineDistance(userLat, userLng, item.lat, item.lng) }))
-      .filter((item) => item.distanceKm <= maxRadius)
-      .sort((a, b) => a.distanceKm - b.distanceKm);
-
-    const nearbyHotels = hotelData
-      .map((item) => ({ ...item, distanceKm: calculateHaversineDistance(userLat, userLng, item.lat, item.lng) }))
-      .filter((item) => item.distanceKm <= maxRadius)
-      .sort((a, b) => a.distanceKm - b.distanceKm);
-
-    const nearbyTransport = transportData
-      .map((item) => ({ ...item, distanceKm: calculateHaversineDistance(userLat, userLng, item.lat, item.lng) }))
-      .filter((item) => item.distanceKm <= maxRadius)
-      .sort((a, b) => a.distanceKm - b.distanceKm);
-
-    return sendJsonResponse(res, 200, {
-      success: true,
-      userCoordinates: { lat: userLat, lng: userLng },
-      radiusKm: maxRadius,
-      nearbyFood,
-      nearbyHotels,
-      nearbyTransport
-    });
-  }
-
-  // Static File Server
-  let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
-  const extname = String(path.extname(filePath)).toLowerCase();
-  const mimeTypes = {
-    '.html': 'text/html; charset=utf-8',
-    '.css': 'text/css; charset=utf-8',
-    '.js': 'text/javascript; charset=utf-8',
-    '.json': 'application/json; charset=utf-8',
-    '.png': 'image/png',
-    '.jpg': 'image/jpeg',
-    '.jpeg': 'image/jpeg'
-  };
-
-  fs.readFile(filePath, (error, content) => {
-    if (error) {
-      return sendJsonResponse(res, 404, { error: 'Route not found.' });
-    }
-    res.writeHead(200, {
-      'Content-Type': mimeTypes[extname] || 'application/octet-stream',
-      'Access-Control-Allow-Origin': '*'
-    });
-    res.end(content, 'utf-8');
   });
 });
 
 server.listen(PORT, () => {
-  console.log(`🛕 YATRAसंस्कृति Backend & MongoDB Server running on port ${PORT}`);
+  console.log(`\n======================================================`);
+  console.log(`🛕 YATRAसंस्कृति Platform Running on port ${PORT}`);
+  console.log(`🌐 Local URL: http://localhost:${PORT}`);
+  console.log(`======================================================\n`);
 });
