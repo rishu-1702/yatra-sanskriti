@@ -550,7 +550,7 @@ button {
 
 /* ==========================================================================
    TOP SOS RIBBON & PRIMARY NAVBAR
-   ========================================================================= */
+   ========================================================================== */
 .top-sos-ribbon {
   background: var(--forest-dark);
   color: #f1ebd9;
@@ -1376,7 +1376,7 @@ button {
 }
 
 /* ==========================================================================
-   TAB 2: REAL-TIME NEARBY SERVICES
+   TAB 2: GOOGLE MAPS EMBED & REAL-TIME NEARBY SERVICES
    ========================================================================== */
 .nearby-control-box {
   background: var(--sandstone-card);
@@ -1456,6 +1456,68 @@ button {
   font-weight: 700;
   color: var(--green-emerald);
   padding: 6px 0;
+}
+
+.google-map-container-box {
+  background: #fff;
+  border: 1.5px solid var(--sandstone-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.map-header-bar {
+  background: var(--forest-dark);
+  color: #fff;
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+}
+
+.map-live-tag {
+  color: var(--gold-warm);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-live-tag strong {
+  color: #fff;
+}
+
+.btn-gmaps-external {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+
+.btn-gmaps-external:hover {
+  background: var(--gold-warm);
+  color: var(--forest-dark);
+}
+
+.gmaps-iframe-wrapper {
+  width: 100%;
+  height: 280px;
+  position: relative;
+  background: #e5e7eb;
+}
+
+.gmaps-iframe-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 .nearby-service-tabs {
@@ -1570,17 +1632,19 @@ button {
   margin-top: auto;
   border-top: 1px solid #f1ebd9;
   padding-top: 8px;
+  gap: 8px;
 }
 
-.nsc-rating {
-  font-size: 0.78rem;
+.btn-gmaps-direct {
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.72rem;
   font-weight: 700;
-  color: var(--gold-metallic);
-}
-
-.nsc-rating span {
-  color: var(--text-muted);
-  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .btn-call-service {
@@ -1723,12 +1787,13 @@ button {
   color: #fff;
   border: 1.5px solid var(--gold-warm);
   border-radius: var(--radius-lg);
-  padding: 2.5rem;
+  padding: 2.2rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
   align-items: center;
   box-shadow: var(--shadow-elevated);
+  margin-bottom: 1.5rem;
 }
 
 .ai-beacon-pill {
@@ -1775,16 +1840,47 @@ button {
   color: var(--forest-dark);
   font-weight: 800;
   font-size: 0.92rem;
-  padding: 16px 20px;
+  padding: 14px 18px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 8px;
   box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
 }
 
+.reroute-map-wrapper {
+  background: var(--sandstone-card);
+  border: 1.5px solid var(--sandstone-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-elevated);
+}
+
+.reroute-map-header {
+  background: var(--forest-dark);
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.btn-gmaps-reroute {
+  background: var(--terracotta);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 /* ==========================================================================
-   TAB 5: LIVING MONUMENTS DIRECTORY
+   TAB 5: ⭐ HIDDEN GEMS (WITH EXACT GOOGLE MAPS ROUTES & LIVE CROWD)
    ========================================================================== */
 .destination-cards-grid {
   display: grid;
@@ -1798,6 +1894,8 @@ button {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
 }
 
 .dest-media-container {
@@ -1841,8 +1939,8 @@ button {
   font-weight: 700;
 }
 
-.dest-footfall-status.low { background: rgba(0, 0, 0, 0.65); color: #4ade80; }
-.dest-footfall-status.high { background: rgba(0, 0, 0, 0.65); color: #f87171; }
+.dest-footfall-status.low { background: rgba(0, 0, 0, 0.7); color: #4ade80; }
+.dest-footfall-status.high { background: rgba(0, 0, 0, 0.7); color: #f87171; }
 
 .btn-dest-audio {
   position: absolute;
@@ -1864,6 +1962,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 1;
 }
 
 .dest-header-flex {
@@ -1881,6 +1980,41 @@ button {
   font-size: 1.25rem;
   color: var(--text-dark);
 }
+
+/* Live Crowd Density Gauge Bar */
+.crowd-density-bar-container {
+  background: #fdfaf3;
+  border: 1px solid var(--sandstone-border);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.crowd-bar-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.crowd-text-low { color: var(--green-emerald); }
+.crowd-text-high { color: var(--crimson-sos); }
+
+.crowd-meter-track {
+  width: 100%;
+  height: 6px;
+  background: #ebd9be;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.crowd-meter-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+
+.crowd-meter-fill.low { background: var(--green-emerald); }
+.crowd-meter-fill.high { background: var(--crimson-sos); }
 
 .dest-history-accordion {
   font-size: 0.8rem;
@@ -1900,7 +2034,7 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .artisan-badge-icon {
@@ -1929,6 +2063,31 @@ button {
   font-weight: 700;
   padding: 4px 10px;
   border-radius: var(--radius-sm);
+}
+
+.dest-route-footer {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #f1ebd9;
+}
+
+.btn-gmaps-dest-route {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #1d4ed8;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.25);
+  transition: background 0.15s;
+}
+
+.btn-gmaps-dest-route:hover {
+  background: #1e40af;
 }
 
 /* ==========================================================================
@@ -2308,12 +2467,13 @@ button {
 .btn-pack-download { color: var(--gold-warm); font-size: 1.1rem; }
 
 /* ==========================================================================
-   TAB 8: PAN-INDIA DIRECTORY
+   TAB 8: ⭐ PAN-INDIA NETWORK & IN-PLACE STATE DOSSIER
    ========================================================================== */
 .india-grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .india-state-box {
@@ -2321,6 +2481,14 @@ button {
   border: 1.5px solid var(--sandstone-border);
   border-radius: var(--radius-md);
   overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.india-state-box:hover {
+  transform: translateY(-4px);
+  border-color: var(--terracotta);
+  box-shadow: var(--shadow-elevated);
 }
 
 .state-cover-box {
@@ -2345,7 +2513,7 @@ button {
 }
 
 .state-status-pill.active { background: #dcfce7; color: #15803d; }
-.state-status-pill.upcoming { background: rgba(0, 0, 0, 0.6); color: #fff; }
+.state-status-pill.preview { background: #fef3c7; color: #b45309; }
 
 .state-card-content {
   padding: 1.2rem;
@@ -2383,11 +2551,129 @@ button {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  margin-top: 4px;
 }
 
 .btn-state-action.active {
   background: var(--terracotta);
   color: #fff;
+}
+
+/* In-Place State Dossier Container */
+.state-dossier-panel {
+  background: var(--sandstone-card);
+  border: 2px solid var(--gold-warm);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-elevated);
+  display: none;
+  flex-direction: column;
+  gap: 1.2rem;
+  animation: fadeInTab 0.3s ease-in-out;
+}
+
+.state-dossier-panel.active {
+  display: flex;
+}
+
+.dossier-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1.5px solid #f1ebd9;
+  padding-bottom: 10px;
+}
+
+.dossier-tag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--terracotta);
+  text-transform: uppercase;
+}
+
+.dossier-header-bar h3 {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  color: var(--text-dark);
+}
+
+.btn-close-dossier {
+  background: #fee2e2;
+  color: var(--crimson-sos);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.dossier-desc-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.dossier-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+.dossier-card {
+  background: #fdfbf7;
+  border: 1px solid var(--sandstone-border);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dossier-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.d-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--terracotta-light);
+  color: var(--terracotta-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.d-status-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--green-emerald);
+}
+
+.dossier-card h4 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+}
+
+.d-craft {
+  font-size: 0.75rem;
+  color: var(--terracotta);
+  font-weight: 600;
+}
+
+.btn-dossier-map {
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 6px;
 }
 
 /* ==========================================================================
@@ -2603,4 +2889,7 @@ button {
   .audio-selectors-row { justify-content: center; }
   .audio-cover-frame { width: 180px; height: 180px; }
   .itinerary-header-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .nsc-footer { flex-direction: column; align-items: stretch; }
+  .btn-gmaps-direct, .btn-call-service { text-align: center; justify-content: center; }
+  .dossier-header-bar { flex-direction: column; gap: 8px; }
 }
