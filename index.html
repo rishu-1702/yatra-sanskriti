@@ -13,6 +13,8 @@
   <!-- Font Awesome 6.4.0 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <!-- Supabase Library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -38,7 +40,7 @@
     </div>
     <div class="golden-spore-particles"></div>
   </div>
-
+  
   <!-- =========================================================================
        GATEWAY 1: UNIVERSAL AUTHENTICATION SCREEN
        ========================================================================= -->
@@ -92,6 +94,7 @@
 
         <!-- Mode Toggle -->
         <div class="gate-mode-toggle" id="gateModeToggle">
+          <button class="mode-btn" id="btn-gate-2fa" onclick="switchGateMode('2fa')">Authenticator App</button>
           <button class="mode-btn active" id="btn-gate-signin" onclick="switchGateMode('signin')">Sign In</button>
           <button class="mode-btn" id="btn-gate-otp" onclick="switchGateMode('otp')">Mobile OTP</button>
           <button class="mode-btn" id="btn-gate-signup" onclick="switchGateMode('signup')">Create Account</button>
@@ -184,6 +187,50 @@
           <button type="submit" class="btn-gate-primary">
             <i class="fa-solid fa-sparkles"></i> Create Account & Enter
           </button>
+        </form>
+
+        
+        <!-- 5. 2FA TOTP FORM -->
+        <form class="gate-auth-form" id="form-gate-2fa" onsubmit="handleGateLogin(event, 'tourist-2fa')">
+          <div id="totp-setup-phase">
+            <div class="totp-info" style="text-align: center;">
+              <i class="fa-solid fa-shield-halved" style="font-size:2rem; color:var(--terracotta); margin-bottom:10px;"></i>
+              <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-dark);">Secure your account using Google Authenticator.</p>
+              <button type="button" class="btn-gate-primary" style="margin-top:15px; width:100%;" onclick="setupTotp()">
+                <i class="fa-solid fa-qrcode"></i> Generate QR Code
+              </button>
+            </div>
+            <div id="totp-qr-container" style="display:none; text-align:center; margin-top:15px;">
+              <img id="totp-qr-image" src="" alt="QR Code" style="width: 150px; height: 150px; border: 2px solid var(--sandstone-border); border-radius: var(--radius-sm); padding: 5px; background: white;">
+              <p style="font-size: 0.8rem; margin-top: 10px; color: var(--text-muted);">
+                Secret Key: <strong id="totp-secret-text" style="color:var(--text-dark); user-select:all; display:block; margin-top:4px;"></strong>
+              </p>
+              <button type="button" class="link-helper" style="margin-top:10px; display:inline-block; font-size:0.85rem;" onclick="showTotpVerifyPhase()">Next: Verify Code <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+          <div id="totp-verify-phase" style="display:none;">
+            <div class="form-group">
+              <label><i class="fa-solid fa-clock"></i> 6-Digit Code</label>
+              <div class="totp-timer-pill">
+                <span style="font-size: 0.75rem; font-weight:700; color:var(--text-dark);">Valid for: <span id="totp-countdown">30</span>s</span>
+                <div class="totp-progress-track">
+                  <div id="totp-progress-bar" style="height:100%; width:100%; background:var(--green-emerald); transition: width 1s linear;"></div>
+                </div>
+              </div>
+              <div class="otp-digit-inputs" id="totp-inputs">
+                <input type="text" maxlength="1" class="otp-digit totp-digit" onkeyup="moveTotpFocus(this, 0)">
+                <input type="text" maxlength="1" class="otp-digit totp-digit" onkeyup="moveTotpFocus(this, 1)">
+                <input type="text" maxlength="1" class="otp-digit totp-digit" onkeyup="moveTotpFocus(this, 2)">
+                <input type="text" maxlength="1" class="otp-digit totp-digit" onkeyup="moveTotpFocus(this, 3)">
+                <input type="text" maxlength="1" class="otp-digit totp-digit" onkeyup="moveTotpFocus(this, 4)">
+                <input type="text" maxlength="1" class="otp-digit totp-digit" onkeyup="moveTotpFocus(this, 5)">
+              </div>
+            </div>
+            <button type="submit" class="btn-gate-primary" style="margin-top:15px;">
+              <i class="fa-solid fa-shield-check"></i> Verify & Authenticate
+            </button>
+            <button type="button" class="btn-social" style="width:100%; margin-top:10px;" onclick="resetTotpSetup()">Back to QR Code</button>
+          </div>
         </form>
 
         <!-- 4. ARTISAN GUILD LOGIN FORM -->
@@ -1546,6 +1593,14 @@
        JAVASCRIPT: PAN-INDIA IN-PLACE DOSSIER, GOOGLE MAPS & AI PLANNER
        ========================================================================= -->
   <script>
+    
+    // =========================================================================
+    // SUPABASE AUTHENTICATION SYSTEM
+    // =========================================================================
+    const SUPABASE_URL = 'https://amxxywrmutvdoztpgxlf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFteHh5d3JtdXR2ZG96dHBneGxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MTI3MTcsImV4cCI6MjEwNTQ4ODcxN30.I5Ds5qbj64COvxx5VarbwzjR2YAvevUVS-LK7nfh8ts';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
     const API_BASE_URL = window.location.protocol === 'file:' ? 'http://localhost:5000/api' : (window.location.origin + '/api');
     let currentCoords = { lat: 19.8135, lng: 85.8312, label: 'Puri Coast & Grand Road' };
 
@@ -1704,6 +1759,8 @@
       formOtp.classList.remove('active');
       formSignUp.classList.remove('active');
       formArtisan.classList.remove('active');
+      const form2fa = document.getElementById('form-gate-2fa');
+      if(form2fa) form2fa.classList.remove('active');
 
       if (role === 'tourist') {
         tabTourist.classList.add('active');
@@ -1783,14 +1840,91 @@
       updateGoogleMapEmbed();
     }
 
+    
     async function handleGateLogin(e, loginType) {
       e.preventDefault();
       
       let userName = 'Explorer';
       let userRole = 'Verified Cultural Explorer';
       let userAvatar = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80';
-      let payload = { authMethod: loginType };
 
+      // --- SUPABASE SIGN UP ---
+      if (loginType === 'tourist-signup') {
+        userName = document.getElementById('gate-signup-name').value.trim() || 'New Explorer';
+        const email = document.getElementById('gate-signup-email').value.trim();
+        const password = document.getElementById('gate-signup-pass').value;
+
+        showToast('Creating secure account in Supabase...');
+        const { data, error } = await supabaseClient.auth.signUp({
+          email: email,
+          password: password,
+          options: { data: { full_name: userName } }
+        });
+
+        if (error) {
+          showToast(error.message, true);
+          return;
+        }
+        
+        if (data.session) {
+          activatePlatformSession(userName, userRole, userAvatar);
+        } else {
+          showToast('Account created! Please check your email to verify (or just sign in if verification is off).');
+          switchGateMode('signin');
+        }
+        return;
+      }
+
+      // --- SUPABASE SIGN IN ---
+      else if (loginType === 'tourist-password') {
+        const email = document.getElementById('gate-signin-id').value.trim();
+        const password = document.getElementById('gate-signin-pass').value;
+
+        showToast('Signing in with Supabase...');
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+        if (error) {
+          showToast(error.message, true);
+          return;
+        }
+
+        userName = data.user.user_metadata?.full_name || email.split('@')[0];
+        activatePlatformSession(userName, userRole, userAvatar);
+        return;
+      }
+
+      else if (loginType === 'tourist-2fa') {
+        const inputs = document.querySelectorAll('.totp-digit');
+        let token = '';
+        inputs.forEach(i => token += i.value);
+        if (token.length !== 6) {
+          showToast('Please enter a 6-digit code.', true);
+          return;
+        }
+        showToast('Verifying Authenticator Code...');
+        try {
+          const url = (typeof API_BASE_URL !== 'undefined') ? API_BASE_URL + '/auth/2fa/verify' : '/api/auth/2fa/verify';
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ secret: totpSecret, token, name: 'Secure Explorer' })
+          });
+          const data = await res.json();
+          if (data.success) {
+            activatePlatformSession(data.user.name, data.user.role, userAvatar);
+            return;
+          } else {
+            showToast(data.message || 'Verification failed', true);
+            return;
+          }
+        } catch (err) {
+          showToast('Verification error', true);
+          return;
+        }
+      }
       if (loginType === 'tourist-password') {
         const inputVal = document.getElementById('gate-signin-id').value.trim();
         if (inputVal.includes('@')) {
@@ -1858,7 +1992,8 @@
       activatePlatformSession('Guest Explorer', 'Guest Visitor', 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80');
     }
 
-    function performLogout() {
+    async function performLogout() {
+      await supabaseClient.auth.signOut();
       localStorage.removeItem('yatrasanskriti_session');
       document.getElementById('main-platform-app').style.display = 'none';
       document.getElementById('login-gate-screen').style.display = 'flex';
