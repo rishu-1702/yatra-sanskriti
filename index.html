@@ -1791,9 +1791,9 @@
       chatWindow.scrollTop = chatWindow.scrollHeight;
       
       try {
-        const res = await fetch('/api/chat', {
+        const res = await fetch('https://tiny-endocrine-predict.ngrok-free.dev/api/chat', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
           body: JSON.stringify({ message: query })
         });
         const data = await res.json();
@@ -2215,7 +2215,7 @@
       try {
         const response = await fetch(`/api/planner`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
           body: JSON.stringify({ destination: dest, durationDays: days, budgetTier: budget, travelStyle: style })
         });
         if (response.ok) planData = await response.json();
@@ -2398,9 +2398,9 @@
       respText.innerText = 'AI is optimizing your itinerary...';
 
       try {
-        const res = await fetch(`/api/chat`, {
+        const res = await fetch('https://tiny-endocrine-predict.ngrok-free.dev/api/chat', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
           body: JSON.stringify({ message: query })
         });
         if (res.ok) {
