@@ -378,6 +378,9 @@
       <div class="container menu-strip-flex">
         <span class="menu-strip-label"><i class="fa-solid fa-bars-staggered"></i> Menu:</span>
         <div class="menu-pills-row">
+          <button class="menu-pill-btn menu-pill-ai" data-tab="ai-portal" onclick="switchMenuTab('ai-portal')">
+            <i class="fa-solid fa-robot"></i> ? Yatra Sathi AI Portal
+          </button>
           <button class="menu-pill-btn menu-pill-ai active" data-tab="planner" onclick="switchMenuTab('planner')">
             <i class="fa-solid fa-wand-magic-sparkles"></i> ⭐ AI Trip Planner
           </button>
@@ -520,6 +523,67 @@
     <!-- =========================================================================
          TAB 1: PORTAL & SEARCH HUB
          ========================================================================= -->
+    
+    <!-- =========================================================================
+         TAB 0: AI PORTAL (NEW)
+         ========================================================================= -->
+    
+    <!-- =========================================================================
+         TAB 0: AI PORTAL (NEW)
+         ========================================================================= -->
+    <section id="menu-view-ai-portal" class="menu-tab-view">
+      <div class="container hero-container" style="max-width: 1000px; padding: 0 15px;">
+        
+        <!-- Chat App Container -->
+        <div style="background: var(--bg-card); border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.15); border: 1px solid var(--border-color); display: flex; flex-direction: column; height: 80vh; max-height: 750px;">
+          
+          <!-- Header -->
+          <div style="background: linear-gradient(135deg, var(--green-emerald), #0f3d26); padding: 20px 25px; display: flex; align-items: center; gap: 15px; color: white;">
+            <div style="width: 55px; height: 55px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div>
+              <h2 style="margin: 0; font-size: 1.5rem; font-weight: 800; color: white; letter-spacing: 0.5px;">Yatra Sathi</h2>
+              <p style="margin: 0; font-size: 0.9rem; opacity: 0.9; margin-top: 2px;">Your 24/7 AI Heritage & Travel Guide</p>
+            </div>
+            <div style="margin-left: auto; background: rgba(255,255,255,0.15); padding: 8px 15px; border-radius: 30px; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.2);">
+              <div style="width: 10px; height: 10px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; animation: pulse 2s infinite;"></div> Online
+            </div>
+          </div>
+          
+          <!-- Chat Window -->
+          <div id="ai-chat-window" style="flex: 1; padding: 30px; overflow-y: auto; background: #f4f9f6; display: flex; flex-direction: column; gap: 25px;">
+             
+             <!-- AI Message (Welcome) -->
+             <div class="msg-bubble ai" style="display: flex; gap: 15px; align-items: flex-start; max-width: 85%;">
+                <div style="width: 45px; height: 45px; border-radius: 50%; background: var(--green-emerald); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; box-shadow: 0 6px 12px rgba(27, 85, 59, 0.2);">
+                  <i class="fa-solid fa-robot"></i>
+                </div>
+                <div style="background: white; padding: 20px 25px; border-radius: 0 20px 20px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); font-size: 1rem; line-height: 1.7; color: #2c3e50; border: 1px solid #eef2f0;">
+                  <strong style="color: var(--green-emerald); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block;">Yatra Sathi</strong>
+                  Namaste! 🙏 I am your official AI Guide for Yatra Sanskriti.<br><br>I have memorized thousands of pages of Indian history, secret UNESCO trails, and local artisan guilds. What ancient secrets or custom travel plans would you like to explore today?
+                </div>
+             </div>
+
+          </div>
+          
+          <!-- Input Area -->
+          <div style="padding: 20px 25px; background: white; border-top: 1px solid #eef2f0; display: flex; gap: 15px; align-items: center; box-shadow: 0 -5px 20px rgba(0,0,0,0.02);">
+            <div style="flex: 1; position: relative;">
+              <input type="text" id="ai-portal-input" placeholder="Ask Yatra Sathi anything..." style="width: 100%; padding: 20px 20px 20px 55px; border-radius: 40px; border: 2px solid #eef2f0; font-size: 1.05rem; outline: none; font-family: inherit; transition: all 0.3s; background: #f8faf9; color: #2c3e50;" onkeypress="if(event.key === 'Enter') window.sendPortalMessage()" onfocus="this.style.borderColor='var(--green-emerald)'; this.style.background='white'; this.style.boxShadow='0 0 0 5px rgba(27, 85, 59, 0.1)';" onblur="this.style.borderColor='#eef2f0'; this.style.background='#f8faf9'; this.style.boxShadow='none';">
+              <i class="fa-solid fa-sparkles" style="position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: var(--green-emerald); font-size: 1.2rem;"></i>
+            </div>
+            <button onclick="window.sendPortalMessage()" style="width: 65px; height: 65px; background: var(--green-emerald); color: white; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(27, 85, 59, 0.3);" onmouseover="this.style.transform='scale(1.1) rotate(5deg)';" onmouseout="this.style.transform='scale(1) rotate(0deg)';">
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </div>
+
+        </div>
+        
+      </div>
+    </section>
+
+
     <section id="menu-view-overview" class="menu-tab-view">
       <div class="container hero-container">
         
@@ -1686,6 +1750,82 @@
       toast.classList.add('show');
       setTimeout(() => { toast.classList.remove('show'); }, 4000);
     }
+
+    
+    
+    window.sendPortalMessage = async function() {
+      const input = document.getElementById('ai-portal-input');
+      const query = input.value.trim();
+      if(!query) return;
+      
+      const chatWindow = document.getElementById('ai-chat-window');
+      
+      // Add user message
+      const userDiv = document.createElement('div');
+      userDiv.style = "display: flex; gap: 15px; align-items: flex-start; max-width: 85%; align-self: flex-end; flex-direction: row-reverse; animation: fadeIn 0.3s ease-out;";
+      userDiv.innerHTML = `
+        <div style="width: 45px; height: 45px; border-radius: 50%; background: #2c3e50; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; box-shadow: 0 6px 12px rgba(0,0,0,0.15);">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <div style="background: #2c3e50; padding: 20px 25px; border-radius: 20px 0 20px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); font-size: 1rem; line-height: 1.7; color: white;">
+          ${query}
+        </div>
+      `;
+      chatWindow.appendChild(userDiv);
+      
+      input.value = '';
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+      
+      // Add loading message
+      const loadingDiv = document.createElement('div');
+      loadingDiv.style = "display: flex; gap: 15px; align-items: flex-start; max-width: 85%; animation: fadeIn 0.3s ease-out;";
+      loadingDiv.innerHTML = `
+        <div style="width: 45px; height: 45px; border-radius: 50%; background: var(--green-emerald); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; box-shadow: 0 6px 12px rgba(27, 85, 59, 0.2);">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div style="background: white; padding: 15px 25px; border-radius: 0 20px 20px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); font-size: 1rem; color: #2c3e50; border: 1px solid #eef2f0; display: flex; align-items: center; gap: 12px; font-weight: 600;">
+          <i class="fa-solid fa-circle-notch fa-spin" style="color: var(--green-emerald); font-size: 1.2rem;"></i> Yatra Sathi is analyzing heritage archives...
+        </div>
+      `;
+      chatWindow.appendChild(loadingDiv);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+      
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: query })
+        });
+        const data = await res.json();
+        
+        // Format bold text from markdown-like syntax using simple replace
+        let formattedReply = (data.reply || data.error || 'Done.');
+        formattedReply = formattedReply.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #1b553b;">$1</strong>');
+        formattedReply = formattedReply.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        formattedReply = formattedReply.replace(/\n/g, '<br>');
+        
+        loadingDiv.innerHTML = `
+          <div style="width: 45px; height: 45px; border-radius: 50%; background: var(--green-emerald); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; box-shadow: 0 6px 12px rgba(27, 85, 59, 0.2);">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div style="background: white; padding: 20px 25px; border-radius: 0 20px 20px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); font-size: 1rem; line-height: 1.7; color: #2c3e50; border: 1px solid #eef2f0;">
+            <strong style="color: var(--green-emerald); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block;">Yatra Sathi</strong>
+            ${formattedReply}
+          </div>
+        `;
+      } catch(e) {
+        loadingDiv.innerHTML = `
+          <div style="width: 45px; height: 45px; border-radius: 50%; background: #e74c3c; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <div style="background: white; padding: 20px 25px; border-radius: 0 20px 20px 20px; border: 1px solid #f5c6cb; color: #721c24;">
+            Sorry, I lost connection to the heritage database. Please try again.
+          </div>
+        `;
+      }
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    };
+
 
     function switchMenuTab(tabKey) {
       document.querySelectorAll('.menu-pill-btn').forEach(btn => {
