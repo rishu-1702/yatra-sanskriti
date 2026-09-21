@@ -1,4 +1,4 @@
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -50,21 +50,18 @@ module.exports = async function handler(req, res) {
       
       Ensure you create exactly ${durationDays} objects in the itineraryDays array.
       Focus on hidden gems, sustainable travel, local artisans (GI tags), and rich cultural history.
-      OUTPUT ONLY RAW JSON. NO BACKTICKS. NO MARKDOWN.
     `;
 
-    const geminiResponse = await fetch(\`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=\${process.env.GEMINI_API_KEY}\`, {
+    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{ role: 'user', parts: [{ text: prompt }] }]
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        generationConfig: {
+            response_mime_type: "application/json"
+        }
       })
     });
-
-    if (!geminiResponse.ok) {
-      const errData = await geminiResponse.text();
-      return res.status(500).json({ error: 'API Error: ' + errData });
-    }
 
     const data = await geminiResponse.json();
     
@@ -72,13 +69,15 @@ module.exports = async function handler(req, res) {
       return res.status(500).json({ error: data.error.message });
     }
 
-    let reply = data.candidates[0].content.parts[0].text;
-    reply = reply.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
+    const reply = data.candidates[0].content.parts[0].text;
     
+    // Parse the JSON returned by Gemini
     const parsedPlan = JSON.parse(reply);
+
     return res.status(200).json(parsedPlan);
     
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    console.error(error);
+    return res.status(500).json({ error: 'Failed to generate itinerary' });
   }
-};
+}
