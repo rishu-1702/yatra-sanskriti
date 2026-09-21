@@ -2073,7 +2073,7 @@
       let planData = null;
 
       try {
-        const response = await fetch(`${API_BASE_URL}/ai/plan-trip`, {
+        const response = await fetch(`/api/planner`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ destination: dest, durationDays: days, budgetTier: budget, travelStyle: style })
@@ -2258,7 +2258,7 @@
       respText.innerText = 'AI is optimizing your itinerary...';
 
       try {
-        const res = await fetch(`${API_BASE_URL}/ai/chat`, {
+        const res = await fetch(`/api/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: query })
