@@ -50,17 +50,15 @@ export default async function handler(req, res) {
       
       Ensure you create exactly ${durationDays} objects in the itineraryDays array.
       Focus on hidden gems, sustainable travel, local artisans (GI tags), and rich cultural history.
+      OUTPUT ONLY RAW JSON. NO BACKTICKS.
     `;
 
-    // USING gemini-1.5-flash-latest to fix the version error
-    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+    // Switch to gemini-pro which is universally available
+    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GEMINI_API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        generationConfig: {
-            response_mime_type: "application/json"
-        }
+        contents: [{ role: 'user', parts: [{ text: prompt }] }]
       })
     });
 
@@ -70,7 +68,10 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: data.error.message });
     }
 
-    const reply = data.candidates[0].content.parts[0].text;
+    let reply = data.candidates[0].content.parts[0].text;
+    
+    // Clean up potential markdown formatting from gemini-pro
+    reply = reply.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
     
     // Parse the JSON returned by Gemini
     const parsedPlan = JSON.parse(reply);
