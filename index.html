@@ -16,10 +16,7 @@
   <!-- Supabase Library -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Firebase Libraries for Phone Auth -->
-  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
-</head>
+  </head>
 <body>
 
   <!-- Toast Notification Alert Banner -->
@@ -145,8 +142,7 @@
               <i class="fa-solid fa-phone"></i>
               <input type="tel" id="gate-otp-phone" placeholder="Enter 10-digit mobile number..." required>
               
-              <div id="recaptcha-container"></div>
-              <button type="button" class="btn-otp-action" onclick="sendFirebaseOtp()">Send SMS</button>
+              <button type="button" class="btn-otp-action" onclick="sendSupabaseEmailOtp()">Send Code</button>
 
             </div>
           </div>
@@ -1609,30 +1605,7 @@
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     
-    // =========================================================================
-    // FIREBASE PHONE AUTHENTICATION SYSTEM (OVERRIDING SUPABASE FOR OTP)
-    // =========================================================================
-    const firebaseConfig = {
-      apiKey: "AIzaSyAwI-ZLUn-L5dJS85XlPn-T3elaRw7_WoU",
-      authDomain: "yatraphoneauth.firebaseapp.com",
-      projectId: "yatraphoneauth",
-      storageBucket: "yatraphoneauth.firebasestorage.app",
-      messagingSenderId: "918041914913",
-      appId: "1:918041914913:web:db72be5f5c38f7cd84fd60",
-      measurementId: "G-BJFTS880F9"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    let windowConfirmationResult = null;
-
-    function initRecaptcha() {
-      if (!window.recaptchaVerifier) {
-        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-          'size': 'invisible',
-          'callback': (response) => {
-            // reCAPTCHA solved
-          }
-        });
+            });
       }
     }
 
@@ -1663,6 +1636,30 @@
       }
     }
 
+    
+    // =========================================================================
+    // SUPABASE EMAIL OTP SYSTEM
+    // =========================================================================
+    async function sendSupabaseEmailOtp() {
+      const email = document.getElementById('gate-otp-phone').value.trim();
+      if (!email || !email.includes('@')) {
+        showToast('Please enter a valid email address', true);
+        return;
+      }
+      
+      showToast('Sending OTP to your email...', false);
+      
+      const { data, error } = await supabaseClient.auth.signInWithOtp({
+        email: email,
+      });
+
+      if (error) {
+        showToast(error.message, true);
+      } else {
+        showToast('OTP Code sent to your inbox!', false);
+        document.querySelector('.otp-digit').focus();
+      }
+    }
     const API_BASE_URL = window.location.protocol === 'file:' ? 'http://localhost:5000/api' : (window.location.origin + '/api');
     let currentCoords = { lat: 19.8135, lng: 85.8312, label: 'Puri Coast & Grand Road' };
 
@@ -2000,6 +1997,7 @@
         payload.role = 'Verified Cultural Explorer';
       } 
       else if (loginType === 'tourist-otp') {
+        const email = document.getElementById('gate-otp-phone').value.trim();
         const otpInputs = document.querySelectorAll('.otp-digit');
         let code = '';
         otpInputs.forEach(input => code += input.value);
@@ -2008,6 +2006,29 @@
           showToast('Please enter all 6 digits of the OTP.', true);
           return;
         }
+
+        if (!email) {
+          showToast('Please enter your email first.', true);
+          return;
+        }
+
+        showToast('Verifying code...', false);
+        
+        const { data, error } = await supabaseClient.auth.verifyOtp({
+          email: email,
+          token: code,
+          type: 'email'
+        });
+
+        if (error) {
+          showToast('Invalid or expired OTP code. Try again.', true);
+        } else {
+          userName = data.user.email.split('@')[0];
+          userRole = 'Verified Explorer';
+          activatePlatformSession(userName, userRole, userAvatar);
+        }
+        return;
+      }
 
         if (!windowConfirmationResult) {
           showToast('Please click "Send SMS" first!', true);
