@@ -501,7 +501,7 @@
             <div class="ai-mod-header">
               <div class="ai-mod-icon"><i class="fa-solid fa-robot"></i></div>
               <div>
-                <strong>Want to customize this AI itinerary?</strong>
+                <strong>Yatra Sathi</strong>
                 <p style="font-size: 0.78rem; color: var(--text-muted);">Ask the AI to change dishes to pure veg, add sunset stops, or adjust travel pacing in real-time.</p>
               </div>
             </div>
@@ -2265,7 +2265,7 @@
         });
         if (res.ok) {
           const json = await res.json();
-          respText.innerText = json.aiReply;
+          respText.innerText = json.reply || json.aiReply || "Yatra Sathi updated your plan!";
           showToast('Itinerary updated by AI!');
         }
       } catch (e) {
