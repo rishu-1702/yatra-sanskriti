@@ -52,7 +52,8 @@ export default async function handler(req, res) {
       Focus on hidden gems, sustainable travel, local artisans (GI tags), and rich cultural history.
     `;
 
-    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+    // USING gemini-1.5-flash-latest to fix the version error
+    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
