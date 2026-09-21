@@ -15,6 +15,10 @@
   <link rel="stylesheet" href="style.css">
   <!-- Supabase Library -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Firebase Libraries for Phone Auth -->
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
 </head>
 <body>
 
@@ -140,7 +144,10 @@
             <div class="input-with-icon">
               <i class="fa-solid fa-phone"></i>
               <input type="tel" id="gate-otp-phone" placeholder="Enter 10-digit mobile number..." required>
-              <button type="button" class="btn-otp-action" onclick="showToast('OTP Code [202694] sent to your mobile!')">Send OTP</button>
+              
+              <div id="recaptcha-container"></div>
+              <button type="button" class="btn-otp-action" onclick="sendFirebaseOtp()">Send SMS</button>
+
             </div>
           </div>
 
@@ -1601,6 +1608,61 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFteHh5d3JtdXR2ZG96dHBneGxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MTI3MTcsImV4cCI6MjEwNTQ4ODcxN30.I5Ds5qbj64COvxx5VarbwzjR2YAvevUVS-LK7nfh8ts';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+    
+    // =========================================================================
+    // FIREBASE PHONE AUTHENTICATION SYSTEM (OVERRIDING SUPABASE FOR OTP)
+    // =========================================================================
+    const firebaseConfig = {
+      apiKey: "AIzaSyAwI-ZLUn-L5dJS85XlPn-T3elaRw7_WoU",
+      authDomain: "yatraphoneauth.firebaseapp.com",
+      projectId: "yatraphoneauth",
+      storageBucket: "yatraphoneauth.firebasestorage.app",
+      messagingSenderId: "918041914913",
+      appId: "1:918041914913:web:db72be5f5c38f7cd84fd60",
+      measurementId: "G-BJFTS880F9"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    let windowConfirmationResult = null;
+
+    function initRecaptcha() {
+      if (!window.recaptchaVerifier) {
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+          'size': 'invisible',
+          'callback': (response) => {
+            // reCAPTCHA solved
+          }
+        });
+      }
+    }
+
+    async function sendFirebaseOtp() {
+      const phoneNumber = document.getElementById('gate-otp-phone').value.trim();
+      if (!phoneNumber || phoneNumber.length < 10) {
+        showToast('Please enter a valid 10-digit mobile number', true);
+        return;
+      }
+      
+      const formattedNumber = phoneNumber.startsWith('+') ? phoneNumber : '+91' + phoneNumber;
+      showToast('Sending real SMS OTP via Firebase...');
+      
+      initRecaptcha();
+      const appVerifier = window.recaptchaVerifier;
+
+      try {
+        windowConfirmationResult = await auth.signInWithPhoneNumber(formattedNumber, appVerifier);
+        showToast('SMS Sent! Please check your phone.', false);
+        // Automatically move focus to first OTP box
+        document.querySelector('.otp-digit').focus();
+      } catch (error) {
+        showToast(error.message, true);
+        if(window.recaptchaVerifier) {
+            window.recaptchaVerifier.clear();
+            window.recaptchaVerifier = null;
+        }
+      }
+    }
+
     const API_BASE_URL = window.location.protocol === 'file:' ? 'http://localhost:5000/api' : (window.location.origin + '/api');
     let currentCoords = { lat: 19.8135, lng: 85.8312, label: 'Puri Coast & Grand Road' };
 
@@ -1938,12 +2000,32 @@
         payload.role = 'Verified Cultural Explorer';
       } 
       else if (loginType === 'tourist-otp') {
-        const phone = document.getElementById('gate-otp-phone').value.trim();
-        userName = phone ? `Explorer (${phone.slice(-4) ? '•••• ' + phone.slice(-4) : phone})` : 'Mobile Explorer';
-        userRole = 'Verified Mobile Explorer';
-        payload.phone = phone;
-        payload.name = userName;
-        payload.role = userRole;
+        const otpInputs = document.querySelectorAll('.otp-digit');
+        let code = '';
+        otpInputs.forEach(input => code += input.value);
+        
+        if (code.length !== 6) {
+          showToast('Please enter all 6 digits of the OTP.', true);
+          return;
+        }
+
+        if (!windowConfirmationResult) {
+          showToast('Please click "Send SMS" first!', true);
+          return;
+        }
+
+        showToast('Verifying code with Firebase...');
+        try {
+          const result = await windowConfirmationResult.confirm(code);
+          const user = result.user;
+          const phone = user.phoneNumber;
+          userName = `Verified Explorer (${phone.slice(-4) ? '•••• ' + phone.slice(-4) : phone})`;
+          userRole = 'Verified Mobile Explorer';
+          activatePlatformSession(userName, userRole, userAvatar);
+        } catch (error) {
+          showToast('Invalid or expired OTP code. Try again.', true);
+        }
+        return;
       } 
       else if (loginType === 'tourist-signup') {
         userName = document.getElementById('gate-signup-name').value.trim() || 'New Explorer';
