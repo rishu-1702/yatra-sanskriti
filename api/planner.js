@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -50,17 +50,21 @@ export default async function handler(req, res) {
       
       Ensure you create exactly ${durationDays} objects in the itineraryDays array.
       Focus on hidden gems, sustainable travel, local artisans (GI tags), and rich cultural history.
-      OUTPUT ONLY RAW JSON. NO BACKTICKS.
+      OUTPUT ONLY RAW JSON. NO BACKTICKS. NO MARKDOWN.
     `;
 
-    // Switch to gemini-pro which is universally available
-    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+    const geminiResponse = await fetch(\`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=\${process.env.GEMINI_API_KEY}\`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{ role: 'user', parts: [{ text: prompt }] }]
       })
     });
+
+    if (!geminiResponse.ok) {
+      const errData = await geminiResponse.text();
+      return res.status(500).json({ error: 'API Error: ' + errData });
+    }
 
     const data = await geminiResponse.json();
     
@@ -69,17 +73,12 @@ export default async function handler(req, res) {
     }
 
     let reply = data.candidates[0].content.parts[0].text;
-    
-    // Clean up potential markdown formatting from gemini-pro
     reply = reply.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
     
-    // Parse the JSON returned by Gemini
     const parsedPlan = JSON.parse(reply);
-
     return res.status(200).json(parsedPlan);
     
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: 'Failed to generate itinerary' });
+    return res.status(500).json({ error: error.message });
   }
-}
+};
