@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -19,6 +19,44 @@
   <!-- Firebase Libraries for Phone Auth -->
   <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+
+  <!-- Google Translate Integration -->
+  <div id="google_translate_element" style="display:none;"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi,or,bn,te', autoDisplay: false}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  
+  <style>
+    /* Hide Google Translate UI and keep our own custom dropdown */
+    body { top: 0 !important; }
+    .goog-te-banner-frame { display: none !important; }
+    #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+    .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
+    .skiptranslate { display: none !important; }
+  </style>
+  
+  <script>
+    // Wire up custom dropdown to Google Translate
+    document.addEventListener("DOMContentLoaded", function() {
+      const langSelect = document.getElementById('app-language');
+      if (langSelect) {
+        langSelect.addEventListener('change', function(e) {
+          const lang = e.target.value;
+          // Google translate widget combo box
+          const gtCombo = document.querySelector('.goog-te-combo');
+          if (gtCombo) {
+            gtCombo.value = lang;
+            gtCombo.dispatchEvent(new Event('change'));
+          } else {
+            console.log("Google Translate combo box not found yet.");
+          }
+        });
+      }
+    });
+  </script>
 </head>
 <body>
 
@@ -98,9 +136,9 @@
 
         <!-- Mode Toggle -->
         <div class="gate-mode-toggle" id="gateModeToggle">
-          <button class="mode-btn" id="btn-gate-2fa" onclick="switchGateMode('2fa')">Authenticator App</button>
+          
           <button class="mode-btn active" id="btn-gate-signin" onclick="switchGateMode('signin')">Sign In</button>
-          <button class="mode-btn" id="btn-gate-otp" onclick="switchGateMode('otp')">Mobile OTP</button>
+          
           <button class="mode-btn" id="btn-gate-signup" onclick="switchGateMode('signup')">Create Account</button>
         </div>
 
@@ -379,10 +417,10 @@
         <span class="menu-strip-label"><i class="fa-solid fa-bars-staggered"></i> Menu:</span>
         <div class="menu-pills-row">
           <button class="menu-pill-btn menu-pill-ai" data-tab="ai-portal" onclick="switchMenuTab('ai-portal')">
-            <i class="fa-solid fa-robot"></i> ? Yatra Sathi AI Portal
+            <i class="fa-solid fa-robot"></i> &#10022; Yatra Sathi AI Portal
           </button>
           <button class="menu-pill-btn menu-pill-ai active" data-tab="planner" onclick="switchMenuTab('planner')">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> ⭐ AI Trip Planner
+            <i class="fa-solid fa-wand-magic-sparkles"></i> &#127775; AI Trip Planner
           </button>
           <button class="menu-pill-btn" data-tab="overview" onclick="switchMenuTab('overview')">
             <i class="fa-solid fa-house"></i> 1. Portal & Search
@@ -934,7 +972,6 @@
         </div>
         <!-- END AI DECONGESTION SEARCH BAR -->
 
-
         <div class="ai-rerouting-card">
           <div class="rerouting-text-col">
             <span class="ai-beacon-pill"><i class="fa-solid fa-wand-magic-sparkles"></i> Live Crowd Alert Active</span>
@@ -984,6 +1021,8 @@
           <h2 class="section-main-heading">Odisha Hidden Gems Directory</h2>
           <p class="section-sub-heading">Explore offbeat artisan villages, quiet ancient stone sanctuaries, and UNESCO monuments with real-time crowd meters and exact Google Maps turn-by-turn routes.</p>
         </div>
+
+        
 
         <div class="destination-cards-grid">
 
@@ -2782,7 +2821,6 @@
     });
   </script>
 
-
   <script>
     // === NEW AI DECONGESTION FUNCTION ===
     async function checkCrowd() {
@@ -2825,6 +2863,5 @@
         }
     }
   </script>
-
 </body>
 </html>
