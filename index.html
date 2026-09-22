@@ -2239,7 +2239,10 @@
       let planData = null;
 
       try {
-        const response = await fetch(`/api/planner`, {
+        
+            const NGROK_URL = 'https://tiny-endocrine-predict.ngrok-free.dev';
+            const response = await fetch(NGROK_URL + '/api/planner', {
+
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
           body: JSON.stringify({ destination: dest, durationDays: days, budgetTier: budget, travelStyle: style })
