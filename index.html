@@ -2023,7 +2023,7 @@
       const formArtisan = document.getElementById('form-gate-artisan');
 
       formSignIn.classList.remove('active');
-      formOtp.classList.remove('active');
+      if (formOtp) formOtp.classList.remove('active');
       formSignUp.classList.remove('active');
       formArtisan.classList.remove('active');
       const form2fa = document.getElementById('form-gate-2fa');
@@ -2051,13 +2051,13 @@
       const formOtp = document.getElementById('form-gate-otp');
       const formUp = document.getElementById('form-gate-signup');
 
-      btnIn.classList.remove('active');
-      btnOtp.classList.remove('active');
-      btnUp.classList.remove('active');
+      if (btnIn) btnIn.classList.remove('active');
+      if (btnOtp) btnOtp.classList.remove('active');
+      if (btnUp) btnUp.classList.remove('active');
 
-      formIn.classList.remove('active');
+      if (formIn) formIn.classList.remove('active');
       formOtp.classList.remove('active');
-      formUp.classList.remove('active');
+      if (formUp) formUp.classList.remove('active');
 
       if (mode === 'signin') {
         btnIn.classList.add('active');
