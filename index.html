@@ -909,6 +909,31 @@
           <p class="section-sub-heading">Real-time crowd monitoring and intelligent offbeat diversion routes with live Google Maps navigation directions.</p>
         </div>
 
+        <!-- START AI DECONGESTION SEARCH BAR -->
+        <div style="margin: 30px 0; text-align: center; background: #e8f5e9; padding: 20px; border-radius: 10px;">
+            <h3>Where are you planning to go?</h3>
+            <input type="text" id="decongestionInput" placeholder="e.g. Taj Mahal or Goa" style="padding: 12px; width: 60%; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
+            <button onclick="checkCrowd()" style="padding: 12px 25px; background: #2e7d32; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-left: 10px;">Check Live Crowd</button>
+        </div>
+
+        <!-- Dynamic AI Alert Box (Hidden until searched) -->
+        <div id="aiDiversionAlert" style="display: none; background: #fff3e0; padding: 20px; border-left: 5px solid #ff9800; border-radius: 5px; margin-bottom: 30px;">
+            <span style="background: red; color: white; padding: 5px 12px; border-radius: 20px; font-weight: bold;"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Crowd Alert Active</span>
+            <h2 id="crowdTitle" style="color: red; margin-top: 15px;">Scanning satellite data...</h2>
+            <p id="crowdMessage" style="font-size: 1.1em;"><strong>YATRA SATHI AI</strong> is analyzing the crowd...</p>
+            
+            <div style="margin-top: 15px;">
+                <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 5px;">
+                    <span><i class="fa-solid fa-users"></i> Live Crowd Density:</span>
+                    <span id="crowdPercentageText" style="color: red;">0%</span>
+                </div>
+                <div style="background: #e0e0e0; height: 12px; border-radius: 10px; overflow: hidden;">
+                    <div id="crowdMeterFill" style="background: red; height: 100%; width: 0%; transition: width 1.5s ease-in-out;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- END AI DECONGESTION SEARCH BAR -->
+
         <div class="ai-rerouting-card">
           <div class="rerouting-text-col">
             <span class="ai-beacon-pill"><i class="fa-solid fa-wand-magic-sparkles"></i> Live Crowd Alert Active</span>
@@ -959,30 +984,7 @@
           <p class="section-sub-heading">Explore offbeat artisan villages, quiet ancient stone sanctuaries, and UNESCO monuments with real-time crowd meters and exact Google Maps turn-by-turn routes.</p>
         </div>
 
-        <!-- START AI DECONGESTION SEARCH BAR -->
-        <div style="margin: 30px 0; text-align: center; background: #e8f5e9; padding: 20px; border-radius: 10px;">
-            <h3>Where are you planning to go?</h3>
-            <input type="text" id="decongestionInput" placeholder="e.g. Taj Mahal or Goa" style="padding: 12px; width: 60%; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
-            <button onclick="checkCrowd()" style="padding: 12px 25px; background: #2e7d32; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-left: 10px;">Check Live Crowd</button>
-        </div>
-
-        <!-- Dynamic AI Alert Box (Hidden until searched) -->
-        <div id="aiDiversionAlert" style="display: none; background: #fff3e0; padding: 20px; border-left: 5px solid #ff9800; border-radius: 5px; margin-bottom: 30px;">
-            <span style="background: red; color: white; padding: 5px 12px; border-radius: 20px; font-weight: bold;"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Crowd Alert Active</span>
-            <h2 id="crowdTitle" style="color: red; margin-top: 15px;">Scanning satellite data...</h2>
-            <p id="crowdMessage" style="font-size: 1.1em;"><strong>YATRA SATHI AI</strong> is analyzing the crowd...</p>
-            
-            <div style="margin-top: 15px;">
-                <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 5px;">
-                    <span><i class="fa-solid fa-users"></i> Live Crowd Density:</span>
-                    <span id="crowdPercentageText" style="color: red;">0%</span>
-                </div>
-                <div style="background: #e0e0e0; height: 12px; border-radius: 10px; overflow: hidden;">
-                    <div id="crowdMeterFill" style="background: red; height: 100%; width: 0%; transition: width 1.5s ease-in-out;"></div>
-                </div>
-            </div>
-        </div>
-        <!-- END AI DECONGESTION SEARCH BAR -->
+        
 
         <div class="destination-cards-grid">
 
