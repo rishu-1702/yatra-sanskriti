@@ -39,19 +39,56 @@
   </style>
   
   <script>
-    // Wire up custom dropdown to Google Translate
+    // Ultimate Robust Google Translate Wiring
     document.addEventListener("DOMContentLoaded", function() {
       const langSelect = document.getElementById('app-language');
+      
+      // Auto-sync our dropdown to whatever language Google Translate has loaded
+      setTimeout(() => {
+        const gtCombo = document.querySelector('.goog-te-combo');
+        if (gtCombo && gtCombo.value) {
+            langSelect.value = gtCombo.value;
+        }
+      }, 1000);
+
       if (langSelect) {
         langSelect.addEventListener('change', function(e) {
           const lang = e.target.value;
-          // Google translate widget combo box
-          const gtCombo = document.querySelector('.goog-te-combo');
-          if (gtCombo) {
-            gtCombo.value = lang;
-            gtCombo.dispatchEvent(new Event('change'));
+          
+          function triggerTranslation() {
+            const gtCombo = document.querySelector('.goog-te-combo');
+            if (gtCombo) {
+              gtCombo.value = lang;
+              try {
+                const event = document.createEvent('HTMLEvents');
+                event.initEvent('change', true, true);
+                gtCombo.dispatchEvent(event);
+              } catch (err) {
+                gtCombo.dispatchEvent(new Event('change', { bubbles: true }));
+              }
+              return true;
+            }
+            return false;
+          }
+
+          // Try instantly
+          if (!triggerTranslation()) {
+             // If combo box is not yet loaded, wait and poll
+             let attempts = 0;
+             const interval = setInterval(() => {
+                attempts++;
+                if (triggerTranslation() || attempts > 20) {
+                    clearInterval(interval);
+                }
+             }, 100);
+          }
+          
+          // Cookie Fallback (Works on localhost or hosted, fails on file://)
+          if (window.location.protocol !== 'file:') {
+            document.cookie = "googtrans=/en/" + lang + "; path=/;";
+            document.cookie = "googtrans=/en/" + lang + "; path=/; domain=" + window.location.hostname;
           } else {
-            console.log("Google Translate combo box not found yet.");
+            console.warn("Running on file:// - Google Translate might need a live server to work perfectly.");
           }
         });
       }
